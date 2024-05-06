@@ -80,6 +80,6 @@ public class Point {
     }
 
     @Override
-    public String toString() { return " " + xyz; }
+    public String toString() { return "(" + xyz.d1 + " , " + xyz.d2 + " , " + xyz.d3 + ")"; }
 
 }
