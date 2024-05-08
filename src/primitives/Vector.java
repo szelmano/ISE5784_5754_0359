@@ -1,13 +1,12 @@
 package primitives;
 
 /**
- * Represents a vector in 3D space.
+ * Represents a vector.
  * Inherits from Point to utilize common functionality.
  */
 public class Vector extends Point {
     /**
      * Constructs a new Vector object with the specified coordinates.
-     *
      * @param x The x-coordinate of the vector.
      * @param y The y-coordinate of the vector.
      * @param z The z-coordinate of the vector.
@@ -21,7 +20,6 @@ public class Vector extends Point {
 
     /**
      * Constructs a new Vector object from a Double3 object.
-     *
      * @param double3 The Double3 object containing the coordinates.
      * @throws IllegalArgumentException if the vector is the zero vector.
      */
@@ -33,7 +31,6 @@ public class Vector extends Point {
 
     /**
      * Adds another vector to this vector.
-     *
      * @param other The vector to add.
      * @return A new vector representing the sum of this vector and the other vector.
      */
@@ -42,8 +39,8 @@ public class Vector extends Point {
     }
 
     /**
-     * Scales this vector by a scalar value.
-     *
+     * Calculates the multiplies of this vector and
+     * a number - a scalar
      * @param num The scalar value to scale the vector by.
      * @return A new vector representing the scaled vector.
      */
@@ -52,8 +49,7 @@ public class Vector extends Point {
     }
 
     /**
-     * Calculates the dot product of this vector and another vector.
-     *
+     * Calculates a dot product of this vector to another vector.
      * @param other The other vector.
      * @return The dot product of this vector and the other vector.
      */
@@ -63,7 +59,6 @@ public class Vector extends Point {
 
     /**
      * Calculates the cross product of this vector and another vector.
-     *
      * @param other The other vector.
      * @return A new vector representing the cross product of this vector and the other vector.
      */
@@ -79,7 +74,6 @@ public class Vector extends Point {
 
     /**
      * Calculates the squared length of this vector.
-     *
      * @return The squared length of this vector.
      */
     public double lengthSquared() {
@@ -88,7 +82,6 @@ public class Vector extends Point {
 
     /**
      * Calculates the length of this vector.
-     *
      * @return The length of this vector.
      */
     public double length() {
@@ -97,7 +90,6 @@ public class Vector extends Point {
 
     /**
      * Normalizes this vector (scales it to have unit length).
-     *
      * @return A new vector representing the normalized vector.
      */
     public Vector normalize() {
@@ -105,18 +97,19 @@ public class Vector extends Point {
         return new Vector(xyz.reduce(len));
     }
 
-@Override
-    public String toString() {
-        return "Vector ("+ xyz.d1+ " , " + xyz.d2+ " , " +xyz.d3+")";
-    }
-
     @Override
     public boolean equals(Object obj) {
         return super.equals(obj);
     }
 
+
     @Override
     public int hashCode() {
         return super.hashCode();
     }
+
+    @Override
+    public String toString() { return "Vector: (" + xyz.d1 + ", " + xyz.d2 + ", " +xyz.d3 +")"; }
+
+
 }

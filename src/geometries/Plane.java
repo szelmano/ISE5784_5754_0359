@@ -4,7 +4,7 @@ import primitives.Point;
 import primitives.Vector;
 
 /**
- * Represents a plane in 3D space.
+ * Represents a plane.
  */
 public class Plane implements Geometry {
     /** A point on the plane. */
@@ -14,7 +14,6 @@ public class Plane implements Geometry {
 
     /**
      * Constructs a plane from three points lying on it.
-     *
      * @param p1 The first point.
      * @param p2 The second point.
      * @param p3 The third point.
@@ -36,7 +35,7 @@ public class Plane implements Geometry {
         this.normal = normal.normalize();
     }
 
-@Override
+    @Override
     public Vector getNormal(Point p1) {
         return null;}
 

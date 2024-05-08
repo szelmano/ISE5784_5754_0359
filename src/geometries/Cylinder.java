@@ -3,7 +3,7 @@ package geometries;
 import primitives.Ray;
 
 /**
- * Represents a cylinder in 3D space.
+ * Represents a cylinder.
  * A cylinder is defined by its height, radius, and axis.
  */
 public class Cylinder extends Tube {
@@ -12,7 +12,6 @@ public class Cylinder extends Tube {
 
     /**
      * Constructs a new Cylinder object with the specified height, radius, and axis.
-     *
      * @param height The height of the cylinder.
      * @param radius The radius of the cylinder.
      * @param axis   The axis of the cylinder.

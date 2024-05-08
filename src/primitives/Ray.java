@@ -13,7 +13,6 @@ public class Ray {
 
     /**
      * Constructs a new Ray object with the specified starting point and direction.
-     *
      * @param head      The starting point of the ray.
      * @param direction The direction of the ray.
      */
@@ -21,14 +20,6 @@ public class Ray {
         this.head = head;
         // Normalize the direction vector to ensure it has unit length
         this.direction = direction.normalize();
-    }
-
-@Override
-    public String toString() {
-        return "Ray{" +
-                "head=" + head +
-                ", direction=" + direction +
-                '}';
     }
 
     @Override
@@ -42,5 +33,13 @@ public class Ray {
     @Override
     public int hashCode() {
         return Objects.hash(head, direction);
+    }
+
+    @Override
+    public String toString() {
+        return "Ray{" +
+                "head=" + head +
+                ", direction=" + direction +
+                '}';
     }
 }

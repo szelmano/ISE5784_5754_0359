@@ -3,7 +3,7 @@ package geometries;
 import primitives.Point;
 
 /**
- * Represents a sphere in 3D space.
+ * Represents a sphere.
  */
 public class Sphere extends RadialGeometry {
     /** The center point of the sphere. */

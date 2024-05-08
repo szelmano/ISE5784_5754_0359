@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Point {
 
     public static final Point ZERO = new Point(Double3.ZERO) ;
-    final Double3 xyz;
+    protected final Double3 xyz;
 
     /**
      * Constructor to initialize a point based object with its three number values
@@ -38,7 +38,7 @@ public class Point {
     /**
      * Subtract two floating point triads into a new triad where each couple of
      * numbers is subtracted
-     * @param  p1 right hand side operand for addition
+     * @param  p1 right hand side operand for subtraction
      * @return     result of subtract
      */
     public Vector subtract(Point p1) {
@@ -47,7 +47,6 @@ public class Point {
 
     /**
      * Calculates the squared distance between this point and another point.
-     *
      * @param p1 The point to which the distance is calculated.
      * @return The squared distance between this point and the specified point.
      */
@@ -59,7 +58,6 @@ public class Point {
 
     /**
      * Calculates the distance between this point and another point.
-     *
      * @param p1 The point to which the distance is calculated.
      * @return The distance between this point and the specified point.
      */
@@ -80,6 +78,6 @@ public class Point {
     }
 
     @Override
-    public String toString() { return "(" + xyz.d1 + " , " + xyz.d2 + " , " + xyz.d3 + ")"; }
+    public String toString() { return "Point: (" + xyz.d1 + ", " + xyz.d2 + ", " + xyz.d3 + ")"; }
 
 }

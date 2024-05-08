@@ -3,13 +3,12 @@ package geometries;
 import primitives.Point;
 
 /**
- * Represents a triangle in 3D space.
+ * Represents a triangle.
  */
 public class Triangle extends Polygon {
 
     /**
      * Constructs a new Triangle object with three vertices.
-     *
      * @param p1 The first vertex of the triangle.
      * @param p2 The second vertex of the triangle.
      * @param p3 The third vertex of the triangle.

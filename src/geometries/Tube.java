@@ -3,7 +3,7 @@ package geometries;
 import primitives.*;
 
 /**
- * Represents a tube in 3D space.
+ * Represents a tube.
  */
 public class Tube extends RadialGeometry {
     /** The axis of the tube. */
@@ -11,7 +11,6 @@ public class Tube extends RadialGeometry {
 
     /**
      * Constructs a new Tube object with the specified radius and axis.
-     *
      * @param radius The radius of the tube.
      * @param axis   The axis of the tube.
      */

@@ -3,7 +3,7 @@ package geometries;
 import primitives.*;
 
 /**
- * Represents a radial geometry in 3D space.
+ * Represents a radial geometry.
  * A radial geometry is any geometry that has a constant radius.
  */
 public abstract class RadialGeometry implements Geometry {
@@ -12,14 +12,13 @@ public abstract class RadialGeometry implements Geometry {
 
     /**
      * Constructs a new radial geometry with the specified radius.
-     *
      * @param radius The radius of the radial geometry.
      */
     public RadialGeometry(double radius) {
         this.radius = radius;
     }
 
-@Override
+    @Override
     public Vector getNormal(Point p1) {
         return null;
     }
