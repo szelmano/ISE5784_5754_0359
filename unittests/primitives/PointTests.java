@@ -23,7 +23,8 @@ class PointTests {
     void testAdd() {
         // =======Equivalence Partitions Tests=======
         // TC01: testing the adding of point and vector (simple test)
-        assertEquals(new Point(0, 0, 0),p1.add(v1), "the adding does not work correctly");
+        assertEquals(new Point(0, 0, 0),p1.add(v1),
+                "TC01: ERROR: Point add does not work correctly");
     }
 
     /**
@@ -33,12 +34,13 @@ class PointTests {
     void testSubtract() {
         // =======Equivalence Partitions Tests=======
         // TC01: testing the subtract between two points (simple test)
-        assertEquals(new Vector(6, 4, 2),p2.subtract(p1),"ERROR: TC01");
+        assertEquals(new Vector(6, 4, 2),p2.subtract(p1),
+                "TC01: ERROR: Point subtract does not work correctly");
 
-        // ======== subtraction of a point itself ========
+        // TC02: subtraction of a point itself....
         assertThrows(IllegalArgumentException.class,
                 () -> p1.subtract(p1),
-                "the subtracting does not work correctly");
+                "TC02: ERROR: Point subtract does not work correctly");
     }
 
     /**
@@ -49,12 +51,14 @@ class PointTests {
         // =======Equivalence Partitions Tests=======
         // TC01: testing if the distance squared between two points is correct (simple
         // test)
-        assertEquals(56, p1.distanceSquared(p2), "ERROR: DistanceSquared doesn't work correctly");
+        assertEquals(56, p1.distanceSquared(p2),
+                "TC01: ERROR: Point DistanceSquared does not work correctly");
 
         // =============== Boundary Values Tests ==================
 
         // TC11: testing if the distance squared between the point to itself is zero
-        assertEquals(0, p1.distanceSquared(p1), "ERROR: DistanceSquared doesn't work correctly");
+        assertEquals(0, p1.distanceSquared(p1),
+                "TC11: ERROR: Point DistanceSquared does not work correctly");
     }
 
     /**
@@ -65,12 +69,13 @@ class PointTests {
         // =======Equivalence Partitions Tests=======
         // TC01: testing if the distance between two points -with squared - is correct
         // (simple test)
-        assertEquals(Math.sqrt(56), p1.distance(p2), "ERROR: Distance doesn't work correctly");
+        assertEquals(Math.sqrt(56), p1.distance(p2),
+                "TC01: ERROR: Point Distance does not work correctly");
 
         // =============== Boundary Values Tests ==================
-
         // TC11: testing if the distance between the point to itself is zero
-        assertEquals(0, p1.distance(p1), "ERROR: Distance doesn't work correctly");
+        assertEquals(0, p1.distance(p1),
+                "TC11: ERROR: Point Distance does not work correctly");
 
     }
 }
