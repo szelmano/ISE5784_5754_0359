@@ -4,7 +4,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-
+/**
+ * Unit tests for primitives.Point class
+ * @author Riki Rubin
+ */
 class PointTests {
 
     private final Point p1 = new Point(1,2,3);
@@ -14,7 +17,7 @@ class PointTests {
 
 
     /**
-     * checking if the adding work correctly
+     * Test method for {@link primitives.Point#add(primitives.Vector)}.
      */
     @Test
     void testAdd() {
@@ -24,7 +27,7 @@ class PointTests {
     }
 
     /**
-     * checking if the subtracting work correctly
+     * Test method for {@link primitives.Point#subtract(primitives.Point)}.
      */
     @Test
     void testSubtract() {
@@ -39,7 +42,7 @@ class PointTests {
     }
 
     /**
-     * checking if the DistanceSquared function work correctly
+     * Test method for {@link primitives.Point#distanceSquared(Point)}.
      */
     @Test
     void testDistanceSquared() {
@@ -55,7 +58,7 @@ class PointTests {
     }
 
     /**
-     * checking if the Distance function work correctly
+     * Test method for {@link primitives.Point#distance(Point)}.
      */
     @Test
     void testDistance() {

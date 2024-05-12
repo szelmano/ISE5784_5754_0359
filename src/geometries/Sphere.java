@@ -1,6 +1,7 @@
 package geometries;
 
 import primitives.Point;
+import primitives.Vector;
 
 /**
  * Represents a sphere.
@@ -8,6 +9,11 @@ import primitives.Point;
 public class Sphere extends RadialGeometry {
     /** The center point of the sphere. */
     final private Point center;
+
+    @Override
+    public Vector getNormal(Point p1) {
+        return super.getNormal(p1);
+    }
 
     /**
      * Constructs a new Sphere object with the specified radius and center point.

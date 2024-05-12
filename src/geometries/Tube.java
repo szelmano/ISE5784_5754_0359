@@ -19,4 +19,8 @@ public class Tube extends RadialGeometry {
         this.axis = axis;
     }
 
+    @Override
+    public Vector getNormal(Point p1) {
+        return super.getNormal(p1);
+    }
 }
