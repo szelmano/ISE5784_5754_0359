@@ -2,6 +2,9 @@ package geometries;
 
 import primitives.*;
 
+import static primitives.Util.alignZero;
+import static primitives.Util.isZero;
+
 /**
  * Represents a tube.
  */
@@ -19,8 +22,30 @@ public class Tube extends RadialGeometry {
         this.axis = axis;
     }
 
+    /**
+     * Calculates the normal vector to the surface of the cylinder at a given point.
+     *
+     * @param p1 The point on the surface of the cylinder
+     * @return The normal vector to the surface at the given point
+     */
     @Override
     public Vector getNormal(Point p1) {
-        return super.getNormal(p1);
+        // Get the vector from the head of the axis to the given point
+        Vector v1 = p1.subtract(axis.getHead());
+        // Calculate the parameter 't' along the axis direction
+        double t = alignZero(axis.getDirection().dotProduct(v1));
+
+        // Check if the point is on the axis of the cylinder
+        if (isZero(t)) {
+            // If the point is on the axis, return the normalized vector from the head to the point
+            return v1.normalize();
+        }
+
+        // Calculate the closest point 'O' on the axis to the given point
+        Point O = axis.getHead().add(axis.getDirection().scale(t));
+
+        // Return the normalized vector from the closest point on the axis to the given point
+        return p1.subtract(O).normalize();
     }
+
 }

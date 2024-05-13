@@ -2,8 +2,10 @@ package geometries;
 
 import org.junit.jupiter.api.Test;
 import primitives.Point;
+import primitives.Vector;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class PlaneTests {
 
@@ -27,9 +29,15 @@ class PlaneTests {
 
     @Test
     void testGetNormal() {
+        // plane to tests
+        Plane p = new Plane(new Point(1, 1, 0), new Point(2, 1, 0), new Point(1, 2, 0));
+
+        // ============ Equivalence Partitions Tests ==============
+
+        // test normal to plane (its can be 2 sides)
+        boolean bool = new Vector(0, 0, 1).equals(p.getNormal(new Point(3, 2, 0)))
+                || new Vector(0, 0, -1).equals(p.getNormal(new Point(3, 2, 0)));
+        assertTrue(bool, " ERROR: getNormal() worng result");
     }
 
-    @Test
-    void testTestGetNormal() {
-    }
 }

@@ -12,7 +12,10 @@ public class Sphere extends RadialGeometry {
 
     @Override
     public Vector getNormal(Point p1) {
-        return super.getNormal(p1);
+        if(p1.equals(center))
+            throw new IllegalArgumentException("point can not be equals to the center of the sphere");
+        Vector v1 =p1.subtract(center);
+        return v1.normalize();
     }
 
     /**
