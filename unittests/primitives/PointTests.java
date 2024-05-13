@@ -37,7 +37,7 @@ class PointTests {
         assertEquals(new Vector(6, 4, 2),p2.subtract(p1),
                 "TC01: ERROR: Point subtract does not work correctly");
 
-        // TC02: subtraction of a point itself....
+        // TC02: subtraction of a point itself
         assertThrows(IllegalArgumentException.class,
                 () -> p1.subtract(p1),
                 "TC02: ERROR: Point subtract does not work correctly");
@@ -55,7 +55,6 @@ class PointTests {
                 "TC01: ERROR: Point DistanceSquared does not work correctly");
 
         // =============== Boundary Values Tests ==================
-
         // TC11: testing if the distance squared between the point to itself is zero
         assertEquals(0, p1.distanceSquared(p1),
                 "TC11: ERROR: Point DistanceSquared does not work correctly");

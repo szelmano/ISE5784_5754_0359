@@ -31,7 +31,7 @@ class VectorTests {
         //=============== Boundary Values Tests ==================
         // TC11: Constructor of (0,0,0) vector throws an exception....
         assertThrows(IllegalArgumentException.class, ()-> new Vector(0, 0, 0),
-                "TC11: Constructor of (0,0,0) vector");
+                "TC11: ERROR: Constructor of (0,0,0) vector");
     }
     /**
      * Test method for {@link Vector#add(Vector)}
