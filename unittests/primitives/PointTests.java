@@ -4,17 +4,16 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
 /**
  * Unit tests for primitives.Point class
- * @author Riki Rubin
+ * @author Shirel Zelmanovich
  */
 class PointTests {
 
     private final Point p1 = new Point(1,2,3);
     private final Point p2= new Point(7,6,5);
     private final Vector v1= new Vector (-1,-2,-3);
-
-
 
     /**
      * Test method for {@link primitives.Point#add(primitives.Vector)}.
@@ -75,6 +74,5 @@ class PointTests {
         // TC11: testing if the distance between the point to itself is zero
         assertEquals(0, p1.distance(p1),
                 "TC11: ERROR: Point Distance does not work correctly");
-
     }
 }

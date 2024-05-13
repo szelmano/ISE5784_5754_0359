@@ -6,6 +6,10 @@ import primitives.Vector;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Unit tests for geometries.Sphere class
+ * @author Riki Rubin
+ */
 class SphereTests {
 
     /**
@@ -17,7 +21,6 @@ class SphereTests {
         // TC01: There is a simple single test here
         Sphere sp = new Sphere(5,new Point(0,0,0));
         assertEquals(new Vector(0, 0, 1), sp.getNormal(new Point(0, 0, 5)),
-                "Bad normal to sphere");
+                "TC01: Sphere getNormal() should return the correct normal");
     }
-
 }
