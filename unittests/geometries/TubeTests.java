@@ -25,12 +25,12 @@ class TubeTests {
         // TC01: simple check
         assertEquals(new Vector(1, 1, 0).normalize(),
                 tube.getNormal(new Point(1, 1, 2)),
-                "TC01: TODO");
+                "TC01: getNormal does not work correctly");
 
         // =============== Boundary Values Tests ==================
         // TC11: Normal is orthogonal to the head of the axis Ray
         assertEquals(new Vector(1, 1, 0).normalize(),
                 tube.getNormal(new Point(1, 1, 1)),
-                "TC11: TODO");
+                "TC11: getNormal does not work correctly");
     }
 }

@@ -22,7 +22,7 @@ class TriangleTests {
         assertThrows(IllegalArgumentException.class,
                 () -> new Triangle(new Point(0, 1, 0),
                         new Point(0, 1, 0), new Point(1, 1, 0)),
-                "TC01: TODO)");
+                "TC01: Triangle constructor should throw IllegalArgumentException)");
     }
 
     /**
@@ -36,6 +36,6 @@ class TriangleTests {
 
         boolean bool = new Vector(0, 0, -1).equals(t.getNormal(new Point(0, 1, 0)))
                 || new Vector(0, 0, 1).equals(t.getNormal(new Point(0, 1, 0)));
-        assertTrue(bool, "TC01: TODO");
+        assertTrue(bool, "TC01: getNormal does not work correctly");
     }
 }
