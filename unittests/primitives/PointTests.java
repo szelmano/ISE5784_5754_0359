@@ -43,7 +43,7 @@ class PointTests {
     }
 
     /**
-     * Test method for {@link primitives.Point#distanceSquared(Point)}.
+     * Test method for {@link primitives.Point#distanceSquared(primitives.Point)}.
      */
     @Test
     void testDistanceSquared() {
@@ -60,7 +60,7 @@ class PointTests {
     }
 
     /**
-     * Test method for {@link primitives.Point#distance(Point)}.
+     * Test method for {@link primitives.Point#distance(primitives.Point)}.
      */
     @Test
     void testDistance() {

@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class PlaneTests {
 
     /**
-     * Test method for {@link geometries.Plane#Plane(Point, Point, Point)}
+     * Test method for {@link geometries.Plane#Plane(primitives.Point, primitives.Point, primitives.Point)}
      */
     @Test
     void testConstructor(){
@@ -31,7 +31,7 @@ class PlaneTests {
     }
 
     /**
-     * Test method for {@link Plane#getNormal(Point)}.
+     * Test method for {@link geometries.Plane#getNormal(primitives.Point)}.
      */
     @Test
     void testGetNormal() {

@@ -18,7 +18,7 @@ class VectorTests {
     private final Vector v5 = new Vector(-1, -2, -3);
 
     /**
-     * Test method for {@link Vector#Vector(double, double, double)}.
+     * Test method for {@link primitives.Vector#Vector(double, double, double)}.
      */
     @Test
     public void testConstructor() {
@@ -34,7 +34,7 @@ class VectorTests {
     }
 
     /**
-     * Test method for {@link Vector#add(Vector)}
+     * Test method for {@link primitives.Vector#add(primitives.Vector)}
      */
     @Test
     void testAdd() {
@@ -52,7 +52,7 @@ class VectorTests {
     }
 
     /**
-     * Test method for{@link Vector#scale(double)}
+     * Test method for{@link primitives.Vector#scale(double)}
      */
     @Test
     void testScale() {
@@ -69,7 +69,7 @@ class VectorTests {
     }
 
     /**
-     * Test method for {@link Vector#dotProduct(Vector)}
+     * Test method for {@link primitives.Vector#dotProduct(primitives.Vector)}
      */
     @Test
     void testDotProduct() {
@@ -95,7 +95,7 @@ class VectorTests {
     }
 
     /**
-     * Test method for {@link Vector#crossProduct(Vector)}
+     * Test method for {@link primitives.Vector#crossProduct(primitives.Vector)}
      */
     @Test
     void testCrossProduct() {
@@ -120,7 +120,7 @@ class VectorTests {
     }
 
     /**
-     * Test method for{@link Vector#lengthSquared()}
+     * Test method for{@link primitives.Vector#lengthSquared()}
      */
     @Test
     void testLengthSquared() {
@@ -137,7 +137,7 @@ class VectorTests {
     }
 
     /**
-     * Test method for {@link Vector#length()}
+     * Test method for {@link primitives.Vector#length()}
      */
     @Test
     void testLength() {
@@ -148,7 +148,7 @@ class VectorTests {
     }
 
     /**
-     * Test method for {@link Vector#normalize()}
+     * Test method for {@link primitives.Vector#normalize()}
      */
     @Test
     void testNormalize() {

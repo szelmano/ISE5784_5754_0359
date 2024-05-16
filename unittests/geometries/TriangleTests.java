@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class TriangleTests {
 
     /**
-     * Test method for {@link geometries.Triangle#Triangle(Point, Point, Point)} .
+     * Test method for {@link geometries.Triangle#Triangle(primitives.Point, primitives.Point, primitives.Point)} .
      */
     @Test
     public void testConstructor() {

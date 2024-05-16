@@ -3,7 +3,7 @@ package geometries;
 import primitives.*;
 
 /**
- * Represents a geometric shape.
+ * Represents a geometry.
  */
 public interface Geometry {
      /**
@@ -11,6 +11,6 @@ public interface Geometry {
       * @param p1 The point on the geometry.
       * @return The normal vector to the geometry at the specified point.
       */
-     Vector getNormal(Point p1);
+     public Vector getNormal(Point p1);
 
 }

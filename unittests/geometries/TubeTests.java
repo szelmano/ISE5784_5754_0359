@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class TubeTests {
 
     /**
-     * Test method for {@link geometries.Tube#Tube(double, Ray)}.
+     * Test method for {@link geometries.Tube#getNormal(primitives.Point)}.
      */
     @Test
     void testGetNormal() {
