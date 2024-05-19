@@ -10,13 +10,13 @@ import static org.junit.jupiter.api.Assertions.*;
  * Unit tests for geometries.Sphere class
  * @author Riki Rubin
  */
-class SphereTests {
+public class SphereTests {
 
     /**
      * Test method for {@link geometries.Sphere#getNormal(primitives.Point)}.
      */
     @Test
-    void testGetNormal() {
+   public void testGetNormal() {
         // ============ Equivalence Partitions Tests ==============
         // TC01: simple check
         Sphere sp = new Sphere(5,new Point(0,0,0));

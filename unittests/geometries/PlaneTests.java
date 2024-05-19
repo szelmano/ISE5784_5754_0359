@@ -11,13 +11,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * Unit tests for geometries.Plane class
  * @author Shirel and Riki
  */
-class PlaneTests {
+public  class PlaneTests {
 
     /**
      * Test method for {@link geometries.Plane#Plane(primitives.Point, primitives.Point, primitives.Point)}
      */
     @Test
-    void testConstructor(){
+   public void testConstructor(){
         // =============== Boundary Values Tests ==================
         // TC11: check constructor two point the same
         assertThrows(IllegalArgumentException.class,
@@ -34,7 +34,7 @@ class PlaneTests {
      * Test method for {@link geometries.Plane#getNormal(primitives.Point)}.
      */
     @Test
-    void testGetNormal() {
+   public void testGetNormal() {
         // plane to tests
         Plane p = new Plane(new Point(1, 1, 0), new Point(2, 1, 0), new Point(1, 2, 0));
 

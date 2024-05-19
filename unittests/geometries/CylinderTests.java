@@ -11,13 +11,13 @@ import static org.junit.jupiter.api.Assertions.*;
  * Unit tests for geometries.Cylinder class
  * @author Shirel Zelmanovich
  */
-class CylinderTests {
+ public  class CylinderTests {
 
     /**
      * Test method for {@link geometries.Cylinder#getNormal(primitives.Point)}.
      */
     @Test
-    void testGetNormal() {
+   public void testGetNormal() {
         Cylinder cy = new Cylinder(2, 1, new Ray(new Point(0, 0, 0), new Vector(0, 0, 1)));
         // ============ Equivalence Partitions Tests ==============
         // TC01: test when the point is at the top of the cylinder

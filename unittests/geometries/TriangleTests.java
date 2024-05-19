@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * Unit tests for geometries.Triangle class
  * @author Riki Rubin
  */
-class TriangleTests {
+public class TriangleTests {
 
     /**
      * Test method for {@link geometries.Triangle#Triangle(primitives.Point, primitives.Point, primitives.Point)} .
@@ -29,7 +29,7 @@ class TriangleTests {
      * Test method for {@link geometries.Triangle#getNormal(primitives.Point)}.
      */
     @Test
-    void testGetNormal (){
+   public void testGetNormal (){
         // ============ Equivalence Partitions Tests ==============
         // TC01: simple check
         Triangle t = new Triangle(new Point(0, 1, 0), new Point(1, 0, 0), new Point(1, 1, 0));

@@ -9,7 +9,7 @@ import static primitives.Util.isZero;
  * Unit tests for primitives.Vector class
  * @author Riki and Shirel
  */
-class VectorTests {
+public class VectorTests {
 
     private final Vector v1 = new Vector(1, 2, 3);
     private final Vector v2 = new Vector(2, 4, 6);
@@ -37,7 +37,7 @@ class VectorTests {
      * Test method for {@link primitives.Vector#add(primitives.Vector)}
      */
     @Test
-    void testAdd() {
+    public void testAdd() {
         // ============ Equivalence Partitions Tests ==============
         // TC01: Add two regular vector one to another
         assertEquals(
@@ -51,11 +51,26 @@ class VectorTests {
                 "TC11: ERROR: Vector + Vector does not work correctly");
     }
 
+    @Test
+   public void testSubtract() {
+        // ============ Equivalence Partitions Tests ==============
+        // TC01: Subtract two regular vectors
+        assertEquals(
+                new Vector(-1, -2, -3), v1.subtract(v2),
+                "TC01: ERROR: Vector - Vector does not work correctly");
+
+        // =============== Boundary Values Tests ==================
+        // TC11: Subtract a vector from itself resulting in a zero vector
+        assertThrows(IllegalArgumentException.class,
+                () -> v1.subtract(v1),
+                "TC11: ERROR: Subtracting a vector from itself should throw an exception");
+    }
+
     /**
      * Test method for{@link primitives.Vector#scale(double)}
      */
     @Test
-    void testScale() {
+    public void testScale() {
         // ============ Equivalence Partitions Tests ==============
         // TC01: scale a vector by a regular scalar
         assertEquals(new Vector(2,8,-6), v4.scale(2),
@@ -72,7 +87,7 @@ class VectorTests {
      * Test method for {@link primitives.Vector#dotProduct(primitives.Vector)}
      */
     @Test
-    void testDotProduct() {
+   public void testDotProduct() {
         // =======Equivalence Partitions Tests=======
         // TC01: in the same direction
         assertEquals(28, v1.dotProduct(v2),
@@ -98,7 +113,7 @@ class VectorTests {
      * Test method for {@link primitives.Vector#crossProduct(primitives.Vector)}
      */
     @Test
-    void testCrossProduct() {
+   public void testCrossProduct() {
         // =======Equivalence Partitions Tests=======
         // TC01: sharp angle
         assertEquals(new Vector(2, -1, 0), v1.crossProduct(v3),
@@ -113,17 +128,17 @@ class VectorTests {
         // =============== Boundary Values Tests ==================
         // TC11: Inverted vector
         assertThrows(IllegalArgumentException.class, () -> v1.crossProduct(v5),
-                "TC11: ERROR: Vector crossProduct does not work correctly");
+                "TC11: ERROR: Vector crossProduct does not throw an exception");
         // TC12: Two vectors with the same direction
         assertThrows(IllegalArgumentException.class, () -> v1.crossProduct(v2),
-                "TC12: ERROR: Vector crossProduct does not work correctly");
+                "TC12: ERROR: Vector crossProduct does throw an exception");
     }
 
     /**
      * Test method for{@link primitives.Vector#lengthSquared()}
      */
     @Test
-    void testLengthSquared() {
+    public void testLengthSquared() {
         // =======Equivalence Partitions Tests=======
         // TC01: negative coordinate
         assertEquals(14, v5.lengthSquared(),
@@ -140,7 +155,7 @@ class VectorTests {
      * Test method for {@link primitives.Vector#length()}
      */
     @Test
-    void testLength() {
+   public void testLength() {
         // =======Equivalence Partitions Tests=======
         // TC01: A test of the distance between two points in a 3D
         assertEquals(Math.sqrt(26), v4.length(),
@@ -151,7 +166,7 @@ class VectorTests {
      * Test method for {@link primitives.Vector#normalize()}
      */
     @Test
-    void testNormalize() {
+   public void testNormalize() {
         // =======Equivalence Partitions Tests=======
          Vector u=v1.normalize();
         // TC01: test vector normalization vs vector length and cross-product

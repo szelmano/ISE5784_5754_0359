@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  * Unit tests for primitives.Point class
  * @author Shirel Zelmanovich
  */
-class PointTests {
+public class PointTests {
 
     private final Point p1 = new Point(1,2,3);
     private final Point p2= new Point(7,6,5);
@@ -19,7 +19,7 @@ class PointTests {
      * Test method for {@link primitives.Point#add(primitives.Vector)}.
      */
     @Test
-    void testAdd() {
+  public void testAdd() {
         // =======Equivalence Partitions Tests=======
         // TC01: testing the adding of point and vector (simple test)
         assertEquals(new Point(0, 0, 0),p1.add(v1),
@@ -30,7 +30,7 @@ class PointTests {
      * Test method for {@link primitives.Point#subtract(primitives.Point)}.
      */
     @Test
-    void testSubtract() {
+    public void testSubtract() {
         // =======Equivalence Partitions Tests=======
         // TC01: testing the subtract between two points (simple test)
         assertEquals(new Vector(6, 4, 2),p2.subtract(p1),
@@ -39,14 +39,14 @@ class PointTests {
         // TC02: subtraction of a point itself
         assertThrows(IllegalArgumentException.class,
                 () -> p1.subtract(p1),
-                "TC02: ERROR: Point subtract does not work correctly");
+                "TC02: ERROR: Point subtract does not throw an exception");
     }
 
     /**
      * Test method for {@link primitives.Point#distanceSquared(primitives.Point)}.
      */
     @Test
-    void testDistanceSquared() {
+   public void testDistanceSquared() {
         // =======Equivalence Partitions Tests=======
         // TC01: testing if the distance squared between two points is correct (simple
         // test)
@@ -63,7 +63,7 @@ class PointTests {
      * Test method for {@link primitives.Point#distance(primitives.Point)}.
      */
     @Test
-    void testDistance() {
+   public void testDistance() {
         // =======Equivalence Partitions Tests=======
         // TC01: testing if the distance between two points -with squared - is correct
         // (simple test)

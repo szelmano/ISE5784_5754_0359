@@ -57,8 +57,6 @@ public class Cylinder extends Tube {
             return v;
 
         return super.getNormal(p1);
-
-
     }
 }
 
