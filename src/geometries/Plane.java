@@ -1,12 +1,20 @@
 package geometries;
 
 import primitives.Point;
+import primitives.Ray;
 import primitives.Vector;
+
+import java.util.List;
 
 /**
  * Represents a plane.
  */
 public class Plane implements Geometry {
+    @Override
+    public List<Point> findIntersections(Ray ray) {
+        return null;
+    }
+
     /** A point on the plane. */
     final private Point q;
     /** The normal vector to the plane. */

@@ -2,6 +2,8 @@ package geometries;
 
 import primitives.*;
 
+import java.util.List;
+
 import static primitives.Util.alignZero;
 import static primitives.Util.isZero;
 
@@ -32,7 +34,7 @@ public class Tube extends RadialGeometry {
     public Vector getNormal(Point p1) {
         // Get the vector from the head of the axis to the given point
         Vector v1 = p1.subtract(axis.getHead());
-        // Calculate the parameter 't' along the axis direction
+        // Calculate the parameter "t" along the axis direction
         double t = alignZero(axis.getDirection().dotProduct(v1));
 
         // Check if the point is on the axis of the cylinder
@@ -46,6 +48,10 @@ public class Tube extends RadialGeometry {
 
         // Return the normalized vector from the closest point on the axis to the given point
         return p1.subtract(O).normalize();
+    }
+    @Override
+    public List<Point> findIntersections(Ray ray) {
+        return null;
     }
 
 }
