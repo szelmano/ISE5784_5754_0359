@@ -6,14 +6,13 @@ import primitives.Vector;
 
 import java.util.List;
 
+import static primitives.Util.alignZero;
+import static primitives.Util.isZero;
+
 /**
  * Represents a plane.
  */
 public class Plane implements Geometry {
-    @Override
-    public List<Point> findIntersections(Ray ray) {
-        return null;
-    }
 
     /** A point on the plane. */
     final private Point q;
@@ -50,5 +49,26 @@ public class Plane implements Geometry {
 
     public Vector getNormal() {
             return normal;
+    }
+
+    @Override
+    public List<Point> findIntersections(Ray ray) {
+        Point p0 = ray.getHead();
+        Vector v = ray.getDirection();
+
+        if(q.equals(ray.getHead()))
+            return null;
+
+        if (isZero(normal.dotProduct(q.subtract(p0))))
+            return null;
+
+        if (isZero(normal.dotProduct(v)))
+            return null;
+
+        double t = alignZero((normal.dotProduct(q.subtract(p0))) / normal.dotProduct(v));
+
+        if (t <= 0)
+            return null;
+        return List.of(p0.add(v.scale(t)));
     }
 }

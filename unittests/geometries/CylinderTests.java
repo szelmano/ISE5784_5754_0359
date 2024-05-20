@@ -46,7 +46,7 @@ import static org.junit.jupiter.api.Assertions.*;
     private final double radius = 1.0;
     private final Ray axisRay = new Ray(center, new Vector(0, 0, 1));
     private final double height = 2.0;
-    private final Cylinder cylinder = new Cylinder(radius, axisRay, height);
+    private final Cylinder cylinder = new Cylinder(height, radius, axisRay);
 
     /**
      * Test method to find intersections between a ray and a finite cylinder.
