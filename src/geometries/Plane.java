@@ -56,7 +56,7 @@ public class Plane implements Geometry {
         Point p0 = ray.getHead();
         Vector v = ray.getDirection();
 
-        if(q.equals(ray.getHead()))
+        if(q.equals(p0))
             return null;
 
         if (isZero(normal.dotProduct(q.subtract(p0))))
@@ -69,6 +69,6 @@ public class Plane implements Geometry {
 
         if (t <= 0)
             return null;
-        return List.of(p0.add(v.scale(t)));
+        return List.of(ray.getPoint(t));
     }
 }

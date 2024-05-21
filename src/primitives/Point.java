@@ -25,6 +25,10 @@ public class Point {
         this.xyz = xyz;
     }
 
+    public Double3 getXyz() {
+        return xyz;
+    }
+
     /**
      * Sum two floating point triads into a new triad where each couple of numbers
      * is summarized

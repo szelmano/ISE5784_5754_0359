@@ -44,7 +44,7 @@ public class Tube extends RadialGeometry {
         }
 
         // Calculate the closest point 'O' on the axis to the given point
-        Point O = axis.getHead().add(axis.getDirection().scale(t));
+        Point O = axis.getPoint(t);
 
         // Return the normalized vector from the closest point on the axis to the given point
         return p1.subtract(O).normalize();

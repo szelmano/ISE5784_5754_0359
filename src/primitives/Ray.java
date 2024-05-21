@@ -2,6 +2,8 @@ package primitives;
 
 import java.util.Objects;
 
+import static primitives.Util.isZero;
+
 /**
  * Represents a ray in 3D space, defined by its starting point and direction.
  */
@@ -29,6 +31,21 @@ public class Ray {
     public Vector getDirection() {
         return direction;
     }
+
+    /**
+     * Calculates a point on the ray at a given distance from the ray's head.
+     *
+     * @param t the distance from the ray's origin along the ray's direction
+     * @return the point on the ray at distance `t` from the origin
+     */
+    public Point getPoint(double t) {
+        if (isZero(t)) {
+            return head;
+        }
+        return head.add(direction.scale(t));
+    }
+
+
 
     @Override
     public boolean equals(Object obj) {

@@ -58,45 +58,58 @@ public class SphereTests {
 
         // TC03: Ray starts inside the sphere (1 point)
         final Point insidePoint = new Point(0.5, 0, 0);
-        final var result2 = sphere.findIntersections(new Ray(insidePoint, v310));
+        final var result2 = sphere.findIntersections(new Ray(insidePoint, v310)).stream()
+                .sorted(Comparator.comparingDouble(p -> p.distance(insidePoint))).toList();
         assertNotNull(result2, "Ray starts inside the sphere");
         assertEquals(1, result2.size(), "Wrong number of points for ray starting inside the sphere");
         assertEquals(gp2, result2.get(0), "Ray starting inside the sphere");
 
         // TC04: Ray starts after the sphere (0 points)
-        assertNull(sphere.findIntersections(new Ray(new Point(3, 1, 0), v310)), "Ray starts after the sphere");
+        assertNull(sphere.findIntersections(new Ray(new Point(3, 1, 0), v310)),
+                "Ray starts after the sphere");
 
         // =============== Boundary Values Tests ==================
         // **** Group: Ray's line crosses the sphere (but not the center)
         // TC11: Ray starts at sphere and goes inside (1 point)
-        assertEquals(List.of(gp2), sphere.findIntersections(new Ray(new Point(2, 0, 0), v110)),
+        Point p1=new Point(2, 0, 0);
+        assertEquals(List.of(gp2), sphere.findIntersections(new Ray(p1, v110)).stream()
+                        .sorted(Comparator.comparingDouble(p -> p.distance(p1))).toList(),
                 "Ray starts at sphere and goes inside");
 
         // TC12: Ray starts at sphere and goes outside (0 points)
-        assertNull(sphere.findIntersections(new Ray(new Point(2, 0, 0), v310)),
-                "Ray starts at sphere and goes outside");
+        assertEquals(sphere.findIntersections(new Ray(p1, v310)).stream()
+                .sorted(Comparator.comparingDouble(p -> p.distance(p1))).toList(),
+                null, "Ray starts at sphere and goes outside");
 
         // **** Group: Ray's line goes through the center
         // TC13: Ray starts before the sphere (2 points)
         final var result3 = sphere.findIntersections(new Ray(p01, new Vector(2, 0, 0))).stream()
                 .sorted(Comparator.comparingDouble(p -> p.distance(p01))).toList();
         assertEquals(2, result3.size(), "Wrong number of points for ray going through center");
-        assertEquals(List.of(new Point(0, 0, 0), new Point(2, 0, 0)), result3, "Ray going through center");
+        assertEquals(List.of(new Point(0, 0, 0), p1), result3, "Ray going through center");
 
         // TC14: Ray starts at sphere and goes inside (1 point)
-        assertEquals(List.of(new Point(0, 0, 0)), sphere.findIntersections(new Ray(new Point(2, 0, 0), new Vector(-2, 0, 0))),
+        assertEquals(List.of(new Point(0, 0, 0)),
+                sphere.findIntersections(new Ray(p1, new Vector(-2, 0, 0)))
+                        .stream().sorted(Comparator.comparingDouble(p -> p.distance(p1))).toList(),
                 "Ray starts at sphere and goes inside through center");
 
         // TC15: Ray starts inside (1 point)
-        assertEquals(List.of(new Point(0, 0, 0)), sphere.findIntersections(new Ray(new Point(1.5, 0, 0), new Vector(-2, 0, 0))),
+        Point p2= new Point(1.5, 0, 0);
+        assertEquals(List.of(new Point(0, 0, 0)),
+                sphere.findIntersections(new Ray(p2, new Vector(-2, 0, 0)))
+                        .stream().sorted(Comparator.comparingDouble(p -> p.distance(p2))).toList(),
                 "Ray starts inside and goes through center");
 
         // TC16: Ray starts at the center (1 point)
-        assertEquals(List.of(new Point(2, 0, 0)), sphere.findIntersections(new Ray(p100, new Vector(2, 0, 0))),
+        assertEquals(List.of(new Point(2, 0, 0)),
+                sphere.findIntersections(new Ray(p100, new Vector(2, 0, 0))).stream()
+                        .sorted(Comparator.comparingDouble(p -> p.distance(p100))).toList(),
                 "Ray starts at center and goes outside");
 
         // TC17: Ray starts at sphere and goes outside (0 points)
-        assertNull(sphere.findIntersections(new Ray(new Point(2, 0, 0), new Vector(2, 0, 0))),
+        assertEquals(null,sphere.findIntersections(new Ray(p1, new Vector(2, 0, 0))).stream()
+                .sorted(Comparator.comparingDouble(p -> p.distance(p1))).toList(),
                 "Ray starts at sphere and goes outside through center");
 
         // TC18: Ray starts after sphere (0 points)
