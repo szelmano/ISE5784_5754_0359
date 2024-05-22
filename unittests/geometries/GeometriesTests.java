@@ -1,11 +1,6 @@
 package geometries;
 
-import org.junit.jupiter.api.Test;
-import primitives.*;
-
-import static org.junit.jupiter.api.Assertions.*;
-
-public class GeometriesTest {
+public class GeometriesTests {
 
 //    /**
 //     * Test method for {@link Geometries#findIntersections(Ray)}.

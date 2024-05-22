@@ -49,6 +49,7 @@ public class Tube extends RadialGeometry {
         // Return the normalized vector from the closest point on the axis to the given point
         return p1.subtract(O).normalize();
     }
+
     @Override
     public List<Point> findIntersections(Ray ray) {
         return null;
