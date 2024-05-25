@@ -34,7 +34,6 @@ public class Plane implements Geometry {
 
     /**
      * Constructs a plane from a point on it and its normal vector.
-     *
      * @param point  A point on the plane.
      * @param normal The normal vector to the plane.
      */
@@ -43,14 +42,25 @@ public class Plane implements Geometry {
         this.normal = normal.normalize();
     }
 
+    /**
+     * Get the normal vector to the surface of plane at the given point.
+     * @param p1 The point on the surface of plane.
+     * @return The normal vector to the geometry at the given point.
+     */
     @Override
-    public Vector getNormal(Point p1) {
-        return normal;}
+    public Vector getNormal(Point p1) { return normal; }
 
-    public Vector getNormal() {
-            return normal;
-    }
+    /**
+     * Get the normal vector to the surface of plane at the given point.
+     * @return The normal vector to the geometry at the given point.
+     */
+    public Vector getNormal() { return normal; }
 
+    /**
+     * Finds intersections points of a given ray with the plane.
+     * @param ray The ray of the intersection.
+     * @return A list of intersection points, or null if no intersection is found.
+     */
     @Override
     public List<Point> findIntersections(Ray ray) {
         Point p0 = ray.getHead();

@@ -114,9 +114,9 @@ public class PolygonTests {
    private final Point p4 = new Point(1, 1, 0);
    private final List<Point> vertices = List.of(p1, p2, p3, p4);
 
-   /**
-    * Test method to find intersections between a ray and a polygon.
-    */
+//   /**
+//    * Test method for {@link geometries.Polygon#findIntersections(primitives.Ray)}.
+//    */
 //   @Test
 //   public void testFindIntersections() {
 //      // Create polygon

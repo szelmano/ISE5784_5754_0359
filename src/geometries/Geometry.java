@@ -7,9 +7,9 @@ import primitives.*;
  */
 public interface Geometry extends Intersectable{
      /**
-      * Calculates the normal vector to the geometry at a specified point.
-      * @param p1 The point on the geometry.
-      * @return The normal vector to the geometry at the specified point.
+      * Get the normal vector to the surface of geometry at the given point.
+      * @param p1 The point on the surface of geometry.
+      * @return The normal vector to the geometry at the given point.
       */
      public Vector getNormal(Point p1);
 

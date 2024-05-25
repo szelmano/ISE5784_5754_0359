@@ -34,7 +34,6 @@ public class Ray {
 
     /**
      * Calculates a point on the ray at a given distance from the ray's head.
-     *
      * @param t the distance from the ray's origin along the ray's direction
      * @return the point on the ray at distance `t` from the origin
      */

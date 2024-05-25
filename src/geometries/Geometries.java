@@ -8,15 +8,13 @@ import java.util.List;
 
 public class Geometries implements Intersectable  {
 
-    private final List<Intersectable> geometries = new LinkedList<>();
+    final private List<Intersectable> geometries = new LinkedList<Intersectable>();
 
     public Geometries(){}
-    public Geometries(Intersectable... geometries) {
-       add(geometries);
-    }
+    public Geometries(Intersectable... geometries) { add(geometries); }
 
     /**
-     *  concatenate a collection of geometries to the existing collection
+     * Concatenate a collection of geometries to the existing collection
      * @param geometries the collection to concat
      */
     private void add(Intersectable...geometries){
@@ -25,8 +23,8 @@ public class Geometries implements Intersectable  {
 
     /**
      * Finds the intersection points of a given ray with all geometries in this composite structure.
-     * @param ray the ray to find intersections with
-     * @return a list of intersection points with all geometries, or null if there are no intersections
+     * @param ray The ray to find intersections with
+     * @return A list of intersection points with all geometries, or null if there are no intersections
      */
     @Override
     public List<Point> findIntersections(Ray ray) {

@@ -22,6 +22,11 @@ public class Triangle extends Polygon {
         super(p1, p2, p3);
     }
 
+    /**
+     * Finds intersection points of a given ray with the triangle.
+     * @param ray The ray of the intersection.
+     * @return A list of intersection points, or null if no intersection is found.
+     */
     @Override
     public List<Point> findIntersections(Ray ray) {
         Point p0 = ray.getHead();

@@ -48,7 +48,7 @@ public class TriangleTests {
     private final Point p110 = new Point(1, 1, 0);
 
     /**
-     * Test method to find intersections between a triangle and a ray.
+     * Test method for {@link geometries.Triangle#findIntersections(primitives.Ray)}.
      */
     @Test
     public void testFindIntersections() {

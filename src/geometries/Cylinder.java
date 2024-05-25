@@ -17,7 +17,6 @@ public class Cylinder extends Tube {
 
     /**
      * Constructs a new Cylinder object with the specified height, radius, and axis.
-     *
      * @param height The height of the cylinder.
      * @param radius The radius of the cylinder.
      * @param axis   The axis of the cylinder.
@@ -29,9 +28,8 @@ public class Cylinder extends Tube {
 
     /**
      * Calculates the normal vector to the surface of the cylinder at a given point.
-     *
-     * @param p1 The point on the surface of the cylinder
-     * @return The normal vector to the surface at the given point
+     * @param p1 The point on the surface of the cylinder.
+     * @return The normal vector to the geometry at the given point.
      */
     @Override
     public Vector getNormal(Point p1) {

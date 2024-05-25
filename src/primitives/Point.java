@@ -25,9 +25,15 @@ public class Point {
         this.xyz = xyz;
     }
 
-    public Double3 getXyz() {
-        return xyz;
+    public double getX() {
+        return xyz.d1;
     }
+
+    public double getY() {
+        return xyz.d2;
+    }
+
+    public double getZ() { return xyz.d3; }
 
     /**
      * Sum two floating point triads into a new triad where each couple of numbers
@@ -82,6 +88,6 @@ public class Point {
     }
 
     @Override
-    public String toString() { return "Point: (" + xyz.d1 + ", " + xyz.d2 + ", " + xyz.d3 + ")"; }
+    public String toString() { return xyz.toString(); }
 
 }

@@ -14,6 +14,21 @@ public class Sphere extends RadialGeometry {
     /** The center point of the sphere. */
     final private Point center;
 
+    /**
+     * Constructs a new Sphere object with the specified radius and center point.
+     * @param radius The radius of the sphere.
+     * @param center The center point of the sphere.
+     */
+    public Sphere(double radius, Point center) {
+        super(radius);
+        this.center = center;
+    }
+
+    /**
+     * Calculates the normal vector to the surface of the sphere at a given point.
+     * @param p1 The point on the surface of sphere.
+     * @return The normal vector to the geometry at the given point.
+     */
     @Override
     public Vector getNormal(Point p1) {
         if(p1.equals(center))
@@ -23,16 +38,10 @@ public class Sphere extends RadialGeometry {
     }
 
     /**
-     * Constructs a new Sphere object with the specified radius and center point.
-     *
-     * @param radius The radius of the sphere.
-     * @param center The center point of the sphere.
+     * Finds intersection points of a given ray with the sphere.
+     * @param ray The ray of the intersection.
+     * @return A list of intersection points, or null if no intersection is found.
      */
-    public Sphere(double radius, Point center) {
-        super(radius);
-        this.center = center;
-    }
-
     @Override
     public List<Point> findIntersections(Ray ray) {
         Point p0 = ray.getHead();

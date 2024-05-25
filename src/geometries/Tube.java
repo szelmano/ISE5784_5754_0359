@@ -25,10 +25,9 @@ public class Tube extends RadialGeometry {
     }
 
     /**
-     * Calculates the normal vector to the surface of the cylinder at a given point.
-     *
-     * @param p1 The point on the surface of the cylinder
-     * @return The normal vector to the surface at the given point
+     * Calculates the normal vector to the surface of the tube at a given point.
+     * @param p1 The point on the surface of the tube.
+     * @return The normal vector to the geometry at the given point.
      */
     @Override
     public Vector getNormal(Point p1) {

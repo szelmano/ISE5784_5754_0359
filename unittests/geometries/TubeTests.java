@@ -35,7 +35,9 @@ public  void testGetNormal() {
                 tube.getNormal(new Point(1, 1, 1)),
                 "TC11: getNormal does not work correctly");
     }
-
+//    /**
+//     *  Test method for {@link geometries.Tube#findIntersections(primitives.Ray)}.
+//     */
 //    @Test
 //    public void testFindIntersections() {
 //        // Create tube

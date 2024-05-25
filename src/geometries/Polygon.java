@@ -80,8 +80,13 @@ public class Polygon implements Geometry {
         }
     }
 
+    /**
+     * Get the normal vector to the surface of polygon at the given point.
+     * @param p1 The point on the surface of polygon.
+     * @return The normal vector to the geometry at the given point.
+     */
     @Override
-    public Vector getNormal(Point point) { return plane.getNormal(); }
+    public Vector getNormal(Point p1) { return plane.getNormal(); }
 
     @Override
     public List<Point> findIntersections(Ray ray) {

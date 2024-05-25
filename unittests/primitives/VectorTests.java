@@ -51,6 +51,9 @@ public class VectorTests {
                 "TC11: ERROR: Vector + Vector does not work correctly");
     }
 
+    /**
+     * Test method for {@link primitives.Vector#subtract(primitives.Point)}
+     */
     @Test
    public void testSubtract() {
         // ============ Equivalence Partitions Tests ==============

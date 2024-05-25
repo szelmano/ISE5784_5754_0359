@@ -51,7 +51,7 @@ import static org.junit.jupiter.api.Assertions.*;
     private final Cylinder cylinder = new Cylinder(height, radius, axisRay);
 
 //    /**
-//     * Test method to find intersections between a ray and a finite cylinder.
+//     * Test method for {@link geometries.Cylinder#findIntersections(primitives.Ray)}.
 //     */
 //    @Test
 //    public void testFindIntersections() {
