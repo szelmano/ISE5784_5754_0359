@@ -40,55 +40,49 @@ public class TriangleTests {
                 || new Vector(0, 0, 1).equals(t.getNormal(new Point(0, 1, 0)));
         assertTrue(bool, "TC01: getNormal does not work correctly");
     }
-    // Existing data points
-    private final Point p000 = new Point(0, 0, 0);
-    private final Point p100 = new Point(1, 0, 0);
-    private final Point p010 = new Point(0, 1, 0);
-    private final Point p001 = new Point(0, 0, 1);
-    private final Point p110 = new Point(1, 1, 0);
 
     /**
      * Test method for {@link geometries.Triangle#findIntersections(primitives.Ray)}.
      */
     @Test
     public void testFindIntersections() {
-        // Creating a triangle with vertices p000, p100, p010
-        Triangle triangle = new Triangle(p000, p100, p010);
-        Ray ray;
+        // Creating a triangle with vertices p101, p303, p504
+        Triangle triangle= new Triangle(new Point(2, 0, 0), new Point(0, 2,0 )
+                , new Point(0, -2, 0));
         List<Point> result;
 
         // ============ Equivalence Partitions Tests ==============
         // TC01: Ray intersects the triangle (1 point) - Inside triangle
-        ray = new Ray(p001, new Vector(0.5, 0.5, -1));
-        result = triangle.findIntersections(ray);
-        assertNotNull(result, "Ray intersects the triangle inside");
-        assertEquals(1, result.size(), "Wrong number of intersection points");
-        assertEquals(List.of(new Point(0.5, 0.5, 0)), result, "Wrong intersection point");
+        result = triangle.findIntersections(new Ray(new Point(0, 0, -2), new Vector(1, 0, 2)));
+        assertEquals(1,
+                result.size(),
+                "Wrong number of intersection points");
+        assertEquals(new Point(1, 0, 0),
+                result.getFirst()
+                ,"Wrong intersection point");
 
         // TC02: Ray does not intersect the triangle (0 points) - Outside triangle (against an edge)
-        ray = new Ray(new Point(2, 0, 0), new Vector(1, 1, 0));
-        assertNull(triangle.findIntersections(ray), "Ray does not intersect the triangle outside (against an edge)");
+        assertNull(triangle.findIntersections(new Ray(new Point(-1, 0, -1), new Vector(0, 0, 1))),
+                "Ray does not intersect the triangle outside (against an edge)");
 
         // TC03: Ray does not intersect the triangle (0 points) - Outside triangle (against a vertex)
-        ray = new Ray(new Point(2, 2, 0), new Vector(1, 1, 0));
-        assertNull(triangle.findIntersections(ray), "Ray does not intersect the triangle outside (against a vertex)");
+        assertNull(triangle.findIntersections(new Ray(new Point(3, 0, -1), new Vector(0, 0, 1))),
+                "Ray does not intersect the triangle outside (against a vertex)");
 
         // =============== Boundary Values Tests ==================
         // **** Group: Ray starts on the triangle
         // TC11: Ray starts on an edge of the triangle
-        ray = new Ray(p100, new Vector(0.5, 0.5, -1));
-        result = triangle.findIntersections(ray);
-        assertNotNull(result, "Ray starts on an edge of the triangle");
-        assertEquals(1, result.size(), "Wrong number of intersection points");
-        assertEquals(List.of(new Point(0.5, 0.5, 0)), result, "Wrong intersection point");
+        assertNull(triangle.findIntersections(new Ray(new Point(0,0,-1), new Vector(0, 0, 1))),
+                "Ray begins before the triangle and intersects on the edge didn't return null");
 
         // TC12: Ray starts on the extension of an edge of the triangle
-        ray = new Ray(new Point(2, 0, 0), new Vector(0.5, 0.5, -1));
-        assertNull(triangle.findIntersections(ray), "Ray starts on the extension of an edge of the triangle");
+        assertNull(triangle.findIntersections(new Ray(new Point(2,0,-1), new Vector(0, 0, 1))),
+                "Ray starts on the extension of an edge of the triangle");
 
         // **** Group: Ray starts on a vertex of the triangle
         // TC13: Ray starts on a vertex of the triangle
-        ray = new Ray(p100, new Vector(1, 0, -1));
-        assertNull(triangle.findIntersections(ray), "Ray starts on a vertex of the triangle");
+        assertNull(triangle.findIntersections(new Ray(new Point(0,3,-1), new Vector(0, 0, 1))),
+                    "Ray starts on a vertex of the triangle");
     }
+
 }

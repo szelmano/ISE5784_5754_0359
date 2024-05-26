@@ -23,13 +23,15 @@ public  class PlaneTests {
         // =============== Boundary Values Tests ==================
         // TC11: check constructor two point the same
         assertThrows(IllegalArgumentException.class,
-                () -> new Plane(new Point(1, 2, 6.3), new Point(1, 2, 6.3),
+                () -> new Plane(new Point(1, 2, 6.3),
+                        new Point(1, 2, 6.3),
                         new Point(0, 0, 0)),
                 "TC11: ERROR: The constructor gets the same two points");
 
         // TC12: check constructor all point on the same line
         assertThrows(IllegalArgumentException.class,
-                () -> new Plane(new Point(1, 2, 6.3), new Point(2, 4, 12.6),
+                () -> new Plane(new Point(1, 2, 6.3),
+                        new Point(2, 4, 12.6),
                         new Point(0.5, 1, 3.15)),
                 "TC12: ERROR: The constructor gets all the points on the same straight line");
     }

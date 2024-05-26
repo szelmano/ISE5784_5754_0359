@@ -22,7 +22,8 @@ public class PointTests {
   public void testAdd() {
         // =======Equivalence Partitions Tests=======
         // TC01: testing the adding of point and vector (simple test)
-        assertEquals(new Point(0, 0, 0),p1.add(v1),
+        assertEquals(new Point(0, 0, 0),
+                p1.add(v1),
                 "TC01: ERROR: Point add does not work correctly");
     }
 
@@ -50,7 +51,8 @@ public class PointTests {
         // =======Equivalence Partitions Tests=======
         // TC01: testing if the distance squared between two points is correct (simple
         // test)
-        assertEquals(56, p1.distanceSquared(p2),
+        assertEquals(56,
+                p1.distanceSquared(p2),
                 "TC01: ERROR: Point DistanceSquared does not work correctly");
 
         // =============== Boundary Values Tests ==================

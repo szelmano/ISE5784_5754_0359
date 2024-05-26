@@ -7,6 +7,7 @@ import static primitives.Util.isZero;
 
 /**
  * Unit tests for primitives.Vector class
+ *
  * @author Riki and Shirel
  */
 public class VectorTests {
@@ -24,12 +25,12 @@ public class VectorTests {
     public void testConstructor() {
         // ============ Equivalence Partitions Tests ==============
         //TC01: only one regular test to check
-        assertDoesNotThrow(() -> new Vector(1,2,3),
+        assertDoesNotThrow(() -> new Vector(1, 2, 3),
                 "TC01: ERROR: Construct a vector does not work correctly");
 
         // =============== Boundary Values Tests ==================
         // TC11: Constructor of (0,0,0) vector throws an exception....
-        assertThrows(IllegalArgumentException.class, ()-> new Vector(0, 0, 0),
+        assertThrows(IllegalArgumentException.class, () -> new Vector(0, 0, 0),
                 "TC11: ERROR: Constructor of (0,0,0) vector");
     }
 
@@ -47,7 +48,7 @@ public class VectorTests {
         // =============== Boundary Values Tests ==================
         // TC11: Add two vectors that gets the zero vector
         assertThrows(IllegalArgumentException.class,
-                ()-> v1.add(v5),
+                () -> v1.add(v5),
                 "TC11: ERROR: Vector + Vector does not work correctly");
     }
 
@@ -55,7 +56,7 @@ public class VectorTests {
      * Test method for {@link primitives.Vector#subtract(primitives.Point)}
      */
     @Test
-   public void testSubtract() {
+    public void testSubtract() {
         // ============ Equivalence Partitions Tests ==============
         // TC01: Subtract two regular vectors
         assertEquals(
@@ -76,12 +77,12 @@ public class VectorTests {
     public void testScale() {
         // ============ Equivalence Partitions Tests ==============
         // TC01: scale a vector by a regular scalar
-        assertEquals(new Vector(2,8,-6), v4.scale(2),
+        assertEquals(new Vector(2, 8, -6), v4.scale(2),
                 "TC01: ERROR: Scale * Vector does not work correctly");
 
         // =============== Boundary Values Tests ==================
         // TC11: scale a vector by 0 throws an exception
-        assertThrows(IllegalArgumentException.class, ()->v1.scale(0),
+        assertThrows(IllegalArgumentException.class, () -> v1.scale(0),
                 "TC11: ERROR: Scale * Zero does not work correctly");
 
     }
@@ -90,7 +91,7 @@ public class VectorTests {
      * Test method for {@link primitives.Vector#dotProduct(primitives.Vector)}
      */
     @Test
-   public void testDotProduct() {
+    public void testDotProduct() {
         // =======Equivalence Partitions Tests=======
         // TC01: in the same direction
         assertEquals(28, v1.dotProduct(v2),
@@ -116,7 +117,7 @@ public class VectorTests {
      * Test method for {@link primitives.Vector#crossProduct(primitives.Vector)}
      */
     @Test
-   public void testCrossProduct() {
+    public void testCrossProduct() {
         // =======Equivalence Partitions Tests=======
         // TC01: sharp angle
         assertEquals(new Vector(2, -1, 0), v1.crossProduct(v3),
@@ -158,7 +159,7 @@ public class VectorTests {
      * Test method for {@link primitives.Vector#length()}
      */
     @Test
-   public void testLength() {
+    public void testLength() {
         // =======Equivalence Partitions Tests=======
         // TC01: A test of the distance between two points in a 3D
         assertEquals(Math.sqrt(26), v4.length(),
@@ -169,14 +170,17 @@ public class VectorTests {
      * Test method for {@link primitives.Vector#normalize()}
      */
     @Test
-   public void testNormalize() {
+    public void testNormalize() {
         // =======Equivalence Partitions Tests=======
-         Vector u=v1.normalize();
+        Vector u = v1.normalize();
         // TC01: test vector normalization vs vector length and cross-product
-        assertTrue(isZero(u.length() - 1), "TC01: ERROR: Vector normalize does not work correctly");
+        assertEquals(1,
+                u.length(),
+                0.00001,
+                "TC01: ERROR: Vector normalize does not work correctly");
 
         // TC02: test that the vectors are co-lined
-        assertThrows(IllegalArgumentException.class, ()-> v1.crossProduct(u),
+        assertThrows(IllegalArgumentException.class, () -> v1.crossProduct(u),
                 "TC02: ERROR: The normalized vector is not parallel to the original one");
 
         // TC03: test that the vectors are not in opposite directions

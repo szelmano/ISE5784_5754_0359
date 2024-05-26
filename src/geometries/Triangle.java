@@ -36,13 +36,18 @@ public class Triangle extends Polygon {
         Vector v2 = this.vertices.get(1).subtract(p0);
         Vector v3 = this.vertices.get(2).subtract(p0);
 
-        double d1 = alignZero(v.dotProduct(v1.crossProduct(v2).normalize()));
-        double d2 = alignZero(v.dotProduct(v2.crossProduct(v3).normalize()));
-        double d3 = alignZero(v.dotProduct(v3.crossProduct(v1).normalize()));
 
-        if ((d1 > 0 && d2 > 0 && d3 > 0) || (d1 < 0 && d2 < 0 && d3 < 0))
-            return plane.findIntersections(ray);
-        return null;
+            Vector n1 = v1.crossProduct(v2).normalize();
+            Vector n2 = v2.crossProduct(v3).normalize();
+            Vector n3 = v3.crossProduct(v1).normalize();
+
+            double d1 = alignZero(v.dotProduct(n1));
+            double d2 = alignZero(v.dotProduct(n2));
+            double d3 = alignZero(v.dotProduct(n3));
+
+            if ((d1 > 0 && d2 > 0 && d3 > 0) || (d1 < 0 && d2 < 0 && d3 < 0))
+                return plane.findIntersections(ray);
+            return null;
     }
 
 }

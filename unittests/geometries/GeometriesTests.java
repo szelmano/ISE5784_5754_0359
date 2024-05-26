@@ -23,7 +23,8 @@ public class GeometriesTests {
         // TC01: Ray intersects only sphere and plane (3 points)
         assertEquals(3,
                 geometries.findIntersections(
-                        new Ray(new Point(1,1,-2), new Vector(0,0,1))).size(),
+                        new Ray(new Point(1,1,-2),
+                                new Vector(0,0,1))).size(),
                 "Ray intersects only sphere and plane (3 points)- wrong points of intersection");
 
 
@@ -31,26 +32,30 @@ public class GeometriesTests {
         // TC11: Ray intersects all the geometries (4 points)
         assertEquals(4,
                 geometries.findIntersections(
-                        new Ray(new Point(0.5, 0.5, -2), new Vector(0, 0, 1))).size(),
+                        new Ray(new Point(0.5, 0.5, -2),
+                                new Vector(0, 0, 1))).size(),
                 "Ray intersects all the geometries (4 points) - wrong points of intersection");
 
 
         // TC12: Ray intersects one the geometries (1 point)
         assertEquals(1,
                 geometries.findIntersections(
-                        new Ray(new Point(5, 0, -2), new Vector(0, 0, 1))).size(),
+                        new Ray(new Point(5, 0, -2),
+                                new Vector(0, 0, 1))).size(),
                 "Ray intersects one the geometries (1 points) - wrong points of intersection");
 
 
         // TC13: Ray doesn't intersect any geometries (0 points)
         assertNull( geometries.findIntersections(
-                        new Ray(new Point(2.5,-5.5,-2), new Vector(6.5,10.5,-3))),
+                        new Ray(new Point(2.5,-5.5,-2),
+                                new Vector(6.5,10.5,-3))),
                 "Ray doesn't intersect any geometries (0 points) - found a point of intersection");
 
 
         // TC14: Empty collection of geometries
         assertNull(new Geometries().findIntersections(
-                        new Ray(new Point(2.5,-5.5,-2), new Vector(6.5,10.5,-3))),
+                        new Ray(new Point(2.5,-5.5,-2),
+                                new Vector(6.5,10.5,-3))),
                 "Empty collection of geometries - found an intersection");
 
     }
