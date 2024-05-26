@@ -30,7 +30,8 @@ public class VectorTests {
 
         // =============== Boundary Values Tests ==================
         // TC11: Constructor of (0,0,0) vector throws an exception....
-        assertThrows(IllegalArgumentException.class, () -> new Vector(0, 0, 0),
+        assertThrows(IllegalArgumentException.class,
+                () -> new Vector(0, 0, 0),
                 "TC11: ERROR: Constructor of (0,0,0) vector");
     }
 
@@ -42,7 +43,8 @@ public class VectorTests {
         // ============ Equivalence Partitions Tests ==============
         // TC01: Add two regular vector one to another
         assertEquals(
-                new Vector(3, 6, 9), v1.add(v2),
+                new Vector(3, 6, 9),
+                v1.add(v2),
                 "TCO1: ERROR: Vector + Vector does not work correctly");
 
         // =============== Boundary Values Tests ==================
@@ -60,7 +62,8 @@ public class VectorTests {
         // ============ Equivalence Partitions Tests ==============
         // TC01: Subtract two regular vectors
         assertEquals(
-                new Vector(-1, -2, -3), v1.subtract(v2),
+                new Vector(-1, -2, -3),
+                v1.subtract(v2),
                 "TC01: ERROR: Vector - Vector does not work correctly");
 
         // =============== Boundary Values Tests ==================
@@ -77,12 +80,14 @@ public class VectorTests {
     public void testScale() {
         // ============ Equivalence Partitions Tests ==============
         // TC01: scale a vector by a regular scalar
-        assertEquals(new Vector(2, 8, -6), v4.scale(2),
+        assertEquals(new Vector(2, 8, -6),
+                v4.scale(2),
                 "TC01: ERROR: Scale * Vector does not work correctly");
 
         // =============== Boundary Values Tests ==================
         // TC11: scale a vector by 0 throws an exception
-        assertThrows(IllegalArgumentException.class, () -> v1.scale(0),
+        assertThrows(IllegalArgumentException.class,
+                () -> v1.scale(0),
                 "TC11: ERROR: Scale * Zero does not work correctly");
 
     }
@@ -94,21 +99,26 @@ public class VectorTests {
     public void testDotProduct() {
         // =======Equivalence Partitions Tests=======
         // TC01: in the same direction
-        assertEquals(28, v1.dotProduct(v2),
+        assertEquals(28,
+                v1.dotProduct(v2),
                 "TC01 : ERROR: Vector dotProduct does not work correctly");
         // TC02: sharp angle
-        assertEquals(17, v1.dotProduct(v3),
+        assertEquals(17,
+                v1.dotProduct(v3),
                 "TC02: ERROR: Vector dotProduct does not work correctly");
         // TC03: Obtuse angle
-        assertEquals(-3, v3.dotProduct(v4),
+        assertEquals(-3,
+                v3.dotProduct(v4),
                 "TC03: ERROR: Vector dotProduct does not work correctly");
         // TC04: Inverted vector
-        assertEquals(-14, v1.dotProduct(v5),
+        assertEquals(-14,
+                v1.dotProduct(v5),
                 "TC04: ERROR: Vector dotProduct does not work correctly");
 
         // =============== Boundary Values Tests ==================
         // TC11: Orthogonal angle
-        assertEquals(0, v1.dotProduct(v4),
+        assertEquals(0,
+                v1.dotProduct(v4),
                 "TC11: ERROR: Vector dotProduct does not work correctly");
 
     }
@@ -120,21 +130,26 @@ public class VectorTests {
     public void testCrossProduct() {
         // =======Equivalence Partitions Tests=======
         // TC01: sharp angle
-        assertEquals(new Vector(2, -1, 0), v1.crossProduct(v3),
+        assertEquals(new Vector(2, -1, 0),
+                v1.crossProduct(v3),
                 "TC01: ERROR: Vector crossProduct does not work correctly");
         // TC02: Orthogonal angle
-        assertEquals(new Vector(-18, 6, 2), v1.crossProduct(v4),
+        assertEquals(new Vector(-18, 6, 2),
+                v1.crossProduct(v4),
                 "TC02: ERROR: Vector crossProduct does not work correctly");
         // TC03: Obtuse angle
-        assertEquals(new Vector(-22, 7, 2), v3.crossProduct(v4),
+        assertEquals(new Vector(-22, 7, 2),
+                v3.crossProduct(v4),
                 "TC03: ERROR: Vector crossProduct does not work correctly");
 
         // =============== Boundary Values Tests ==================
         // TC11: Inverted vector
-        assertThrows(IllegalArgumentException.class, () -> v1.crossProduct(v5),
+        assertThrows(IllegalArgumentException.class,
+                () -> v1.crossProduct(v5),
                 "TC11: ERROR: Vector crossProduct does not throw an exception");
         // TC12: Two vectors with the same direction
-        assertThrows(IllegalArgumentException.class, () -> v1.crossProduct(v2),
+        assertThrows(IllegalArgumentException.class,
+                () -> v1.crossProduct(v2),
                 "TC12: ERROR: Vector crossProduct does throw an exception");
     }
 
@@ -145,13 +160,16 @@ public class VectorTests {
     public void testLengthSquared() {
         // =======Equivalence Partitions Tests=======
         // TC01: negative coordinate
-        assertEquals(14, v5.lengthSquared(),
+        assertEquals(14,
+                v5.lengthSquared(),
                 "TC01: ERROR: Vector lengthSquared does not work correctly");
         // TC02: positive coordinate
-        assertEquals(14, v1.lengthSquared(),
+        assertEquals(14,
+                v1.lengthSquared(),
                 "TC02: ERROR: Vector lengthSquared does not work correctly");
         // TC03: positive and negative coordinate
-        assertEquals(26, v4.lengthSquared(),
+        assertEquals(26,
+                v4.lengthSquared(),
                 "TC03: ERROR: Vector lengthSquared does not work correctly");
     }
 
@@ -162,7 +180,8 @@ public class VectorTests {
     public void testLength() {
         // =======Equivalence Partitions Tests=======
         // TC01: A test of the distance between two points in a 3D
-        assertEquals(Math.sqrt(26), v4.length(),
+        assertEquals(Math.sqrt(26),
+                v4.length(),
                 "TC01: ERROR: Vector length does not work correctly");
     }
 
@@ -180,7 +199,8 @@ public class VectorTests {
                 "TC01: ERROR: Vector normalize does not work correctly");
 
         // TC02: test that the vectors are co-lined
-        assertThrows(IllegalArgumentException.class, () -> v1.crossProduct(u),
+        assertThrows(IllegalArgumentException.class,
+                () -> v1.crossProduct(u),
                 "TC02: ERROR: The normalized vector is not parallel to the original one");
 
         // TC03: test that the vectors are not in opposite directions

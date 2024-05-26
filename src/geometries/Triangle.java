@@ -2,13 +2,14 @@ package geometries;
 
 import primitives.*;
 
-
 import java.util.List;
+
 import static primitives.Util.alignZero;
 
 
 /**
  * Represents a triangle.
+ * A triangle is defined by its three vertices.
  */
 public class Triangle extends Polygon {
 

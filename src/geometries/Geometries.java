@@ -2,11 +2,9 @@ package geometries;
 
 import primitives.*;
 
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
-public class Geometries implements Intersectable  {
+public class Geometries implements Intersectable {
 
     final private List<Intersectable> geometries = new LinkedList<Intersectable>();
 

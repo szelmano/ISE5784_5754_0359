@@ -20,12 +20,12 @@ public class Vector extends Point {
 
     /**
      * Constructs a new Vector object from a Double3 object.
-     * @param double3 The Double3 object containing the coordinates.
+     * @param xyz The Double3 object containing the coordinates.
      * @throws IllegalArgumentException if the vector is the zero vector.
      */
-    public Vector(Double3 double3) {
-        super(double3);
-        if (xyz.equals(Double3.ZERO))
+    public Vector(Double3 xyz) {
+        super(xyz);
+        if (this.xyz.equals(Double3.ZERO))
             throw new IllegalArgumentException("ZERO vector is not allowed");
     }
 
@@ -102,14 +102,13 @@ public class Vector extends Point {
         return super.equals(obj);
     }
 
-
     @Override
     public int hashCode() {
         return super.hashCode();
     }
 
     @Override
-    public String toString() { return "Vector: (" + xyz.d1 + ", " + xyz.d2 + ", " +xyz.d3 +")"; }
+    public String toString() { return "Vector: " + xyz.toString(); }
 
 
 }

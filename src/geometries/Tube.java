@@ -4,11 +4,12 @@ import primitives.*;
 
 import java.util.List;
 
-import static primitives.Util.alignZero;
-import static primitives.Util.isZero;
+import static primitives.Util.*;
+
 
 /**
  * Represents a tube.
+ * A tube is defined by its radius and axis.
  */
 public class Tube extends RadialGeometry {
     /** The axis of the tube. */
@@ -50,8 +51,6 @@ public class Tube extends RadialGeometry {
     }
 
     @Override
-    public List<Point> findIntersections(Ray ray) {
-        return null;
-    }
+    public List<Point> findIntersections(Ray ray) { return null; }
 
 }

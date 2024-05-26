@@ -20,15 +20,21 @@ public class RayTests {
             // ============ Equivalence Partitions Tests ==============
             // TC01: Test for negative t value
             Point pointNegativeT = ray.getPoint(-2);
-            assertEquals(new Point(-2, 0, 0), pointNegativeT, "TC01: Negative t value test");
+            assertEquals(new Point(-2, 0, 0),
+                    pointNegativeT,
+                    "TC01: Negative t value test");
 
             // TC02: Test for positive t value
             Point pointPositiveT = ray.getPoint(2);
-            assertEquals(new Point(2, 0, 0), pointPositiveT, "TC02: Positive t value test");
+            assertEquals(new Point(2, 0, 0),
+                    pointPositiveT,
+                    "TC02: Positive t value test");
 
             // =============== Boundary Values Tests ==================
             // TC11: Test for t = 0
             Point pointZeroT = ray.getPoint(0);
-            assertEquals(new Point(0, 0, 0), pointZeroT, "TC11: t value zero test");
+            assertEquals(new Point(0, 0, 0),
+                    pointZeroT,
+                    "TC11: t value zero test");
         }
     }

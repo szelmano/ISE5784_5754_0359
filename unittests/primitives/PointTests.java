@@ -13,6 +13,7 @@ public class PointTests {
 
     private final Point p1 = new Point(1,2,3);
     private final Point p2= new Point(7,6,5);
+    private final Point p3= new Point(9,7,7);
     private final Vector v1= new Vector (-1,-2,-3);
 
     /**
@@ -34,7 +35,8 @@ public class PointTests {
     public void testSubtract() {
         // =======Equivalence Partitions Tests=======
         // TC01: testing the subtract between two points (simple test)
-        assertEquals(new Vector(6, 4, 2),p2.subtract(p1),
+        assertEquals(new Vector(6, 4, 2),
+                p2.subtract(p1),
                 "TC01: ERROR: Point subtract does not work correctly");
 
         // TC02: subtraction of a point itself
@@ -57,7 +59,8 @@ public class PointTests {
 
         // =============== Boundary Values Tests ==================
         // TC11: testing if the distance squared between the point to itself is zero
-        assertEquals(0, p1.distanceSquared(p1),
+        assertEquals(0,
+                p1.distanceSquared(p1),
                 "TC11: ERROR: Point DistanceSquared does not work correctly");
     }
 
@@ -69,12 +72,14 @@ public class PointTests {
         // =======Equivalence Partitions Tests=======
         // TC01: testing if the distance between two points -with squared - is correct
         // (simple test)
-        assertEquals(Math.sqrt(56), p1.distance(p2),
+        assertEquals(Math.sqrt(9),
+                p2.distance(p3),
                 "TC01: ERROR: Point Distance does not work correctly");
 
         // =============== Boundary Values Tests ==================
         // TC11: testing if the distance between the point to itself is zero
-        assertEquals(0, p1.distance(p1),
+        assertEquals(0,
+                p2.distance(p2),
                 "TC11: ERROR: Point Distance does not work correctly");
     }
 }

@@ -1,13 +1,10 @@
 package geometries;
 
-import primitives.Point;
-import primitives.Ray;
-import primitives.Util;
-import primitives.Vector;
+import primitives.*;
 
 /**
  * Represents a cylinder.
- * A cylinder is defined by its height, radius, and axis.
+ * A cylinder is defined by its height, radius and axis.
  */
 public class Cylinder extends Tube {
     /**

@@ -36,8 +36,7 @@ public class Point {
     public double getZ() { return xyz.d3; }
 
     /**
-     * Sum two floating point triads into a new triad where each couple of numbers
-     * is summarized
+     * Calculates the summarized between this point and another point.
      * @param  v1 right hand side operand for addition
      * @return     result of add
      */
@@ -46,8 +45,7 @@ public class Point {
     }
 
     /**
-     * Subtract two floating point triads into a new triad where each couple of
-     * numbers is subtracted
+     * Calculates the subtracted between this point and another point.
      * @param  p1 right hand side operand for subtraction
      * @return     result of subtract
      */
@@ -88,6 +86,6 @@ public class Point {
     }
 
     @Override
-    public String toString() { return xyz.toString(); }
+    public String toString() { return "Point: " + xyz.toString(); }
 
 }

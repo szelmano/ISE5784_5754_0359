@@ -1,16 +1,15 @@
 package geometries;
 
-import primitives.Point;
-import primitives.Ray;
-import primitives.Vector;
+import primitives.*;
 
 import java.util.List;
 
-import static primitives.Util.alignZero;
-import static primitives.Util.isZero;
+import static primitives.Util.*;
+
 
 /**
  * Represents a plane.
+ * A plan is defined by its point and normal.
  */
 public class Plane implements Geometry {
 
@@ -68,8 +67,8 @@ public class Plane implements Geometry {
 
         if(q.equals(p0))
             return null;
-
-        if (isZero(normal.dotProduct(q.subtract(p0))))
+Vector v1=q.subtract(p0);
+        if (isZero(normal.dotProduct(v1)))
             return null;
 
         if (isZero(normal.dotProduct(v)))

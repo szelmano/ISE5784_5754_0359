@@ -1,14 +1,14 @@
 package geometries;
 
-import primitives.Point;
-import primitives.Ray;
-import primitives.Vector;
+import primitives.*;
 
 import java.util.List;
+
 import static primitives.Util.alignZero;
 
 /**
  * Represents a sphere.
+ * A sphere is defined by its center and radius.
  */
 public class Sphere extends RadialGeometry {
     /** The center point of the sphere. */
