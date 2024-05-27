@@ -2,6 +2,8 @@ package geometries;
 
 import primitives.*;
 
+import java.util.List;
+
 /**
  * Represents a cylinder.
  * A cylinder is defined by its height, radius and axis.
@@ -53,6 +55,10 @@ public class Cylinder extends Tube {
 
         return super.getNormal(p1);
     }
+
+    @Override
+    public List<Point> findIntersections(Ray ray) { return super.findIntersections(ray); }
+
 }
 
 
