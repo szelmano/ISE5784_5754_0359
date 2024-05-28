@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="547a3f2e-d435-4d3c-81da-bf2e91b4f8a4" name="Changes" comment="stage 4 start work on it" />
+    <list default="true" id="547a3f2e-d435-4d3c-81da-bf2e91b4f8a4" name="Changes" comment="stage 4 start work on it">
+      <change afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,8 +17,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -51,39 +54,41 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.All in ISE5784_5754_0359.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PlaneTests.testFindIntersections.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PointTests.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PointTests.testAdd.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PointTests.testDistanceSquared.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PointTests.testSubtract.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SphereTests.testFindIntersections.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.TriangleTests.testFindIntersections.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.VectorTests.testNormalize.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.geometries in ISE5784_5754_0359.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/owner/Desktop/מחשב לבן שיראל/שיראל/מכון טל/שנה ב תשפד/סמסטר ב/מיני פרוייקט מבוא להנדסת תוכנה/ISE5784_5754_0359/src/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;inlay.hints&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "JUnit.All in ISE5784_5754_0359.executor": "Run",
+    "JUnit.PlaneTests.testFindIntersections.executor": "Run",
+    "JUnit.PointTests.executor": "Run",
+    "JUnit.PointTests.testAdd.executor": "Run",
+    "JUnit.PointTests.testDistanceSquared.executor": "Run",
+    "JUnit.PointTests.testSubtract.executor": "Run",
+    "JUnit.SphereTests.testFindIntersections.executor": "Debug",
+    "JUnit.TriangleTests.testFindIntersections.executor": "Run",
+    "JUnit.VectorTests.testNormalize.executor": "Run",
+    "JUnit.geometries in ISE5784_5754_0359.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_directory_selection": "C:/Users/owner/Desktop/מחשב לבן שיראל/שיראל/מכון טל/שנה ב תשפד/סמסטר ב/מיני פרוייקט מבוא להנדסת תוכנה/ISE5784_5754_0359/src/renderer",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "C:/Users/owner/Desktop/מחשב לבן שיראל/שיראל/מכון טל/שנה ב תשפד/סמסטר ב/מיני פרוייקט מבוא להנדסת תוכנה/ISE5784_5754_0359/src/Main.java",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "inlay.hints",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="renderer" />
       <recent name="geometries" />
       <recent name="primitives" />
     </key>
@@ -197,7 +202,8 @@
       <workItem from="1714896069783" duration="2553000" />
       <workItem from="1714899846172" duration="6678000" />
       <workItem from="1716327769318" duration="29178000" />
-      <workItem from="1716793982113" duration="7114000" />
+      <workItem from="1716793982113" duration="7515000" />
+      <workItem from="1716840905427" duration="730000" />
     </task>
     <task id="LOCAL‎-00001" summary="test 1">
       <option name="closed" value="true" />
@@ -319,7 +325,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1716828916503</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL‎-00016" summary="stage 4 start work on it">
+      <option name="closed" value="true" />
+      <created>1716829867600</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL‎-00016" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1716829867600</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
