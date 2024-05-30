@@ -5,14 +5,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import primitives.*;
-import renderer.*;
 //import scene.Scene;
 
 /**
  * Testing Camera Class
  * @author Dan
  */
-class CameraTest {
+class CameraTests {
    /** Camera builder for the tests */
    private final Camera.Builder cameraBuilder = Camera.getBuilder()
       //.setRayTracer(new SimpleRayTracer(new Scene("Test")))
