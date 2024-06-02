@@ -6,7 +6,7 @@ import static primitives.Util.alignZero;
 import static primitives.Util.isZero;
 
 /**
- * Camera class representing a camera in 3D space.
+ * Camera class representing a camera.
  * This class uses the Builder design pattern for construction.
  */
 public class Camera implements Cloneable {
@@ -51,24 +51,27 @@ public class Camera implements Cloneable {
     public Vector getVRight() { return vRight; }
 
     /**
-     * function that gets the height
+     * function that gets the  height of the view plane
      * @return the height
      */
     public double getHeight() { return height; }
 
     /**
-     * function that gets the width
+     * function that gets the width of the view plane
      * @return the width
      */
     public double getWidth() { return width; }
 
     /**
-     * function that gets the distance
+     * function that gets the distance of the view plane from the camera
      * @return the distance
      */
     public double getDistance() { return distance; }
 
-    // Private default constructor to prevent instantiation
+
+    /**
+     * Private default constructor to prevent instantiation
+     */
     private Camera() {}
 
     /**
@@ -164,6 +167,7 @@ public class Camera implements Cloneable {
             }
             this.camera.vTo = vTo.normalize();
             this.camera.vUp = vUp.normalize();
+            //Calculates the vRight by cross product between vUp and vTo
             this.camera.vRight = vTo.crossProduct(vUp).normalize();
             return this;
         }
@@ -297,7 +301,7 @@ public class Camera implements Cloneable {
             if (this.camera.distance == 0.0) {
                 throw new MissingResourceException(MISSING_DATA, CAMERA_CLASS, "distance");
             }
-
+            //Check if the vectors are orthogonal
             if(!isZero(camera.vTo.dotProduct(camera.vUp))){
                 throw new IllegalArgumentException("vTo and vUp are not orthogonal");
             }
@@ -312,6 +316,8 @@ public class Camera implements Cloneable {
             }
 
             if (this.camera.vRight == null) {
+                //if the vRight vector is not set
+                //Calculates the vRight by cross product between vUp and vTo
                 this.camera.vRight = this.camera.vTo.crossProduct(this.camera.vUp).normalize();
             }
 
