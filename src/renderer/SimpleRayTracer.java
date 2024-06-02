@@ -12,7 +12,16 @@ public class SimpleRayTracer extends RayTracerBase {
 
     @Override
     public Color traceRay(Ray ray) {
-        return null;
+
+        List<Point> intersection=this.scene.geometries.findIntersections(ray);
+        return intersection==null
+                ? this.scene.background
+       : calcColor(ray.findClosestPoint(intersection));
+
+    }
+
+    private Color calcColor(Point p1){
+        return this.scene.ambientLight.getIntensity();
     }
 
 

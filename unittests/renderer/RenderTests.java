@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import geometries.*;
 import lighting.AmbientLight;
 import primitives.*;
-import renderer.*;
+import renderer.Camera;
 import scene.Scene;
 
 /** Test rendering a basic image
@@ -18,7 +18,7 @@ public class RenderTests {
     /** Camera builder of the tests */
     private final Camera.Builder camera = Camera.getBuilder()
             .setRayTracer(new SimpleRayTracer(scene))
-            .setLocation(Point.ZERO).setDirection(new Point(0, 0, -1), Vector.Y)
+            .setLocation(Point.ZERO).setDirection(new Point(0, 0, -1), Vector Y.)
             .setVpDistance(100)
             .setVpSize(500, 500);
 
@@ -26,13 +26,18 @@ public class RenderTests {
      * grid */
     @Test
     public void renderTwoColorTest() {
-        scene.geometries.add(new Sphere(new Point(0, 0, -100), 50d),
-                new Triangle(new Point(-100, 0, -100), new Point(0, 100, -100), new Point(-100, 100, -100)), // up
+        scene.geometries.add(new Sphere(50d,new Point(0, 0, -100)),
+                new Triangle(new Point(-100, 0, -100),
+                        new Point(0, 100, -100),
+                        new Point(-100, 100, -100)), // up
                 // left
-                new Triangle(new Point(-100, 0, -100), new Point(0, -100, -100),
+                new Triangle(new Point(-100, 0, -100),
+                        new Point(0, -100, -100),
                         new Point(-100, -100, -100)), // down
                 // left
-                new Triangle(new Point(100, 0, -100), new Point(0, -100, -100), new Point(100, -100, -100))); // down
+                new Triangle(new Point(100, 0, -100),
+                        new Point(0, -100, -100),
+                        new Point(100, -100, -100))); // down
         scene.setAmbientLight(new AmbientLight(new Color(255, 191, 191), Double3.ONE))
                 .setBackground(new Color(75, 127, 90));
 

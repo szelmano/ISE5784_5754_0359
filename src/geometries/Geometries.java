@@ -15,7 +15,7 @@ public class Geometries implements Intersectable {
      * Concatenate a collection of geometries to the existing collection
      * @param geometries the collection to concat
      */
-    private void add(Intersectable...geometries){
+    public void add(Intersectable...geometries){
         Collections.addAll(this.geometries, geometries);
     }
 
