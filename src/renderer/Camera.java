@@ -237,7 +237,7 @@ public class Camera implements Cloneable {
          * @throws IllegalArgumentException if the height is negative
          */
         public Builder setHeight(double height) {
-            if (height < 0) {
+            if (height <= 0) {
                 throw new IllegalArgumentException("Height cannot be negative");
             }
             this.camera.height = height;
@@ -251,7 +251,7 @@ public class Camera implements Cloneable {
          * @throws IllegalArgumentException if the width is negative
          */
         public Builder setWidth(double width) {
-            if (width < 0) {
+            if (width <= 0) {
                 throw new IllegalArgumentException("Width cannot be negative");
             }
             this.camera.width = width;
@@ -265,7 +265,7 @@ public class Camera implements Cloneable {
          * @throws IllegalArgumentException if the distance is negative
          */
         public Builder setDistance(double distance) {
-            if (distance < 0) {
+            if (distance <= 0) {
                 throw new IllegalArgumentException("Distance cannot be negative");
             }
             this.camera.distance = distance;
