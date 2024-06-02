@@ -11,7 +11,7 @@ public class GeometriesTests {
      * Test method for {@link geometries.Geometries#findIntersections(primitives.Ray)}.
      */
     @Test
-    void findIntersections() {
+    void testFindIntersections() {
         Geometries geometries = new Geometries(
                 new Sphere(2,new Point(2,0,0)),
                 new Plane(new Point(1,1,0.5), new Vector(0, 0, 1)),

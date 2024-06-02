@@ -7,12 +7,12 @@ import java.security.PublicKey;
 
 public class AmbientLight {
     private final Color intensity;
-    public static AmbientLight NONE=new AmbientLight(Color.BLACK,0.0);
+    public static AmbientLight NONE = new AmbientLight(Color.BLACK,0.0);
 
     public AmbientLight(Color Ia, Double3 Ka) {
         this.intensity = Ia.scale(Ka);
     }
-    public AmbientLight(Color Ia, Double Ka) {
+    public AmbientLight(Color Ia, double Ka) {
         this.intensity = Ia.scale(Ka);
     }
 

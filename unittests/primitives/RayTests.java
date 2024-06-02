@@ -2,6 +2,10 @@ package primitives;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 /**
  * Test class for testing the getPoint method in the Ray class.
@@ -37,4 +41,47 @@ public class RayTests {
                     pointZeroT,
                     "TC11: t value zero test");
         }
+
+    @Test
+    public void testFindClosestPoint() {
+        Ray ray = new Ray(new Point(0, 0, 0), new Vector(1, 0, 0));
+
+        // ============ Equivalence Partitions Tests ==============
+        // TC01: The middle point in the list is closest to the ray's head
+        List<Point> pointsEquivalence = Arrays.asList(
+                new Point(1, 2, 0),
+                new Point(2, 0, 0),
+                new Point(3, 3, 3)
+        );
+        Point expectedEquivalence = new Point(2, 0, 0);
+        assertEquals(expectedEquivalence, ray.findClosestPoint(pointsEquivalence),
+                "Equivalence class failed - the middle point should be closest");
+
+        // =============== Boundary Values Tests ==================
+        // TC10: The list is empty, should return null
+        List<Point> emptyList = Collections.emptyList();
+        assertNull(ray.findClosestPoint(emptyList),
+                "Boundary case failed - empty list should return null");
+
+        // TC11: The first point in the list is the closest to the ray's head
+        List<Point> firstPointClosest = Arrays.asList(
+                new Point(1, 0, 0),
+                new Point(2, 2, 0),
+                new Point(3, 3, 3)
+        );
+        Point expectedFirst = new Point(1, 0, 0);
+        assertEquals(expectedFirst, ray.findClosestPoint(firstPointClosest),
+                "Boundary case failed - the first point should be closest");
+
+        // TC12: The last point in the list is the closest to the ray's head
+        List<Point> lastPointClosest = Arrays.asList(
+                new Point(3, 3, 3),
+                new Point(2, 2, 0),
+                new Point(1, 0, 0)
+        );
+        Point expectedLast = new Point(1, 0, 0);
+        assertEquals(expectedLast, ray.findClosestPoint(lastPointClosest),
+                "Boundary case failed - the last point should be closest");
     }
+}
+
