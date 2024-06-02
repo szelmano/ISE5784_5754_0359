@@ -18,7 +18,7 @@ public class RenderTests {
     /** Camera builder of the tests */
     private final Camera.Builder camera = Camera.getBuilder()
             .setRayTracer(new SimpleRayTracer(scene))
-            .setLocation(Point.ZERO).setDirection(new Point(0, 0, -1), Vector Y.)
+            .setLocation(Point.ZERO).setDirection(new Vector(0, 0, -1), new Vector(0,1,0))
             .setVpDistance(100)
             .setVpSize(500, 500);
 
@@ -42,12 +42,13 @@ public class RenderTests {
                 .setBackground(new Color(75, 127, 90));
 
         // right
-        camera
+       camera
                 .setImageWriter(new ImageWriter("base render test", 1000, 1000))
-                .build()
-                .renderImage()
-                .printGrid(100, new Color(YELLOW))
-                .writeToImage();
+                .build();
+
+               this.camera.renderImage();
+               this.camera.printGrid(100, new Color(YELLOW));
+               this.camera.writeToImage();
     }
 
     /** Test for XML based scene - for bonus */
@@ -60,10 +61,10 @@ public class RenderTests {
 
         camera
                 .setImageWriter(new ImageWriter("xml render test", 1000, 1000))
-                .build()
-                .renderImage()
-                .printGrid(100, new Color(YELLOW))
-                .writeToImage();
+                .build();
+                this.camera.renderImage();
+               this.camera .printGrid(100, new Color(YELLOW));
+                this.camera.writeToImage();
     }
 }
 
