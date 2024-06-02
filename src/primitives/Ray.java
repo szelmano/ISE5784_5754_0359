@@ -77,10 +77,10 @@ public class Ray {
         }
 
         Point closestPoint = points.getFirst();;
-        double closestDistance = closestPoint.distanceSquared(this.head);;
+        double closestDistance = this.head.distanceSquared(closestPoint);;
 
         for (Point point : points) {
-            double distance = point.distanceSquared(this.head);;
+            double distance = this.head.distanceSquared(point);;
             if (distance < closestDistance) {
                 closestDistance = distance;
                 closestPoint = point;
