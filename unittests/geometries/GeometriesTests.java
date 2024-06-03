@@ -5,6 +5,10 @@ import primitives.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Unit tests for geometries class
+ * @author Shirel Zelmanovich
+ */
 public class GeometriesTests {
 
     /**

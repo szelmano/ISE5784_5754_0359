@@ -7,7 +7,6 @@ import static primitives.Util.isZero;
 
 /**
  * Unit tests for primitives.Vector class
- *
  * @author Riki and Shirel
  */
 public class VectorTests {

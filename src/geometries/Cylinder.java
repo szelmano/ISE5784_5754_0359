@@ -9,9 +9,7 @@ import java.util.List;
  * A cylinder is defined by its height, radius and axis.
  */
 public class Cylinder extends Tube {
-    /**
-     * The height of the cylinder.
-     */
+    /** The height of the cylinder. */
     final private double height;
 
     /**

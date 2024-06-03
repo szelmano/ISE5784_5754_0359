@@ -8,7 +8,8 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 /**
- * Test class for testing the getPoint method in the Ray class.
+ * Unit tests for primitives.Ray class
+ *   @author Riki Rubin
  */
 
 public class RayTests {
@@ -42,6 +43,9 @@ public class RayTests {
                     "TC11: t value zero test");
         }
 
+    /**
+     * Test method for {@link primitives.Ray#findClosestPoint(List)}
+     */
     @Test
     public void testFindClosestPoint() {
         Ray ray = new Ray(new Point(0, 0, 0), new Vector(1, 0, 0));

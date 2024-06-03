@@ -9,9 +9,9 @@ import static primitives.Util.isZero;
  * Represents a ray in 3D space, defined by its starting point and direction.
  */
 public class Ray {
-    // The starting point of the ray
+    /** The starting point of the ray */
     private final Point head;
-    // The direction of the ray
+    /** The direction of the ray */
     private final Vector direction;
 
     /**
@@ -25,10 +25,18 @@ public class Ray {
         this.direction = direction.normalize();
     }
 
+    /**
+     * function that gets the head of the ray.
+     * @return the head of the ray.
+     */
     public Point getHead() {
         return head;
     }
 
+    /**
+     * function that gets the direction of the ray.
+     * @return the direction of the ray.
+     */
     public Vector getDirection() {
         return direction;
     }
