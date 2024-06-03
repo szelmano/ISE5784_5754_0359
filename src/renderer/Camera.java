@@ -127,6 +127,62 @@ public class Camera implements Cloneable {
         return new Ray(location, Pij.subtract(location));
     }
 
+    /**
+     * Renders the image. This method is not implemented yet.
+     * @throws UnsupportedOperationException always
+     */
+    public Camera renderImage() {
+        int nx = imageWriter.getNx();
+        int ny = imageWriter.getNy();
+
+        for (int i = 0; i < nx; ++i)
+            for (int j = 0; j < ny; ++j)
+                castRay(nx, ny, j, i);
+        return this;
+    }
+
+    private void castRay(int Nx, int Ny, int column, int row) {
+        Ray ray = constructRay(Nx, Ny, column, row);
+        Color color =rayTracer.traceRay(ray);
+        imageWriter.writePixel(column, row, color);
+    }
+
+    /**
+     * Prints a grid on the image with the specified interval and color
+     * @param interval the interval between the grid lines
+     * @param color    the color of the grid lines
+     * @throws MissingResourceException if the ImageWriter is not set
+     */
+    public Camera printGrid(int interval, Color color) {
+        if (imageWriter == null) {
+            throw new MissingResourceException("Image writer value is missing", "Camera", "field");
+        }
+
+        int nx =imageWriter.getNx();
+        int ny =imageWriter.getNy();
+
+        for (int i = 0; i < nx; ++i) {
+            for (int j = 0; j < ny; ++j) {
+                if (i % interval == 0 || j % interval == 0)
+                    imageWriter.writePixel(i, j, color);
+
+            }
+        }
+        return this;
+    }
+
+    /**
+     * Delegates to the ImageWriter's writeToImage method to write the image to file
+     * @throws MissingResourceException if the ImageWriter is not set
+     */
+    public void writeToImage() {
+        if (imageWriter == null) {
+            throw new MissingResourceException("Image writer value is missing", "Camera", "imageWriter");
+        }
+       imageWriter.writeToImage();
+    }
+
+
 
     /**
      * Builder class for constructing Camera instances.
@@ -357,59 +413,6 @@ public class Camera implements Cloneable {
             } catch (CloneNotSupportedException e) {
                 throw new RuntimeException(e);
             }
-        }
-
-        /**
-         * Renders the image. This method is not implemented yet.
-         * @throws UnsupportedOperationException always
-         */
-        public void renderImage() {
-            int nx = this.camera.imageWriter.getNx();
-            int ny = this.camera.imageWriter.getNy();
-
-            for (int i = 0; i < nx; ++i)
-                for (int j = 0; j < ny; ++j)
-                    castRay(nx, ny, j, i);
-        }
-
-        private void castRay(int Nx, int Ny, int column, int row) {
-            Ray ray = this.camera.constructRay(Nx, Ny, column, row);
-            Color color = this.camera.rayTracer.traceRay(ray);
-            this.camera.imageWriter.writePixel(column, row, color);
-        }
-
-        /**
-         * Prints a grid on the image with the specified interval and color
-         * @param interval the interval between the grid lines
-         * @param color    the color of the grid lines
-         * @throws MissingResourceException if the ImageWriter is not set
-         */
-        public void printGrid(int interval, Color color) {
-            if (camera.imageWriter == null) {
-                throw new MissingResourceException("Image writer value is missing", "Camera", "field");
-            }
-
-            int nx = camera.imageWriter.getNx();
-            int ny = camera.imageWriter.getNy();
-
-            for (int i = 0; i < nx; ++i) {
-                for (int j = 0; j < ny; ++j) {
-                    if (i % interval == 0 || j % interval == 0)
-                        camera.imageWriter.writePixel(i, j, color);
-
-                }
-            }
-        }
-
-        /**
-         * Delegates to the ImageWriter's writeToImage method to write the image to file
-         * @throws MissingResourceException if the ImageWriter is not set
-         */
-        public void writeToImage() {
-            if (camera.imageWriter == null) {
-                throw new MissingResourceException("Image writer value is missing", "Camera", "imageWriter");
-            }
-            camera.imageWriter.writeToImage();
         }
 
 
