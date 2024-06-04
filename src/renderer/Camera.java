@@ -131,18 +131,20 @@ public class Camera implements Cloneable {
         return new Ray(location, Pij.subtract(location));
     }
 
+  //TODO
     /**
      * Renders the image.
-     * This method is not implemented yet.
-     * @throws UnsupportedOperationException always.
+     * @return the camera after the renders
      */
-    public void renderImage() {
+    public Camera renderImage() {
         int nx = imageWriter.getNx();
         int ny = imageWriter.getNy();
 
         for (int i = 0; i < nx; ++i)
             for (int j = 0; j < ny; ++j)
                 castRay(nx, ny, j, i);
+
+        return this;
     }
 
     private void castRay(int Nx, int Ny, int column, int row) {
@@ -157,21 +159,22 @@ public class Camera implements Cloneable {
      * @param color The color of the grid lines.
      * @throws MissingResourceException if the ImageWriter is not set.
      */
-    public void printGrid(int interval, Color color) {
-        if (camera.imageWriter == null) {
+    public Camera printGrid(int interval, Color color) {
+        if (imageWriter == null) {
             throw new MissingResourceException("Image writer value is missing", "Camera", "field");
         }
 
-        int nx = camera.imageWriter.getNx();
-        int ny = camera.imageWriter.getNy();
+        int nx = imageWriter.getNx();
+        int ny = imageWriter.getNy();
 
         for (int i = 0; i < nx; ++i) {
             for (int j = 0; j < ny; ++j) {
                 if (i % interval == 0 || j % interval == 0)
-                    camera.imageWriter.writePixel(i, j, color);
+                    imageWriter.writePixel(i, j, color);
 
             }
         }
+        return this;
     }
 
     /**
@@ -179,16 +182,14 @@ public class Camera implements Cloneable {
      * @throws MissingResourceException if the ImageWriter is not set.
      */
     public void writeToImage() {
-        if (camera.imageWriter == null) {
+        if (imageWriter == null) {
             throw new MissingResourceException("Image writer value is missing", "Camera", "imageWriter");
         }
-        camera.imageWriter.writeToImage();
+        imageWriter.writeToImage();
     }
-}
 
 
-
-/**
+    /**
      * Builder class for constructing Camera instances.
      */
     public static class Builder {
@@ -422,7 +423,6 @@ public class Camera implements Cloneable {
                 throw new RuntimeException(e);
             }
         }
-
 
     }
 }
