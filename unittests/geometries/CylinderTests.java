@@ -10,7 +10,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Unit tests for geometries.Cylinder class
+ * Unit tests for geometries.Cylinder class.
  * @author Shirel Zelmanovich
  */
  public  class CylinderTests {
@@ -51,4 +51,5 @@ import static org.junit.jupiter.api.Assertions.*;
                 cy.getNormal(new Point(0, 0, 0)),
                 "TC12: ERROR: getNormal() at the base of the cylinder wrong result");
     }
+
 }

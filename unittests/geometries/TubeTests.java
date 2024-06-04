@@ -10,7 +10,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Unit tests for geometries.Tube class
+ * Unit tests for geometries.Tube class.
  * @author Riki and Shirel
  */
 public class TubeTests {
@@ -36,4 +36,4 @@ public  void testGetNormal() {
                 "TC11: getNormal does not work correctly");
     }
 
-  }
+}

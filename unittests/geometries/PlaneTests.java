@@ -10,7 +10,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Unit tests for geometries.Plane class
+ * Unit tests for geometries.Plane class.
  * @author Shirel and Riki
  */
 public  class PlaneTests {

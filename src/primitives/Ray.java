@@ -16,7 +16,7 @@ public class Ray {
 
     /**
      * Constructs a new Ray object with the specified starting point and direction.
-     * @param head      The starting point of the ray.
+     * @param head The starting point of the ray.
      * @param direction The direction of the ray.
      */
     public Ray(Point head, Vector direction) {
@@ -26,16 +26,16 @@ public class Ray {
     }
 
     /**
-     * function that gets the head of the ray.
-     * @return the head of the ray.
+     * Function that gets the head of the ray.
+     * @return The head of the ray.
      */
     public Point getHead() {
         return head;
     }
 
     /**
-     * function that gets the direction of the ray.
-     * @return the direction of the ray.
+     * Function that gets the direction of the ray.
+     * @return The direction of the ray.
      */
     public Vector getDirection() {
         return direction;
@@ -43,8 +43,8 @@ public class Ray {
 
     /**
      * Calculates a point on the ray at a given distance from the ray's head.
-     * @param t the distance from the ray's origin along the ray's direction
-     * @return the point on the ray at distance `t` from the origin
+     * @param t The distance from the ray's origin along the ray's direction.
+     * @return The point on the ray at distance `t` from the origin.
      */
     public Point getPoint(double t) {
         if (isZero(t)) {
@@ -76,8 +76,8 @@ public class Ray {
 
     /**
      * Finds the closest point to the ray's origin from a list of points.
-     * @param points list of points to check
-     * @return the point closest to the ray's origin, or null if the list is empty
+     * @param points List of points to check.
+     * @return The point closest to the ray's origin, or null if the list is empty.
      */
     public Point findClosestPoint(List<Point> points) {
         if (points == null || points.isEmpty()) {
@@ -97,6 +97,7 @@ public class Ray {
 
         return closestPoint;
     }
+
 }
 
 

@@ -12,7 +12,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * test the integration between the constructRay and geometric entities.
+ * Test the integration between the constructRay and geometric entities.
  */
 public class IntegrationTests {
 
@@ -32,10 +32,10 @@ public class IntegrationTests {
     /**
      * Determine how many intersection points a geometric entity should have with rays emitted from a camera.
      * For each ray, this method collects the intersection points with the given geometric entity and counts them.
-     * @param camera      the camera from which rays are constructed.
-     * @param geo      the geometric entity being tested for intersections.
-     * @param expected the expected number of intersection points.
-     * @param test     the name of the test calling this function.
+     * @param camera      The camera from which rays are constructed.
+     * @param geo      The geometric entity being tested for intersections.
+     * @param expected The expected number of intersection points.
+     * @param test     The name of the test calling this function.
      */
     private void assertCountIntersections(Camera camera, Intersectable geo, int expected, String test) {
 
@@ -169,5 +169,6 @@ public class IntegrationTests {
                 2,
                 "TC02: Large triangle in front of the view plane ");
     }
+
 }
 

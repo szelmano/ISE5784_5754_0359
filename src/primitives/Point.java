@@ -2,43 +2,60 @@ package primitives;
 
 import java.util.Objects;
 
+/**
+ * Represents a point in a 3D space.
+ */
 public class Point {
 
-    public static final Point ZERO = new Point(Double3.ZERO) ;
+    /** A constant representing the zero point (0, 0, 0). */
+    public static final Point ZERO = new Point(Double3.ZERO);
+    /** The internal representation of the point's coordinates. */
     protected final Double3 xyz;
 
     /**
-     * Constructor to initialize a point based object with its three number values
-     * @param x the first value
-     * @param y the second value
-     * @param z the third value
+     * Constructor to initialize a point based object with its three number values.
+     * @param x The first value.
+     * @param y The second value.
+     * @param z The third value.
      */
     public Point(double x, double y, double z) {
         this.xyz = new Double3(x, y, z);
     }
 
     /**
-     * Constructor to initialize a point based object of Double3
-     * @param xyz the Double3 value
+     * Constructor to initialize a point based object of Double3.
+     * @param xyz The Double3 value.
      */
     public Point(Double3 xyz) {
         this.xyz = xyz;
     }
 
+    /**
+     * Function that gets the X coordinate of the point.
+     * @return The X coordinate.
+     */
     public double getX() {
         return xyz.d1;
     }
 
+    /**
+     * Function that gets the X coordinate of the point.
+     * @return The Y coordinate.
+     */
     public double getY() {
         return xyz.d2;
     }
 
+    /**
+     * Function that gets the X coordinate of the point.
+     * @return The Z coordinate.
+     */
     public double getZ() { return xyz.d3; }
 
     /**
      * Calculates the summarized between this point and another point.
-     * @param  v1 right hand side operand for addition
-     * @return     result of add
+     * @param  v1 Right hand side operand for addition.
+     * @return Result of add.
      */
     public Point add(Vector v1) {
         return new Point(xyz.add(v1.xyz));
@@ -46,8 +63,8 @@ public class Point {
 
     /**
      * Calculates the subtracted between this point and another point.
-     * @param  p1 right hand side operand for subtraction
-     * @return     result of subtract
+     * @param  p1 Right hand side operand for subtraction.
+     * @return Result of subtract
      */
     public Vector subtract(Point p1) {
         return new Vector(xyz.subtract(p1.xyz));

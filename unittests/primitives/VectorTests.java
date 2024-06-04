@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static primitives.Util.isZero;
 
 /**
- * Unit tests for primitives.Vector class
+ * Unit tests for primitives.Vector class.
  * @author Riki and Shirel
  */
 public class VectorTests {
@@ -206,4 +206,5 @@ public class VectorTests {
         assertFalse(v1.dotProduct(u) < 0,
                 "TC03: ERROR: The normalized vector is opposite to the original one");
     }
+
 }

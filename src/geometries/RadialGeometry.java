@@ -22,4 +22,5 @@ public abstract class RadialGeometry implements Geometry {
     public Vector getNormal(Point p1) {
         return null;
     }
+
 }
