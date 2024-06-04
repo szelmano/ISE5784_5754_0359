@@ -9,7 +9,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Unit tests for geometries.Sphere class
+ * Unit tests for geometries.Sphere class.
  * @author Riki Rubin
  */
 public class SphereTests {
@@ -131,6 +131,6 @@ public class SphereTests {
         // TC22: Ray's line is outside, ray is orthogonal to ray start to sphere's center line
         assertNull(sphere.findIntersections(new Ray(new Point(-0.5, 0, 0), v010)),
                 "TC22: Ray's line is outside and orthogonal to the sphere's center line");
- }
+    }
 
 }

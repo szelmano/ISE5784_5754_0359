@@ -7,11 +7,11 @@ import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-/**
- * Unit tests for primitives.Ray class
- *   @author Riki Rubin
- */
 
+/**
+ * Unit tests for primitives.Ray class.
+ *  @author Riki Rubin
+ */
 public class RayTests {
 
     /**
@@ -87,5 +87,6 @@ public class RayTests {
         assertEquals(expectedLast, ray.findClosestPoint(lastPointClosest),
                 "Boundary case failed - the last point should be closest");
     }
+
 }
 

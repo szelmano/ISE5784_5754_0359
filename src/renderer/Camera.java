@@ -12,85 +12,89 @@ import static primitives.Util.isZero;
  * This class uses the Builder design pattern for construction.
  */
 public class Camera implements Cloneable {
-    /** The reference point of the camera */
+    /** The reference point of the camera. */
     private Point location;
-    /** The vector that points onwards relative to the camera */
+    /** The vector that points onwards relative to the camera. */
     private Vector vTo;
-    /** The vector that points upwards relative to the camera */
+    /** The vector that points upwards relative to the camera. */
     private Vector vUp;
-     /** The vector that points to the right side relative to the camera */
+     /** The vector that points to the right side relative to the camera. */
     private Vector vRight;
-     /** The height of the view plane */
+     /** The height of the view plane. */
     private double height = 0;
-     /** The width of the view plane */
+     /** The width of the view plane. */
     private double width = 0;
-     /** The distance between the camera and the view plane */
+     /** The distance between the camera and the view plane. */
     private double distance = 0;
+
+    //TODO
+    /** The image writer for writing the rendered image. */
     private ImageWriter imageWriter;
+    /** The ray tracer for tracing rays in the scene. */
     private RayTracerBase rayTracer;
 
 
     /**
-     * function that gets the location of the camera
-     * @return the location point
+     * Function that gets the location of the camera.
+     * @return The location point.
      */
     public Point getLocation() { return location; }
 
     /**
-     * function that gets the vTo vector
-     * @return the vTo vector
+     * Function that gets the vTo vector.
+     * @return The vTo vector
      */
     public Vector getVTo() { return vTo; }
 
     /**
-     * function that gets the vUp vector
-     * @return the vUp vector
+     * Function that gets the vUp vector.
+     * @return The vUp vector.
      */
     public Vector getVUp() { return vUp; }
 
     /**
-     * function that gets the vRight vector
-     * @return the vRight vector
+     * Function that gets the vRight vector.
+     * @return The vRight vector.
      */
     public Vector getVRight() { return vRight; }
 
     /**
-     * function that gets the  height of the view plane
-     * @return the height
+     * Function that gets the height of the view plane.
+     * @return The height.
      */
     public double getHeight() { return height; }
 
     /**
-     * function that gets the width of the view plane
-     * @return the width
+     * Function that gets the width of the view plane.
+     * @return The width.
      */
     public double getWidth() { return width; }
 
     /**
-     * function that gets the distance of the view plane from the camera
-     * @return the distance
+     * Function that gets the distance of the view plane from the camera.
+     * @return The distance.
      */
     public double getDistance() { return distance; }
 
 
     /**
-     * Private default constructor to prevent instantiation
+     * Private default constructor to prevent instantiation.
      */
     private Camera() {}
 
     /**
      * Returns a new Builder instance for Camera.
-     * @return a new Builder instance
+     * @return A new Builder instance.
      */
     public static Builder getBuilder() { return new Builder(); }
 
     /**
      * Constructs a ray through a specified pixel.
-     * @param nX number of pixels in width
-     * @param nY number of pixels in height
-     * @param j  column index of the pixel
-     * @param i  row index of the pixel
-     * @return a ray through the specified pixel
+     * @param nX Number of pixels in width.
+     * @param nY Number of pixels in height.
+     * @param j  Column index of the pixel.
+     * @param i  Row index of the pixel.
+     * @return A ray through the specified pixel.
      */
     public Ray constructRay(int nX, int nY, int j, int i) {
 
@@ -139,13 +143,17 @@ public class Camera implements Cloneable {
          */
         public Builder() { this.camera = new Camera(); }
 
+        /**
+         * Constructor initializing a new Builder with an existing Camera instance.
+         * @param camera The existing Camera instance.
+         */
         public Builder(Camera camera) { this.camera = camera; }
 
         /**
          * Sets the location of the camera.
-         * @param p0 the location to set
-         * @return the current Builder instance
-         * @throws IllegalArgumentException if the location is null
+         * @param p0 The location to set.
+         * @return The current Builder instance.
+         * @throws IllegalArgumentException if the location is null.
          */
         public Builder setLocation(Point p0) {
             if (p0 == null) {
@@ -157,10 +165,10 @@ public class Camera implements Cloneable {
 
         /**
          * Sets the direction of the camera.
-         * @param vTo the forward direction vector
-         * @param vUp the upward direction vector
-         * @return the current Builder instance
-         * @throws IllegalArgumentException if any vector is null or they are not orthogonal
+         * @param vTo The forward direction vector.
+         * @param vUp The upward direction vector.
+         * @return The current Builder instance.
+         * @throws IllegalArgumentException if any vector is null or they are not orthogonal.
          */
         public Builder setDirection(Vector vTo, Vector vUp) {
             if (vTo == null || vUp == null) {
@@ -178,10 +186,10 @@ public class Camera implements Cloneable {
 
         /**
          * Sets the view plane size.
-         * @param width  the width of the view plane
-         * @param height the height of the view plane
-         * @return the current Builder instance
-         * @throws IllegalArgumentException if width or height is negative
+         * @param width  The width of the view plane.
+         * @param height The height of the view plane.
+         * @return The current Builder instance.
+         * @throws IllegalArgumentException if width or height is negative.
          */
         public Builder setVpSize(double width, double height) {
             if (width < 0 || height < 0) {
@@ -194,9 +202,9 @@ public class Camera implements Cloneable {
 
         /**
          * Sets the distance between the camera and the view plane.
-         * @param distance the distance to the view plane
-         * @return the current Builder instance
-         * @throws IllegalArgumentException if distance is negative
+         * @param distance The distance to the view plane.
+         * @return The current Builder instance.
+         * @throws IllegalArgumentException if distance is negative.
          */
         public Builder setVpDistance(double distance) {
             if (distance < 0) {
@@ -208,9 +216,9 @@ public class Camera implements Cloneable {
 
         /**
          * Sets the view direction vector of the camera.
-         * @param vTo the view direction vector
-         * @return the current Builder instance
-         * @throws IllegalArgumentException if the vector is null
+         * @param vTo The view direction vector.
+         * @return The current Builder instance.
+         * @throws IllegalArgumentException if the vector is null.
          */
         public Builder setVTo(Vector vTo) {
             if (vTo == null) {
@@ -222,9 +230,9 @@ public class Camera implements Cloneable {
 
         /**
          * Sets the up direction vector of the camera.
-         * @param vUp the up direction vector
-         * @return the current Builder instance
-         * @throws IllegalArgumentException if the vector is null
+         * @param vUp The up direction vector.
+         * @return The current Builder instance.
+         * @throws IllegalArgumentException if the vector is null.
          */
         public Builder setVUp(Vector vUp) {
             if (vUp == null) {
@@ -236,9 +244,9 @@ public class Camera implements Cloneable {
 
         /**
          * Sets the view plane height.
-         * @param height the height to set
-         * @return the current Builder instance
-         * @throws IllegalArgumentException if the height is negative
+         * @param height The height to set.
+         * @return The current Builder instance.
+         * @throws IllegalArgumentException if the height is negative.
          */
         public Builder setHeight(double height) {
             if (height <= 0) {
@@ -250,9 +258,9 @@ public class Camera implements Cloneable {
 
         /**
          * Sets the view plane width.
-         * @param width the width to set
-         * @return the current Builder instance
-         * @throws IllegalArgumentException if the width is negative
+         * @param width The width to set.
+         * @return The current Builder instance.
+         * @throws IllegalArgumentException if the width is negative.
          */
         public Builder setWidth(double width) {
             if (width <= 0) {
@@ -264,9 +272,9 @@ public class Camera implements Cloneable {
 
         /**
          * Sets the view plane distance.
-         * @param distance the distance to set
-         * @return the current Builder instance
-         * @throws IllegalArgumentException if the distance is negative
+         * @param distance The distance to set.
+         * @return The current Builder instance.
+         * @throws IllegalArgumentException if the distance is negative.
          */
         public Builder setDistance(double distance) {
             if (distance <= 0) {
@@ -277,9 +285,9 @@ public class Camera implements Cloneable {
         }
 
         /**
-         * Sets the ImageWriter for the Camera
-         * @param imageWriter the ImageWriter to be set
-         * @return the Builder instance for chaining
+         * Sets the ImageWriter for the Camera.
+         * @param imageWriter The ImageWriter to be set.
+         * @return The Builder instance for chaining.
          */
         public Builder setImageWriter(ImageWriter imageWriter) {
             this.camera.imageWriter = imageWriter;
@@ -287,9 +295,9 @@ public class Camera implements Cloneable {
         }
 
         /**
-         * Sets the RayTracerBase for the Camera
-         * @param rayTracer the RayTracerBase to be set
-         * @return the Builder instance for chaining
+         * Sets the RayTracerBase for the Camera.
+         * @param rayTracer The RayTracerBase to be set.
+         * @return The Builder instance for chaining.
          */
         public Builder setRayTracer(RayTracerBase rayTracer) {
             this.camera.rayTracer = rayTracer;
@@ -298,8 +306,8 @@ public class Camera implements Cloneable {
 
         /**
          * Builds and returns the Camera instance.
-         * @return the constructed Camera instance
-         * @throws MissingResourceException if any required fields are not set
+         * @return The constructed Camera instance.
+         * @throws MissingResourceException if any required fields are not set.
          */
         public Camera build() {
             // Error messages
@@ -360,8 +368,9 @@ public class Camera implements Cloneable {
         }
 
         /**
-         * Renders the image. This method is not implemented yet.
-         * @throws UnsupportedOperationException always
+         * Renders the image.
+         * This method is not implemented yet.
+         * @throws UnsupportedOperationException always.
          */
         public void renderImage() {
             int nx = this.camera.imageWriter.getNx();
@@ -379,10 +388,10 @@ public class Camera implements Cloneable {
         }
 
         /**
-         * Prints a grid on the image with the specified interval and color
-         * @param interval the interval between the grid lines
-         * @param color    the color of the grid lines
-         * @throws MissingResourceException if the ImageWriter is not set
+         * Prints a grid on the image with the specified interval and color.
+         * @param interval The interval between the grid lines.
+         * @param color The color of the grid lines.
+         * @throws MissingResourceException if the ImageWriter is not set.
          */
         public void printGrid(int interval, Color color) {
             if (camera.imageWriter == null) {
@@ -402,8 +411,8 @@ public class Camera implements Cloneable {
         }
 
         /**
-         * Delegates to the ImageWriter's writeToImage method to write the image to file
-         * @throws MissingResourceException if the ImageWriter is not set
+         * Delegates to the ImageWriter's writeToImage method to write the image to file.
+         * @throws MissingResourceException if the ImageWriter is not set.
          */
         public void writeToImage() {
             if (camera.imageWriter == null) {
@@ -411,7 +420,6 @@ public class Camera implements Cloneable {
             }
             camera.imageWriter.writeToImage();
         }
-
-
     }
+
 }

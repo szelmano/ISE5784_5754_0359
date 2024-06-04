@@ -3,8 +3,15 @@ package renderer;
 import org.junit.jupiter.api.Test;
 import primitives.Color;
 
+/**
+ * Unit tests for renderer.ImageWriterTests class.
+ * @author Riki and Shirel
+ */
 class ImageWriterTests {
 
+    /**
+     * Test method for {@link renderer.ImageWriter#writeToImage()}
+     */
     @Test
     void testWriteToImage() {
         ImageWriter imageWriter=new ImageWriter("Test 1",800,500);
@@ -17,7 +24,10 @@ class ImageWriterTests {
         imageWriter.writeToImage();
     }
 
+    /**
+     * Test method for {@link renderer.ImageWriter#writePixel(int, int, Color)}
+     */
     @Test
-    void writePixel() {
-    }
+    void testWritePixel() {}
+
 }

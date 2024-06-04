@@ -6,7 +6,7 @@ import primitives.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Unit tests for geometries class
+ * Unit tests for geometries class.
  * @author Shirel Zelmanovich
  */
 public class GeometriesTests {
@@ -57,4 +57,5 @@ public class GeometriesTests {
                                 new Vector(6.5,10.5,-3))),
                 "TC14: Empty collection of geometries - found an intersection");
     }
+
 }

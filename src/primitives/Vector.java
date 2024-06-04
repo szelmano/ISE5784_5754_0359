@@ -39,8 +39,7 @@ public class Vector extends Point {
     }
 
     /**
-     * Calculates the multiplies of this vector and
-     * a number - a scalar
+     * Calculates the multiplies of this vector and a scalar.
      * @param num The scalar value to scale the vector by.
      * @return A new vector representing the scaled vector.
      */
@@ -109,6 +108,5 @@ public class Vector extends Point {
 
     @Override
     public String toString() { return "Vector: " + xyz.toString(); }
-
 
 }
