@@ -20,13 +20,15 @@ public class IntegrationTests {
             .setRayTracer(new SimpleRayTracer(new Scene("Test")))
             .setImageWriter(new ImageWriter("Test", 1, 1))
             .setLocation(Point.ZERO)
-            .setDirection(new Vector(0, 0, -1), new Vector(0, 1, 0));
+            .setDirection(new Vector(0, 0, -1), new Vector(0, 1, 0))
+            .setVpDistance(1);
 
     private final Camera.Builder cameraBuilder2 = Camera.getBuilder()
             .setRayTracer(new SimpleRayTracer(new Scene("Test")))
             .setImageWriter(new ImageWriter("Test", 1, 1))
             .setLocation(new Point(0, 0, 0.5))
-            .setDirection(new Vector(0, 0, -1), new Vector(0, 1, 0));
+            .setDirection(new Vector(0, 0, -1), new Vector(0, 1, 0))
+            .setVpDistance(1);
 
 
     /**
@@ -72,8 +74,8 @@ public class IntegrationTests {
     @Test
     public void cameraRaySphereIntegration() {
         // Camera creation checks
-        Camera camera1 = cameraBuilder1.setVpSize(3, 3).setVpDistance(1).build();
-        Camera camera2 = cameraBuilder2.setVpSize(3, 3).setVpDistance(1).build();
+        Camera camera1 = cameraBuilder1.setVpSize(3, 3).build();
+        Camera camera2 = cameraBuilder2.setVpSize(3, 3).build();
 
 
         // TC01: Sphere in front of the camera (2 points)
@@ -115,7 +117,7 @@ public class IntegrationTests {
     @Test
     public void cameraRayPlaneIntegration() {
         // Camera creation check
-        Camera camera = cameraBuilder1.setVpSize(3, 3).setVpDistance(1).build();
+        Camera camera = cameraBuilder1.setVpSize(3, 3).build();
 
         // TC01: Plane in front of the camera, parallel to the view plane (9 points)
         assertCountIntersections(camera,
@@ -151,7 +153,7 @@ public class IntegrationTests {
     @Test
     public void cameraRayTriangleIntegration() {
         // Camera creation check
-        Camera camera = cameraBuilder1.setVpSize(3, 3).setVpDistance(1).build();
+        Camera camera = cameraBuilder1.setVpSize(3, 3).build();
 
         // TC01: Small triangle in front of the view plane (1 point)
         assertCountIntersections(camera,

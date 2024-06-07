@@ -2,6 +2,7 @@ package renderer;
 
 import static java.awt.Color.*;
 
+import XML.SceneXMLParser;
 import org.junit.jupiter.api.Test;
 
 import geometries.*;
@@ -9,6 +10,8 @@ import lighting.AmbientLight;
 import primitives.*;
 import renderer.Camera;
 import scene.Scene;
+import static org.junit.jupiter.api.Assertions.*;
+
 
 /**
  * Test rendering a basic image
@@ -63,18 +66,19 @@ public class RenderTests {
      * Test for XML based scene - for bonus
      */
     @Test
-    public void basicRenderXml() {
+    public void basicRenderXml() throws Exception {
         // enter XML file name and parse from XML file into scene object
         // using the code you added in appropriate packages
         // ...
         // NB: unit tests is not the correct place to put XML parsing code
+       Scene xmlScene = SceneXMLParser.parse("resources/renderTestTwoColors.xml");
 
-        camera
-                .setImageWriter(new ImageWriter("xml render test", 1000, 1000))
-                .build()
-                .renderImage()
-                .printGrid(100, new Color(YELLOW))
-                .writeToImage();
+       camera.setRayTracer(new SimpleRayTracer(xmlScene))
+               .setImageWriter(new ImageWriter("xml render test", 1000, 1000))
+               .build()
+               .renderImage()
+               .printGrid(100, new Color(YELLOW))
+               .writeToImage();
     }
 }
 

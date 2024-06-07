@@ -12,7 +12,6 @@ import static primitives.Util.*;
  * A plan is defined by its point and normal.
  */
 public class Plane implements Geometry {
-
     /** A point on the plane. */
     final private Point q;
     /** The normal vector to the plane. */

@@ -26,8 +26,6 @@ public class Camera implements Cloneable {
     private double width = 0;
      /** The distance between the camera and the view plane. */
     private double distance = 0;
-
-    //TODO
     /** The image writer for writing the rendered image. */
     private ImageWriter imageWriter;
     /** The ray tracer for tracing rays in the scene. */
@@ -102,53 +100,58 @@ public class Camera implements Cloneable {
         if (nY == 0 || nX == 0)
             throw new IllegalArgumentException("It is impossible to divide by 0");
 
-        // Calculate the center point of the image plane (Pc) by moving from the camera location
+        // Calculate the center point of the image plane (pC) by moving from the camera location
         // along the viewing direction (vTo) by the specified distance
-        Point Pc = location.add(vTo.scale(distance));
+        Point pC = location.add(vTo.scale(distance));
 
-        // Calculate the width (Rx) and height (Ry) of a single pixel on the image plane
-        double Rx = width / nX;
-        double Ry = height / nY;
+        // Calculate the width (rX) and height (rY) of a single pixel on the image plane
+        double rX = width / nX;
+        double rY = height / nY;
 
         // Initialize the point Pij to the center of the image plane (Pc)
-        Point Pij = Pc;
+        Point pIJ = pC;
 
-        // Calculate the horizontal (Xj) and vertical (Yi) distances from the center to the pixel (j, i)
-        double Xj = (j - (nX - 1) / 2d) * Rx;
-        double Yi = -(i - (nY - 1) / 2d) * Ry;
+        // Calculate the horizontal (xJ) and vertical (Yi) distances from the center to the pixel (j, i)
+        double xJ = (j - (nX - 1) / 2d) * rX;
+        double yI = -(i - (nY - 1) / 2d) * rY;
 
-        // If Xj is not zero, move Pij horizontally by Xj along the right direction (vRight)
-        if (!isZero(Xj)) {
-            Pij = Pij.add(vRight.scale(Xj));
+        // If xJ is not zero, move Pij horizontally by xJ along the right direction (vRight)
+        if (!isZero(xJ)) {
+            pIJ = pIJ.add(vRight.scale(xJ));
         }
 
         // If Yi is not zero, move Pij vertically by Yi along the up direction (vUp)
-        if (!isZero(Yi)) {
-            Pij = Pij.add(vUp.scale(Yi));
+        if (!isZero(yI)) {
+            pIJ = pIJ.add(vUp.scale(yI));
         }
 
         // Create and return a new Ray from the camera location (location) towards the calculated point (Pij)
-        return new Ray(location, Pij.subtract(location));
+        return new Ray(location, pIJ.subtract(location));
     }
 
-  //TODO
     /**
-     * Renders the image.
-     * @return the camera after the renders
+     * Renders the image by casting rays through each pixel.
+     * @return The camera after rendering the image.
      */
     public Camera renderImage() {
-        int nx = imageWriter.getNx();
-        int ny = imageWriter.getNy();
+        int nX = imageWriter.getNx();
+        int nY = imageWriter.getNy();
 
-        for (int i = 0; i < nx; ++i)
-            for (int j = 0; j < ny; ++j)
-                castRay(nx, ny, j, i);
-
+        for (int i = 0; i < nX; ++i)
+            for (int j = 0; j < nY; ++j)
+                castRay(nX, nY, j, i);
         return this;
     }
 
-    private void castRay(int Nx, int Ny, int column, int row) {
-        Ray ray = constructRay(Nx, Ny, column, row);
+    /**
+     * Casts a ray through a pixel and writes the resulting color to the image.
+     * @param nX Number of pixels in width.
+     * @param nY Number of pixels in height.
+     * @param column The column index of the pixel.
+     * @param row The row index of the pixel.
+     */
+    private void castRay(int nX, int nY, int column, int row) {
+        Ray ray = constructRay(nX, nY, column, row);
         Color color = rayTracer.traceRay(ray);
         imageWriter.writePixel(column, row, color);
     }
@@ -164,14 +167,13 @@ public class Camera implements Cloneable {
             throw new MissingResourceException("Image writer value is missing", "Camera", "field");
         }
 
-        int nx = imageWriter.getNx();
-        int ny = imageWriter.getNy();
+        int nX = imageWriter.getNx();
+        int nY = imageWriter.getNy();
 
-        for (int i = 0; i < nx; ++i) {
-            for (int j = 0; j < ny; ++j) {
-                if (i % interval == 0 || j % interval == 0)
-                    imageWriter.writePixel(i, j, color);
-
+        for (int i = 0; i < nX; ++i) {
+            for (int j = 0; j < nY; ++j) {
+                if (i % interval == 0 || j % interval == 0 || i == nX - 1 || j == nY - 1)
+                    imageWriter.writePixel(j, i, color);
             }
         }
         return this;
@@ -187,7 +189,6 @@ public class Camera implements Cloneable {
         }
         imageWriter.writeToImage();
     }
-
 
     /**
      * Builder class for constructing Camera instances.
@@ -225,7 +226,7 @@ public class Camera implements Cloneable {
          * @param vTo The forward direction vector.
          * @param vUp The upward direction vector.
          * @return The current Builder instance.
-         * @throws IllegalArgumentException if any vector is null or they are not orthogonal.
+         * @throws IllegalArgumentException if any vector is null or the vectors are not orthogonal.
          */
         public Builder setDirection(Vector vTo, Vector vUp) {
             if (vTo == null || vUp == null) {
@@ -249,8 +250,8 @@ public class Camera implements Cloneable {
          * @throws IllegalArgumentException if width or height is negative.
          */
         public Builder setVpSize(double width, double height) {
-            if (width < 0 || height < 0) {
-                throw new IllegalArgumentException("Width and height must be non-negative");
+            if (width <= 0 || height <= 0) {
+                throw new IllegalArgumentException("Width and height must be non-negative or zero");
             }
             this.camera.width = width;
             this.camera.height = height;
@@ -264,8 +265,8 @@ public class Camera implements Cloneable {
          * @throws IllegalArgumentException if distance is negative.
          */
         public Builder setVpDistance(double distance) {
-            if (distance < 0) {
-                throw new IllegalArgumentException("Distance must be non-negative");
+            if (distance <= 0) {
+                throw new IllegalArgumentException("Distance must be non-negative or zero");
             }
             this.camera.distance = distance;
             return this;
@@ -307,7 +308,7 @@ public class Camera implements Cloneable {
          */
         public Builder setHeight(double height) {
             if (height <= 0) {
-                throw new IllegalArgumentException("Height cannot be negative");
+                throw new IllegalArgumentException("Height cannot be negative or zero");
             }
             this.camera.height = height;
             return this;
@@ -321,7 +322,7 @@ public class Camera implements Cloneable {
          */
         public Builder setWidth(double width) {
             if (width <= 0) {
-                throw new IllegalArgumentException("Width cannot be negative");
+                throw new IllegalArgumentException("Width cannot be negative or zero");
             }
             this.camera.width = width;
             return this;
@@ -335,7 +336,7 @@ public class Camera implements Cloneable {
          */
         public Builder setDistance(double distance) {
             if (distance <= 0) {
-                throw new IllegalArgumentException("Distance cannot be negative");
+                throw new IllegalArgumentException("Distance cannot be negative or zero");
             }
             this.camera.distance = distance;
             return this;
@@ -423,6 +424,6 @@ public class Camera implements Cloneable {
                 throw new RuntimeException(e);
             }
         }
-
     }
+
 }

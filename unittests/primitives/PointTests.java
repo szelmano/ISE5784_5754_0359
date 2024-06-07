@@ -82,4 +82,5 @@ public class PointTests {
                 p2.distance(p2),
                 "TC11: ERROR: Point Distance does not work correctly");
     }
+
 }
