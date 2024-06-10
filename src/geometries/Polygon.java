@@ -2,6 +2,7 @@ package geometries;
 
 import java.util.List;
 
+import static primitives.Util.alignZero;
 import static primitives.Util.isZero;
 
 import primitives.Point;
@@ -88,6 +89,59 @@ public class Polygon implements Geometry {
     @Override
     public Vector getNormal(Point p1) { return plane.getNormal(); }
 
+     /**
+     * Finds intersections points of a given ray with the polygon.
+     * @param ray The ray of the intersection.
+     * @return A list of intersection points, or null if no intersection is found.
+     */
     @Override
-    public List<Point> findIntersections(Ray ray) { return null; }
+    public List<Point> findIntersections(Ray ray) {
+        Point p0 = ray.getHead();
+        Vector v = ray.getDirection();
+        Plane plane = this.plane;
+        Vector normal = plane.getNormal();
+        Point q = plane.getPoint();
+
+        // Check if ray is parallel to the plane or lies on the plane
+        double nv = normal.dotProduct(v);
+        if (isZero(nv)) {
+            return null;
+        }
+
+        // Find the intersection point t on the plane
+        double t = alignZero(normal.dotProduct(q.subtract(p0)) / nv);
+        if (t <= 0) {
+            return null;
+        }
+
+        Point intersectionPoint = ray.getPoint(t);
+
+        try {
+            // Initialize vectors for the first edge and the point to intersection
+            Vector edgeVector = this.vertices.getFirst().subtract(this.vertices.get(this.vertices.size() - 1)).normalize();
+            Vector vecToPoint = intersectionPoint.subtract(this.vertices.get(this.vertices.size() - 1)).normalize();
+            Vector normalVector = edgeVector.crossProduct(vecToPoint).normalize(); // First vector to compare to others
+
+            for (int i = 0; i < this.vertices.size() - 1; i++) {
+                edgeVector = this.vertices.get(i + 1).subtract(this.vertices.get(i)).normalize();
+                vecToPoint = intersectionPoint.subtract(this.vertices.get(i)).normalize();
+
+                // The point is on the edge
+                if (edgeVector.equals(vecToPoint) || edgeVector.equals(edgeVector.scale(-1))) {
+                    return null;
+                }
+
+                Vector crossVector = edgeVector.crossProduct(vecToPoint).normalize();
+
+                if (normalVector.dotProduct(crossVector) < 0) {
+                    // At least one vector is not the same, the point is outside the polygon
+                    return null;
+                }
+            }
+            return List.of(intersectionPoint); // The point is inside the polygon
+        } catch (IllegalArgumentException e) {
+            // Exception thrown because the zero vector was constructed (point on a vertex or edge)
+            return null;
+        }
+    }
 }

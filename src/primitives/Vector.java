@@ -34,9 +34,7 @@ public class Vector extends Point {
      * @param other The vector to add.
      * @return A new vector representing the sum of this vector and the other vector.
      */
-    public Vector add(Vector other) {
-        return new Vector(this.xyz.add(other.xyz));
-    }
+    public Vector add(Vector other) { return new Vector(this.xyz.add(other.xyz)); }
 
     /**
      * Calculates the multiplies of this vector and a scalar.

@@ -37,8 +37,6 @@ public class AmbientLight {
      * Function that gets intensity of the ambient light.
      * @return The intensity of the ambient light.
      */
-    public Color getIntensity() {
-        return intensity;
-    }
+    public Color getIntensity() { return intensity; }
 
 }

@@ -9,7 +9,11 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/XML/Parse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/XML/Parse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/XML/SceneXML.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/XML/SceneXML.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Tube.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Tube.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Plane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Plane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Polygon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Polygon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lighting/AmbientLight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lighting/AmbientLight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/primitives/Vector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Vector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unittests/geometries/PolygonTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/geometries/PolygonTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,46 +61,46 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "JUnit.All in ISE5784_5754_0359.executor": "Run",
-    "JUnit.ImageWriterTest.testWriteToImage.executor": "Run",
-    "JUnit.ImageWriterTests.testWriteToImage.executor": "Run",
-    "JUnit.IntegrationTests.executor": "Run",
-    "JUnit.PlaneTests.testFindIntersections.executor": "Run",
-    "JUnit.PointTests.executor": "Run",
-    "JUnit.PointTests.testAdd.executor": "Run",
-    "JUnit.PointTests.testDistanceSquared.executor": "Run",
-    "JUnit.PointTests.testSubtract.executor": "Run",
-    "JUnit.RayTests.testFindClosestPoint.executor": "Run",
-    "JUnit.RenderTests.basicRenderXml.executor": "Run",
-    "JUnit.RenderTests.executor": "Run",
-    "JUnit.RenderTests.renderTwoColorTest.executor": "Run",
-    "JUnit.SphereTests.testFindIntersections.executor": "Debug",
-    "JUnit.TriangleTests.testFindIntersections.executor": "Run",
-    "JUnit.VectorTests.testNormalize.executor": "Run",
-    "JUnit.geometries in ISE5784_5754_0359.executor": "Run",
-    "JUnit.renderer in ISE5784_5754_0359.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_directory_selection": "C:/Users/owner/Desktop/מחשב לבן שיראל/שיראל/מכון טל/שנה ב תשפד/סמסטר ב/מיני פרוייקט מבוא להנדסת תוכנה/ISE5784_5754_0359/src/renderer",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "onboarding.tips.debug.path": "C:/Users/owner/Desktop/מחשב לבן שיראל/שיראל/מכון טל/שנה ב תשפד/סמסטר ב/מיני פרוייקט מבוא להנדסת תוכנה/ISE5784_5754_0359/src/Main.java",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "fileTemplates",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.All in ISE5784_5754_0359.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ImageWriterTest.testWriteToImage.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ImageWriterTests.testWriteToImage.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.IntegrationTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlaneTests.testFindIntersections.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PointTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PointTests.testAdd.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PointTests.testDistanceSquared.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PointTests.testSubtract.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RayTests.testFindClosestPoint.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RenderTests.basicRenderXml.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RenderTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RenderTests.renderTwoColorTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SphereTests.testFindIntersections.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.TriangleTests.testFindIntersections.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.VectorTests.testNormalize.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.geometries in ISE5784_5754_0359.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.renderer in ISE5784_5754_0359.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Users/owner/Desktop/מחשב לבן שיראל/שיראל/מכון טל/שנה ב תשפד/סמסטר ב/מיני פרוייקט מבוא להנדסת תוכנה/ISE5784_5754_0359/src/renderer&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/owner/Desktop/מחשב לבן שיראל/שיראל/מכון טל/שנה ב תשפד/סמסטר ב/מיני פרוייקט מבוא להנדסת תוכנה/ISE5784_5754_0359/src/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;fileTemplates&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="renderer" />
@@ -112,7 +116,7 @@
       <recent name="geometries" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.RenderTests.basicRenderXml">
+  <component name="RunManager" selected="JUnit.All in ISE5784_5754_0359">
     <configuration name="All in ISE5784_5754_0359" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5784_5754_0359" />
       <option name="PACKAGE_NAME" value="" />
@@ -185,8 +189,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.RenderTests.basicRenderXml" />
         <item itemvalue="JUnit.All in ISE5784_5754_0359" />
+        <item itemvalue="JUnit.RenderTests.basicRenderXml" />
         <item itemvalue="JUnit.ImageWriterTests.testWriteToImage" />
         <item itemvalue="JUnit.renderer in ISE5784_5754_0359" />
         <item itemvalue="JUnit.PlaneTests.testFindIntersections" />

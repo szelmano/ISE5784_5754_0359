@@ -56,18 +56,6 @@ public class SceneXML {
         if (geometriesList.getLength() > 0) {
             Element geometriesElement = (Element) geometriesList.item(0);
 
-            NodeList spheresList = geometriesElement.getElementsByTagName("sphere");
-            for (int i = 0; i < spheresList.getLength(); i++) {
-                Element sphereElement = (Element) spheresList.item(i);
-                scene.geometries.add(parseSphere(sphereElement));
-            }
-
-            NodeList trianglesList = geometriesElement.getElementsByTagName("triangle");
-            for (int i = 0; i < trianglesList.getLength(); i++) {
-                Element triangleElement = (Element) trianglesList.item(i);
-                scene.geometries.add(parseTriangle(triangleElement));
-            }
-
             NodeList cylindersList = geometriesElement.getElementsByTagName("cylinder");
             for (int i = 0; i < cylindersList.getLength(); i++) {
                 Element cylinderElement = (Element) cylindersList.item(i);
@@ -85,15 +73,27 @@ public class SceneXML {
                 Element polygonElement = (Element) polygonsList.item(i);
                 scene.geometries.add(parsePolygon(polygonElement));
             }
+
+            NodeList spheresList = geometriesElement.getElementsByTagName("sphere");
+            for (int i = 0; i < spheresList.getLength(); i++) {
+                Element sphereElement = (Element) spheresList.item(i);
+                scene.geometries.add(parseSphere(sphereElement));
+            }
+
+            NodeList trianglesList = geometriesElement.getElementsByTagName("triangle");
+            for (int i = 0; i < trianglesList.getLength(); i++) {
+                Element triangleElement = (Element) trianglesList.item(i);
+                scene.geometries.add(parseTriangle(triangleElement));
+            }
+
             NodeList tubesList = geometriesElement.getElementsByTagName("tube");
             for (int i = 0; i < tubesList.getLength(); i++) {
                 Element tubeElement = (Element) tubesList.item(i);
                 scene.geometries.add(parseTube(tubeElement));
             }
-
-
         }
 
         return scene;
     }
+
 }

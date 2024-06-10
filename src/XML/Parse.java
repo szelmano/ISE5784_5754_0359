@@ -17,29 +17,6 @@ import java.util.List;
 public class Parse {
 
     /**
-     * Parses a sphere element to create a Sphere object.
-     * @param element The sphere element.
-     * @return The Sphere object created from the element.
-     */
-    public static Sphere parseSphere(Element element) {
-        double radius = Double.parseDouble(element.getAttribute("radius"));
-        Point center = parsePoint(element.getAttribute("center"));
-        return new Sphere(radius, center);
-    }
-
-    /**
-     * Parses a triangle element to create a Triangle object.
-     * @param element The triangle element.
-     * @return The Triangle object created from the element.
-     */
-    public static Triangle parseTriangle(Element element) {
-        Point p0 = parsePoint(element.getAttribute("p0"));
-        Point p1 = parsePoint(element.getAttribute("p1"));
-        Point p2 = parsePoint(element.getAttribute("p2"));
-        return new Triangle(p0, p1, p2);
-    }
-
-    /**
      * Parses a cylinder element to create a Cylinder object.
      * @param element The cylinder element.
      * @return The Cylinder object created from the element.
@@ -79,6 +56,29 @@ public class Parse {
     }
 
     /**
+     * Parses a sphere element to create a Sphere object.
+     * @param element The sphere element.
+     * @return The Sphere object created from the element.
+     */
+    public static Sphere parseSphere(Element element) {
+        double radius = Double.parseDouble(element.getAttribute("radius"));
+        Point center = parsePoint(element.getAttribute("center"));
+        return new Sphere(radius, center);
+    }
+
+    /**
+     * Parses a triangle element to create a Triangle object.
+     * @param element The triangle element.
+     * @return The Triangle object created from the element.
+     */
+    public static Triangle parseTriangle(Element element) {
+        Point p0 = parsePoint(element.getAttribute("p0"));
+        Point p1 = parsePoint(element.getAttribute("p1"));
+        Point p2 = parsePoint(element.getAttribute("p2"));
+        return new Triangle(p0, p1, p2);
+    }
+
+    /**
      * Parses a tube element to create a Tube object.
      * @param element The tube element.
      * @return The Tube object created from the element.
@@ -101,6 +101,27 @@ public class Parse {
         double y = Double.parseDouble(coords[1]);
         double z = Double.parseDouble(coords[2]);
         return new Point(x, y, z);
+    }
+
+    /**
+     * Parses a ray string to create a Ray object.
+     * @param rayStr The ray string in the format
+     * "startPoint_x startPoint_y startPoint_z direction_x direction_y direction_z".
+     * @return The Ray object created from the string.
+     */
+    public static Ray parseRay(String rayStr) {
+        String[] coords = rayStr.split(" ");
+        Point startPoint = new Point(
+                Double.parseDouble(coords[0]),
+                Double.parseDouble(coords[1]),
+                Double.parseDouble(coords[2])
+        );
+        Vector direction = new Vector(
+                Double.parseDouble(coords[3]),
+                Double.parseDouble(coords[4]),
+                Double.parseDouble(coords[5])
+        );
+        return new Ray(startPoint, direction);
     }
 
     /**
@@ -129,24 +150,4 @@ public class Parse {
         return new Color(r, g, b);
     }
 
-    /**
-     * Parses a ray string to create a Ray object.
-     * @param rayStr The ray string in the format
-     * "startPoint_x startPoint_y startPoint_z direction_x direction_y direction_z".
-     * @return The Ray object created from the string.
-     */
-    public static Ray parseRay(String rayStr) {
-        String[] coords = rayStr.split(" ");
-        Point startPoint = new Point(
-                Double.parseDouble(coords[0]),
-                Double.parseDouble(coords[1]),
-                Double.parseDouble(coords[2])
-        );
-        Vector direction = new Vector(
-                Double.parseDouble(coords[3]),
-                Double.parseDouble(coords[4]),
-                Double.parseDouble(coords[5])
-        );
-        return new Ray(startPoint, direction);
-    }
 }
