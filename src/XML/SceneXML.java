@@ -1,3 +1,4 @@
+
 package XML;
 
 import org.w3c.dom.*;
@@ -84,6 +85,13 @@ public class SceneXML {
                 Element polygonElement = (Element) polygonsList.item(i);
                 scene.geometries.add(parsePolygon(polygonElement));
             }
+            NodeList tubesList = geometriesElement.getElementsByTagName("tube");
+            for (int i = 0; i < tubesList.getLength(); i++) {
+                Element tubeElement = (Element) tubesList.item(i);
+                scene.geometries.add(parseTube(tubeElement));
+            }
+
+
         }
 
         return scene;

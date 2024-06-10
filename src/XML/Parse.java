@@ -48,7 +48,7 @@ public class Parse {
         double radius = Double.parseDouble(element.getAttribute("radius"));
         double height = Double.parseDouble(element.getAttribute("height"));
         Ray axisRay = parseRay(element.getAttribute("axis"));
-        return new Cylinder(radius, height, axisRay);
+        return new Cylinder(height,radius, axisRay);
     }
 
     /**
@@ -77,6 +77,18 @@ public class Parse {
         }
         return new Polygon(points.toArray(new Point[0]));
     }
+
+    /**
+     * Parses a tube element to create a Tube object.
+     * @param element The tube element.
+     * @return The Tube object created from the element.
+     */
+    public static Tube parseTube(Element element) {
+        double radius = Double.parseDouble(element.getAttribute("radius"));
+        Ray axisRay = parseRay(element.getAttribute("axis"));
+        return new Tube(radius, axisRay);
+    }
+
 
     /**
      * Parses a point string to create a Point object.
@@ -138,4 +150,3 @@ public class Parse {
         return new Ray(startPoint, direction);
     }
 }
-
