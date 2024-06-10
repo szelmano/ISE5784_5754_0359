@@ -11,7 +11,7 @@ import static primitives.Util.*;
  * Represents a plane.
  * A plan is defined by its point and normal.
  */
-public class Plane implements Geometry {
+public class Plane extends Geometry {
     /** A point on the plane. */
     final private Point q;
     /** The normal vector to the plane. */

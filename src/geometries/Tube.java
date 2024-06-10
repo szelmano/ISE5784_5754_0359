@@ -51,51 +51,7 @@ public class Tube extends RadialGeometry {
         return p1.subtract(O).normalize();
     }
 
-    /**
-     * Finds the intersection points of a ray with the tube.
-     * @param ray The ray to intersect with the tube.
-     * @return A list of intersection points with the tube.
-     */
-    public List<Point> findIntersections(Ray ray) {
-        List<Point> intersections =new ArrayList<>();
-
-        // Extracting ray parameters
-        Point p0 = ray.getHead();
-        Vector v = ray.getDirection();
-
-        // Extracting tube parameters
-        Point c0 = axis.getHead();
-        Vector vC = axis.getDirection();
-
-        // Calculate intermediate values
-        Vector d = v.crossProduct(vC);
-        Vector deltaP = p0.subtract(c0);
-
-        double a = d.dotProduct(d);
-        double b = 2 * v.crossProduct(d).dotProduct(deltaP);
-        double c = deltaP.crossProduct(vC).dotProduct(deltaP);
-
-        // Calculate discriminant
-        double discriminant = alignZero(b * b - 4 * a * c);
-
-        // Check if there are intersections
-        if (discriminant >= 0) {
-            double sqrtDiscriminant = Math.sqrt(discriminant);
-            double t1 = alignZero((-b - sqrtDiscriminant) / (2 * a));
-            double t2 = alignZero((-b + sqrtDiscriminant) / (2 * a));
-
-            // Check if intersections are in front of the ray
-            if (t1 > 0) {
-                Point intersection1 = ray.getPoint(t1);
-                intersections.add(intersection1);
-            }
-            if (t2 > 0) {
-                Point intersection2 = ray.getPoint(t2);
-                intersections.add(intersection2);
-            }
-        }
-
-        return intersections;
-    }
+    @Override
+    public List<Point> findIntersections(Ray ray) { return null; }
 
 }

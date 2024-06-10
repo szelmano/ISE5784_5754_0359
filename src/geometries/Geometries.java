@@ -7,7 +7,7 @@ import java.util.*;
 /**
  * Represents a collection of geometries.
  */
-public class Geometries implements Intersectable {
+public class Geometries extends Intersectable {
 
     /** A list to store all the geometries in this composite structure. */
     final private List<Intersectable> geometries = new LinkedList<Intersectable>();

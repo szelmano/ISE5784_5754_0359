@@ -6,7 +6,7 @@ import primitives.*;
  * Represents a radial geometry.
  * A radial geometry is any geometry that has a constant radius.
  */
-public abstract class RadialGeometry implements Geometry {
+public abstract class RadialGeometry extends Geometry {
     /** The radius of the radial geometry. */
     final protected double radius;
 

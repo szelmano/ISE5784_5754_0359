@@ -28,6 +28,7 @@ public class Triangle extends Polygon {
      * @param ray The ray of the intersection.
      * @return A list of intersection points, or null if no intersection is found.
      */
+    @Override
     public List<Point> findIntersections(Ray ray) {
         if (plane.findIntersections(ray) == null)
             return null;
