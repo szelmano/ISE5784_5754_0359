@@ -1,8 +1,9 @@
 package geometries;
 
 import primitives.*;
-
 import java.util.List;
+
+import static primitives.Util.isZero;
 
 /**
  * Represents a cylinder.
@@ -38,17 +39,17 @@ public class Cylinder extends Tube {
         //if the point on the base of the cylinder
         try {
             t = v.dotProduct(p1.subtract(p2));
-            if (Util.isZero(t))
+            if (isZero(t))
                 return v.scale(-1);
         } catch (IllegalArgumentException ex) {
             return v.scale(-1);
         }
 
         //if the point on the top of the cylinder
-        if (Util.isZero(t - height))
+        if (isZero(t - height))
             return v;
 
-        if (Util.isZero((v.dotProduct(p1.subtract(p2)))))
+        if (isZero((v.dotProduct(p1.subtract(p2)))))
             return v;
 
         return super.getNormal(p1);

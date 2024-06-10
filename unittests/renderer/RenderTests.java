@@ -2,15 +2,13 @@ package renderer;
 
 import static java.awt.Color.*;
 
-import XML.SceneXMLParser;
+import XML.SceneXML;
 import org.junit.jupiter.api.Test;
 
 import geometries.*;
 import lighting.AmbientLight;
 import primitives.*;
-import renderer.Camera;
 import scene.Scene;
-import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -71,7 +69,7 @@ public class RenderTests {
         // using the code you added in appropriate packages
         // ...
         // NB: unit tests is not the correct place to put XML parsing code
-       Scene xmlScene = SceneXMLParser.parse("resources/renderTestTwoColors.xml");
+       Scene xmlScene = SceneXML.parse("resources/renderTestTwoColors.xml");
 
        camera.setRayTracer(new SimpleRayTracer(xmlScene))
                .setImageWriter(new ImageWriter("xml render test", 1000, 1000))

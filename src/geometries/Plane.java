@@ -12,13 +12,18 @@ import static primitives.Util.*;
  * A plan is defined by its point and normal.
  */
 public class Plane implements Geometry {
-    /** A point on the plane. */
+    /**
+     * A point on the plane.
+     */
     final private Point q;
-    /** The normal vector to the plane. */
+    /**
+     * The normal vector to the plane.
+     */
     final private Vector normal;
 
     /**
      * Constructs a plane from three points lying on it.
+     *
      * @param p1 The first point.
      * @param p2 The second point.
      * @param p3 The third point.
@@ -32,6 +37,7 @@ public class Plane implements Geometry {
 
     /**
      * Constructs a plane from a point on it and its normal vector.
+     *
      * @param point  A point on the plane.
      * @param normal The normal vector to the plane.
      */
@@ -42,20 +48,27 @@ public class Plane implements Geometry {
 
     /**
      * Get the normal vector to the surface of plane at the given point.
+     *
      * @param p1 The point on the surface of plane.
      * @return The normal vector to the geometry at the given point.
      */
     @Override
-    public Vector getNormal(Point p1) { return normal; }
+    public Vector getNormal(Point p1) {
+        return normal;
+    }
 
     /**
      * Get the normal vector to the surface of plane at the given point.
+     *
      * @return The normal vector to the geometry at the given point.
      */
-    public Vector getNormal() { return normal; }
+    public Vector getNormal() {
+        return normal;
+    }
 
     /**
      * Finds intersections points of a given ray with the plane.
+     *
      * @param ray The ray of the intersection.
      * @return A list of intersection points, or null if no intersection is found.
      */
@@ -64,9 +77,9 @@ public class Plane implements Geometry {
         Point p0 = ray.getHead();
         Vector v = ray.getDirection();
 
-        if(q.equals(p0))
+        if (q.equals(p0))
             return null;
-Vector v1=q.subtract(p0);
+        Vector v1 = q.subtract(p0);
         if (isZero(normal.dotProduct(v1)))
             return null;
 

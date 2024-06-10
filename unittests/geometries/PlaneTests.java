@@ -111,8 +111,8 @@ public  class PlaneTests {
         ray=new Ray(new Point(0, 1, 0), new Vector(0, 0, 1));
         assertNull(plane.findIntersections(ray), "TC16: Ray starts at the plane");
 
-        // TC17: Ray starts begins in the same point which appears as reference point in the plane (0 points)
-        ray = new Ray(p110, v100);
+        // TC17: Ray starts on the reference point of the plane (0 points)
+        ray = new Ray(p110, new Vector(0, 1, 0));
         assertNull(plane.findIntersections(ray),
                 "TC17: Ray starts begins in the same point which appears as reference point in the plane");
     }
