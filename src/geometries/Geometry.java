@@ -4,6 +4,8 @@ import lighting.AmbientLight;
 import primitives.*;
 import scene.Scene;
 
+import java.util.List;
+
 /**
  * Represents a geometry.
  */

@@ -8,7 +8,7 @@ import java.security.PublicKey;
 /**
  * Represents the ambient light in a scene.
  */
-public class AmbientLight {
+public class AmbientLight extends Light {
     /** The intensity of the ambient light */
     private final Color intensity;
 

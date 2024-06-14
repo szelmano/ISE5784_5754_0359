@@ -89,13 +89,13 @@ public class Polygon extends Geometry {
     @Override
     public Vector getNormal(Point p1) { return plane.getNormal(); }
 
-     /**
+    /**
      * Finds intersections points of a given ray with the polygon.
      * @param ray The ray of the intersection.
      * @return A list of intersection points, or null if no intersection is found.
      */
     @Override
-    public List<Point> findIntersections(Ray ray) {
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
         Point p0 = ray.getHead();
         Vector v = ray.getDirection();
         Plane plane = this.plane;
@@ -138,7 +138,7 @@ public class Polygon extends Geometry {
                     return null;
                 }
             }
-            return List.of(intersectionPoint); // The point is inside the polygon
+            return List.of(new GeoPoint(this, intersectionPoint)); // The point is inside the polygon
         } catch (IllegalArgumentException e) {
             // Exception thrown because the zero vector was constructed (point on a vertex or edge)
             return null;

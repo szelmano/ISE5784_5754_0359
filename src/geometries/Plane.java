@@ -3,6 +3,7 @@ package geometries;
 import primitives.*;
 
 import java.util.List;
+import java.util.LinkedList;
 
 import static primitives.Util.*;
 
@@ -66,7 +67,7 @@ public class Plane extends Geometry {
      * @return A list of intersection points, or null if no intersection is found.
      */
     @Override
-    public List<Point> findIntersections(Ray ray) {
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
         Point p0 = ray.getHead();
         Vector v = ray.getDirection();
 
@@ -83,7 +84,7 @@ public class Plane extends Geometry {
 
         if (t <= 0)
             return null;
-        return List.of(ray.getPoint(t));
+        return List.of(new GeoPoint(this, ray.getPoint(t)));
     }
 
 }

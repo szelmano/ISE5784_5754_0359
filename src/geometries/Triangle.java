@@ -2,6 +2,8 @@ package geometries;
 
 import primitives.*;
 
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 import static primitives.Util.alignZero;
@@ -29,12 +31,15 @@ public class Triangle extends Polygon {
      * @return A list of intersection points, or null if no intersection is found.
      */
     @Override
-    public List<Point> findIntersections(Ray ray) {
-        if (plane.findIntersections(ray) == null)
-            return null;
-
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
         Point p0 = ray.getHead(); // The starting point of the ray
         Vector v = ray.getDirection(); // The direction vector of the ray
+        Plane plane = this.plane;
+
+        if (plane.findGeoIntersectionsHelper(ray) == null)
+            return null;
+
+        Point intersectionPoint = plane.findGeoIntersectionsHelper(ray).getFirst().point;
 
         // Vectors from the ray's starting point to the vertices of the triangle
         Vector v1 = this.vertices.get(0).subtract(p0);
@@ -55,7 +60,7 @@ public class Triangle extends Polygon {
         // The ray intersects the triangle if all the dot products are either positive or negative
         if ((d1 > 0 && d2 > 0 && d3 > 0) || (d1 < 0 && d2 < 0 && d3 < 0)) {
             // If the ray intersects the triangle, find the intersection points with the plane
-            return plane.findIntersections(ray);
+            return List.of(new GeoPoint(this, intersectionPoint));
         }
         // If the ray does not intersect the triangle, return null
             return null;

@@ -35,13 +35,13 @@ public class Geometries extends Intersectable {
      * @return A list of intersection points with all geometries, or null if there are no intersections.
      */
     @Override
-    public List<Point> findIntersections(Ray ray) {
-        List<Point> points = null; // Initialize the list variable as null
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+        List<GeoPoint> points = null; // Initialize the list variable as null
 
         // Iterate over all geometries in the composite structure
         for (Intersectable geometry : this.geometries) {
             // Find intersection points of the current geometry with the given ray
-            List<Point> geometryIntersections = geometry.findIntersections(ray);
+            List<GeoPoint> geometryIntersections = geometry.findGeoIntersectionsHelper(ray);
 
             // If intersection points were found
             if (geometryIntersections != null) {
