@@ -9,8 +9,6 @@ import java.security.PublicKey;
  * Represents the ambient light in a scene.
  */
 public class AmbientLight extends Light {
-    /** The intensity of the ambient light */
-    private final Color intensity;
 
     /** A constant representing no ambient light */
     public static AmbientLight NONE = new AmbientLight(Color.BLACK,0.0);
@@ -21,7 +19,7 @@ public class AmbientLight extends Light {
      * @param kA The scale factor as a Double3.
      */
     public AmbientLight(Color iA, Double3 kA) {
-        this.intensity = iA.scale(kA);
+        super( iA.scale(kA));
     }
 
     /**
@@ -30,13 +28,8 @@ public class AmbientLight extends Light {
      * @param kA The scale factor as a double.
      */
     public AmbientLight(Color iA, double kA) {
-        this.intensity = iA.scale(kA);
+        super( iA.scale(kA));
     }
 
-    /**
-     * Function that gets intensity of the ambient light.
-     * @return The intensity of the ambient light.
-     */
-    public Color getIntensity() { return intensity; }
 
 }

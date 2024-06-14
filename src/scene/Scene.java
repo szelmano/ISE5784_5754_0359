@@ -4,6 +4,9 @@ import geometries.Geometries;
 import lighting.*;
 import primitives.Color;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * Represents a scene that contains geometries, lighting, and other attributes.
  */
@@ -16,6 +19,13 @@ public class Scene {
     public AmbientLight ambientLight = AmbientLight.NONE;
     /** The collection of geometries in the scene. */
     public Geometries geometries = new Geometries();
+
+    public List<LightSource> lights=new LinkedList<>();
+
+    public Scene setLights(List<LightSource> lights) {
+        this.lights = lights;
+        return this;
+    }
 
     /**
      * Constructs a Scene with the given name.

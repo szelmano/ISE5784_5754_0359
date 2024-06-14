@@ -5,6 +5,7 @@ package primitives;
  * Inherits from Point to utilize common functionality.
  */
 public class Vector extends Point {
+
     /**
      * Constructs a new Vector object with the specified coordinates.
      * @param x The x-coordinate of the vector.
