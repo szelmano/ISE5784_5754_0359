@@ -20,7 +20,7 @@ public class Scene {
     /** The collection of geometries in the scene. */
     public Geometries geometries = new Geometries();
 
-    public List<LightSource> lights=new LinkedList<>();
+    public List<LightSource> lights = new LinkedList<>();
 
     public Scene setLights(List<LightSource> lights) {
         this.lights = lights;

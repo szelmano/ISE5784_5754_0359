@@ -9,7 +9,6 @@ import java.security.PublicKey;
  * Represents the ambient light in a scene.
  */
 public class AmbientLight extends Light {
-
     /** A constant representing no ambient light */
     public static AmbientLight NONE = new AmbientLight(Color.BLACK,0.0);
 
@@ -30,6 +29,5 @@ public class AmbientLight extends Light {
     public AmbientLight(Color iA, double kA) {
         super( iA.scale(kA));
     }
-
 
 }

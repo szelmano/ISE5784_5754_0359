@@ -6,7 +6,6 @@ import java.util.Objects;
  * Represents a point in a 3D space.
  */
 public class Point {
-
     /** A constant representing the zero point (0, 0, 0). */
     public static final Point ZERO = new Point(Double3.ZERO);
     /** The internal representation of the point's coordinates. */
