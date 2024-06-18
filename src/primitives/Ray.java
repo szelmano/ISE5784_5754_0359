@@ -18,6 +18,7 @@ public class Ray {
 
     /**
      * Constructs a new Ray object with the specified starting point and direction.
+     *
      * @param head The starting point of the ray.
      * @param direction The direction of the ray.
      */
@@ -28,7 +29,8 @@ public class Ray {
     }
 
     /**
-     * Function that gets the head of the ray.
+     * Gets the head of the ray.
+     *
      * @return The head of the ray.
      */
     public Point getHead() {
@@ -36,7 +38,8 @@ public class Ray {
     }
 
     /**
-     * Function that gets the direction of the ray.
+     * Gets the direction of the ray.
+     *
      * @return The direction of the ray.
      */
     public Vector getDirection() {
@@ -45,6 +48,7 @@ public class Ray {
 
     /**
      * Calculates a point on the ray at a given distance from the ray's head.
+     *
      * @param t The distance from the ray's origin along the ray's direction.
      * @return The point on the ray at distance `t` from the origin.
      */
@@ -76,14 +80,22 @@ public class Ray {
                 '}';
     }
 
-    public Point findClosestPoint(List<Point> points) {
-        return points == null || points.isEmpty() ? null
-                : findClosestGeoPoint(points.stream().map(p -> new GeoPoint(null, p)).toList()).point; }
-
     /**
      * Finds the closest point to the ray's origin from a list of points.
+     *
      * @param points List of points to check.
      * @return The point closest to the ray's origin, or null if the list is empty.
+     */
+    public Point findClosestPoint(List<Point> points) {
+        return points == null || points.isEmpty() ? null
+                : findClosestGeoPoint(points.stream().map(p -> new GeoPoint(null, p)).toList()).point;
+    }
+
+    /**
+     * Finds the closest GeoPoint to the ray's origin from a list of GeoPoints.
+     *
+     * @param points List of GeoPoints to check.
+     * @return The GeoPoint closest to the ray's origin, or null if the list is empty.
      */
     public GeoPoint findClosestGeoPoint(List<GeoPoint> points) {
         if (points == null || points.isEmpty()) {
@@ -94,7 +106,7 @@ public class Ray {
         double closestDistance = Double.POSITIVE_INFINITY;
 
         for (GeoPoint point : points) {
-            double distance = this.head.distanceSquared(point.point);;
+            double distance = this.head.distanceSquared(point.point);
             if (distance < closestDistance) {
                 closestDistance = distance;
                 closestPoint = point;
@@ -103,7 +115,6 @@ public class Ray {
 
         return closestPoint;
     }
-
 }
 
 

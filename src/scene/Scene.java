@@ -19,13 +19,8 @@ public class Scene {
     public AmbientLight ambientLight = AmbientLight.NONE;
     /** The collection of geometries in the scene. */
     public Geometries geometries = new Geometries();
-
+    /** The list of light sources in the scene. */
     public List<LightSource> lights = new LinkedList<>();
-
-    public Scene setLights(List<LightSource> lights) {
-        this.lights = lights;
-        return this;
-    }
 
     /**
      * Constructs a Scene with the given name.
@@ -65,6 +60,14 @@ public class Scene {
         return this;
     }
 
+    /**
+     * Sets the list of light sources in the scene.
+     * @param lights The list of light sources to set.
+     * @return The current Scene instance.
+     */
+    public Scene setLights(List<LightSource> lights) {
+        this.lights = lights;
+        return this;
+    }
 }
-
 

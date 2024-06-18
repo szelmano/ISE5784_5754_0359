@@ -6,29 +6,53 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Interface for intersection a ray to geometry.
+ * Abstract class representing an object that can be intersected by a ray.
  */
 public abstract class Intersectable {
+
     /**
-     * Function for finding the intersection points between ray and the geometries.
-     * @param ray The ray of the intersection.
-     * @return A list of points intersecting with the geometries.
+     * Finds the intersection points between a given ray and the geometry.
+     *
+     * @param ray The ray to find intersections with.
+     * @return A list of points where the ray intersects the geometry, or null if there are no intersections.
      */
     public List<Point> findIntersections(Ray ray) {
         var geoList = findGeoIntersections(ray);
         return geoList == null ? null : geoList.stream().map(gp -> gp.point).toList();
     }
 
+    /**
+     * Finds the intersection points as GeoPoint objects between a given ray and the geometry.
+     *
+     * @param ray The ray to find intersections with.
+     * @return A list of GeoPoint objects representing the intersections, or null if there are no intersections.
+     */
     public final List<GeoPoint> findGeoIntersections(Ray ray) {
         return findGeoIntersectionsHelper(ray);
     }
 
+    /**
+     * Helper method to find intersection points as GeoPoint objects between a given ray and the geometry.
+     * This method must be implemented by subclasses.
+     *
+     * @param ray The ray to find intersections with.
+     * @return A list of GeoPoint objects representing the intersections, or null if there are no intersections.
+     */
     protected abstract List<GeoPoint> findGeoIntersectionsHelper(Ray ray);
 
+    /**
+     * A static nested class representing a point of intersection between a ray and a geometry.
+     */
     public static class GeoPoint {
-        public Geometry geometry;
-        public Point point;
+        public Geometry geometry; // The geometry that is intersected
+        public Point point;       // The point of intersection
 
+        /**
+         * Constructor to initialize a GeoPoint with a geometry and a point.
+         *
+         * @param geometry The geometry that is intersected.
+         * @param point The point of intersection.
+         */
         public GeoPoint(Geometry geometry, Point point) {
             this.geometry = geometry;
             this.point = point;
@@ -54,5 +78,4 @@ public abstract class Intersectable {
                     '}';
         }
     }
-
 }

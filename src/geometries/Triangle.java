@@ -28,7 +28,7 @@ public class Triangle extends Polygon {
     /**
      * Finds intersection points of a given ray with the triangle.
      * @param ray The ray of the intersection.
-     * @return A list of intersection points, or null if no intersection is found.
+     * @return A list of GeoPoint intersection points, or null if no intersection is found.
      */
     @Override
     protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {

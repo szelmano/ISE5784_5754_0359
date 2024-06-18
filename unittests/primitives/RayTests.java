@@ -79,11 +79,11 @@ public class RayTests {
 
         // TC12: The last point in the list is the closest to the ray's head
         List<Point> lastPointClosest = Arrays.asList(
-                new Point(3, 3, 3),
-                new Point(2, 2, 0),
-                new Point(1, 0, 0)
+                new Point(5, 5, 5),
+                new Point(4, 4, 4),
+                new Point(1, 1, 0)
         );
-        Point expectedLast = new Point(1, 0, 0);
+        Point expectedLast = new Point(1, 1, 0);
         assertEquals(expectedLast, ray.findClosestPoint(lastPointClosest),
                 "Boundary case failed - the last point should be closest");
     }
