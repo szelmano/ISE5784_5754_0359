@@ -10,13 +10,13 @@ import static primitives.Util.alignZero;
  * The light's intensity decreases with distance and angle according to the attenuation factors and direction.
  */
 public class SpotLight extends PointLight {
-
-    private Vector direction; // The direction of the spot light
-    private double narrowBeam=1;
+    /** The light direction of the spotlight. */
+    private Vector direction;
+    /** The narrow beam angle of the spotlight in degrees. */
+    private double narrowBeam = 1;
 
     /**
      * Constructs a spot light source with the specified intensity, position, and direction.
-     *
      * @param intensity The color intensity of the light.
      * @param position The position of the light source.
      * @param direction The direction of the light beam.
@@ -28,7 +28,6 @@ public class SpotLight extends PointLight {
 
     /**
      * Sets the constant attenuation factor.
-     *
      * @param kC The constant attenuation factor.
      * @return The current instance of SpotLight (for chaining calls).
      */
@@ -40,7 +39,6 @@ public class SpotLight extends PointLight {
 
     /**
      * Sets the linear attenuation factor.
-     *
      * @param kL The linear attenuation factor.
      * @return The current instance of SpotLight (for chaining calls).
      */
@@ -52,7 +50,6 @@ public class SpotLight extends PointLight {
 
     /**
      * Sets the quadratic attenuation factor.
-     *
      * @param kQ The quadratic attenuation factor.
      * @return The current instance of SpotLight (for chaining calls).
      */
@@ -63,7 +60,6 @@ public class SpotLight extends PointLight {
     }
     /**
      * Sets the narrow beam angle of the spotlight.
-     *
      * @param degrees The narrow beam angle in degrees.
      * @return The current instance of SpotLight (for chaining calls).
      */
@@ -73,9 +69,7 @@ public class SpotLight extends PointLight {
     }
 
     /**
-     * Gets the intensity of the light at a specific point.
-     * The intensity is calculated based on the distance and the direction of the light.
-     *
+     * Function that gets the intensity of the light at a specific point.
      * @param p The point at which the light intensity is calculated.
      * @return The color intensity of the light at the specified point.
      */
@@ -88,8 +82,7 @@ public class SpotLight extends PointLight {
     }
 
     /**
-     * Gets the direction vector of the light from the light source to a specific point.
-     *
+     * Function that gets the direction vector of the light from the light source to a specific point.
      * @param p The point from which the direction is calculated.
      * @return The direction vector from the light source to the specified point.
      */
@@ -97,4 +90,5 @@ public class SpotLight extends PointLight {
     public Vector getL(Point p) {
         return super.getL(p);
     }
+
 }

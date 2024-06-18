@@ -62,7 +62,7 @@ public class Plane extends Geometry {
     public Vector getNormal() { return normal; }
 
     /**
-     * Finds intersections points of a given ray with the plane.
+     * Finds intersections GeoPoints of a given ray with the plane.
      * @param ray The ray of the intersection.
      * @return A list of GeoPoint intersection points, or null if no intersection is found.
      */

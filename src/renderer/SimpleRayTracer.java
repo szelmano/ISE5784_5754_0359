@@ -66,7 +66,8 @@ public class SimpleRayTracer extends RayTracerBase {
     }
 
     /**
-     * Calculates the diffuse reflection color based on the material properties and the dot product of normal and light vector.
+     * Calculates the diffuse reflection color based on the material properties and the dot product of normal
+     * and light vector.
      * @param material The material of the intersected geometry.
      * @param nl The dot product of normal vector and light vector.
      * @return The diffuse reflection color.
@@ -76,7 +77,8 @@ public class SimpleRayTracer extends RayTracerBase {
     }
 
     /**
-     * Calculates the specular reflection color based on the material properties, light vector, normal vector, and the viewing vector.
+     * Calculates the specular reflection color based on the material properties, light vector, normal vector,
+     * and the viewing vector.
      * @param material The material of the intersected geometry.
      * @param normal The normal vector at the intersection point.
      * @param lightVector The vector towards the light source.
@@ -87,6 +89,7 @@ public class SimpleRayTracer extends RayTracerBase {
     private Double3 calcSpecular(Material material, Vector normal, Vector lightVector, double nl, Vector vector) {
         Vector reflectedVector = lightVector.subtract(normal.scale(2 * nl));
         double cosTeta = alignZero(-vector.dotProduct(reflectedVector));
-        return cosTeta <= 0 ? Double3.ZERO : material.kS.scale(Math.pow(cosTeta, material.nShininess));
+        return cosTeta <= 0 ? Double3.ZERO : material.kS.scale(Math.pow(cosTeta, material.Shininess));
     }
+
 }

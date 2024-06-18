@@ -90,7 +90,7 @@ public class Polygon extends Geometry {
     public Vector getNormal(Point p1) { return plane.getNormal(); }
 
     /**
-     * Finds intersections points of a given ray with the polygon.
+     * Finds intersections GeoPoints of a given ray with the polygon.
      * @param ray The ray of the intersection.
      * @return A list of GeoPoint intersection points, or null if no intersection is found
      */

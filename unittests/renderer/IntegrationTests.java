@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Test the integration between the constructRay and geometric entities.
+ * @author Riki and Shirel
  */
 public class IntegrationTests {
 
@@ -33,14 +34,14 @@ public class IntegrationTests {
 
     /**
      * Determine how many intersection points a geometric entity should have with rays emitted from a camera.
+     * @param expected The expected number of intersection points.
      * @param camera      The camera from which rays are constructed.
      * @param geo      The geometric entity being tested for intersections.
-     * @param expected The expected number of intersection points.
      * @param test     The name of the test calling this function.
-     * @param nX
-     * @param nY
+     * @param nX          The number of pixels in the horizontal direction.
+     * @param nY          The number of pixels in the vertical direction.
      */
-    private void assertCountIntersections(Camera camera, Intersectable geo, int expected, String test, int nX, int nY) {
+    private void assertCountIntersections(int expected, Camera camera, Intersectable geo, String test, int nX, int nY) {
 
         // Counter for intersection points.
         int countIntersection = 0;
@@ -76,33 +77,28 @@ public class IntegrationTests {
 
 
         // TC01: Sphere in front of the camera (2 points)
-        assertCountIntersections(camera1, new Sphere(1,
+        assertCountIntersections(2,camera1, new Sphere(1,
                 new Point(0, 0, -3)),
-                2,
                 "TC01: Sphere in front of the camera", 3, 3);
 
         // TC02: Sphere intersects the view plane before the camera (18 points)
-        assertCountIntersections(camera2,
+        assertCountIntersections(18, camera2,
                 new Sphere(2.5, new Point(0, 0, -2.5)),
-                18,
                 "TC02: Sphere intersects the view plane before the camera", 3, 3);
 
         // TC03: Sphere intersects the view plane before the camera (10 points)
-        assertCountIntersections(camera2, new Sphere(2,
+        assertCountIntersections(  10, camera2, new Sphere(2,
                 new Point(0, 0, -2)),
-                10,
                 "TC03: Sphere intersects the view plane before the camera", 3, 3);
 
         // TC04: Sphere contains the view plane and the camera (9 points)
-        assertCountIntersections(camera1,
+        assertCountIntersections(  9, camera1,
                 new Sphere(4, Point.ZERO),
-                9,
                 "TC04: Sphere contains the view plane and the camera", 3, 3);
 
         // TC05: Sphere behind the camera (0 points)
-        assertCountIntersections(camera1,
+        assertCountIntersections( 0, camera1,
                 new Sphere(0.5, new Point(0, 0, 1)),
-                0,
                 "TC05: Sphere behind the camera", 3, 3);
     }
 
@@ -117,28 +113,24 @@ public class IntegrationTests {
         Camera camera = cameraBuilder1.setVpSize(3, 3).build();
 
         // TC01: Plane in front of the camera, parallel to the view plane (9 points)
-        assertCountIntersections(camera,
+        assertCountIntersections( 9, camera,
                 new Plane(new Point(0, 0, -5), new Vector(0, 0, 1)),
-                9,
                 "TC01: Plane in front of the camera, parallel to the view plane", 3, 3);
 
         // TC02: Plane has acute angle to the view plane, all rays intersect (9 points)
-        assertCountIntersections(camera,
+        assertCountIntersections(9,camera,
                 new Plane(new Point(0, 0, -5), new Vector(0, 1, 2)),
-                9,
                 "TC02: Plane has acute angle to the view plane, all rays intersect", 3, 3);
 
         // TC03: Plane has obtuse angle to the view plane, parallel to lower rays (6 points)
-        assertCountIntersections(camera,
+        assertCountIntersections( 6, camera,
                 new Plane(new Point(0, 0, -2),
                         new Vector(0, 1, -1)),
-                6,
                 "TC03: Plane has obtuse angle to the view plane, parallel to lower rays", 3, 3);
 
         // TC04: Plane beyond the view plane (0 points)
-        assertCountIntersections(camera,
+        assertCountIntersections(0,camera,
                 new Plane(new Point(0, 0, 1), new Vector(0, 0, 1)),
-                0,
                 "TC04: Plane beyond the view plane", 3, 3);
     }
 
@@ -153,19 +145,17 @@ public class IntegrationTests {
         Camera camera = cameraBuilder1.setVpSize(3, 3).build();
 
         // TC01: Small triangle in front of the view plane (1 point)
-        assertCountIntersections(camera,
+        assertCountIntersections( 1, camera,
                 new Triangle(new Point(-1, -1, -2),
                         new Point(1, -1, -2),
                         new Point(0, 1, -2)),
-                1,
                 "TC01: Small triangle in front of the view plane", 3, 3);
 
         // TC02: Large triangle in front of the view plane (2 points)
-        assertCountIntersections(camera,
+        assertCountIntersections( 2, camera,
                 new Triangle(new Point(1, 1, -2),
                         new Point(-1, 1, -2),
                         new Point(0, -20, -2)),
-                2,
                 "TC02: Large triangle in front of the view plane ", 3, 3);
     }
 

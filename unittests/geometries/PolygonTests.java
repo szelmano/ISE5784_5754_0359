@@ -167,4 +167,5 @@ public class PolygonTests {
               result.getFirst(),
               "Additional Test: Wrong intersection point");
    }
+
 }

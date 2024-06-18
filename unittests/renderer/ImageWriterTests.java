@@ -5,7 +5,6 @@ import primitives.Color;
 
 /**
  * Unit tests for renderer.ImageWriterTests class.
- *
  * @author Riki and Shirel
  */
 class ImageWriterTests {

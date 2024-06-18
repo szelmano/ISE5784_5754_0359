@@ -12,7 +12,6 @@ public abstract class Intersectable {
 
     /**
      * Finds the intersection points between a given ray and the geometry.
-     *
      * @param ray The ray to find intersections with.
      * @return A list of points where the ray intersects the geometry, or null if there are no intersections.
      */
@@ -23,7 +22,6 @@ public abstract class Intersectable {
 
     /**
      * Finds the intersection points as GeoPoint objects between a given ray and the geometry.
-     *
      * @param ray The ray to find intersections with.
      * @return A list of GeoPoint objects representing the intersections, or null if there are no intersections.
      */
@@ -32,9 +30,7 @@ public abstract class Intersectable {
     }
 
     /**
-     * Helper method to find intersection points as GeoPoint objects between a given ray and the geometry.
-     * This method must be implemented by subclasses.
-     *
+     * Finds intersection points as GeoPoint objects between a given ray and the geometry.
      * @param ray The ray to find intersections with.
      * @return A list of GeoPoint objects representing the intersections, or null if there are no intersections.
      */
@@ -44,12 +40,13 @@ public abstract class Intersectable {
      * A static nested class representing a point of intersection between a ray and a geometry.
      */
     public static class GeoPoint {
-        public Geometry geometry; // The geometry that is intersected
-        public Point point;       // The point of intersection
+        // The geometry that is intersected
+        public Geometry geometry;
+        // The point of intersection
+        public Point point;
 
         /**
          * Constructor to initialize a GeoPoint with a geometry and a point.
-         *
          * @param geometry The geometry that is intersected.
          * @param point The point of intersection.
          */

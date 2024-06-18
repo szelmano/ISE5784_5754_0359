@@ -30,13 +30,13 @@ public class Geometries extends Intersectable {
     }
 
     /**
-     * Finds the intersection points of a given ray with all geometries in this composite structure.
+     * Finds the intersection GeoPoints of a given ray with all geometries in this composite structure.
      * @param ray The ray to find intersections with.
-     * @return A list of intersection points with all geometries, or null if there are no intersections.
+     * @return A list of GeoPoint intersection points with all geometries, or null if no intersection is found.
      */
     @Override
     protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
-        List<GeoPoint> points = null; // Initialize the list variable as null
+        List<GeoPoint> gp = null; // Initialize the list variable as null
 
         // Iterate over all geometries in the composite structure
         for (Intersectable geometry : this.geometries) {
@@ -46,18 +46,18 @@ public class Geometries extends Intersectable {
             // If intersection points were found
             if (geometryIntersections != null) {
                 // If the points list has not been created yet, create it
-                if (points == null)
-                    points = new LinkedList<>();
+                if (gp == null)
+                    gp = new LinkedList<>();
                 // Add all intersection points to the points list
-                points.addAll(geometryIntersections);
+                gp.addAll(geometryIntersections);
             }
         }
 
-        if (points == null)
+        if (gp == null)
             return null;
 
-        // Return the list of intersection points, or null if no intersections were found
-        return points;
+        // Return the list of GeoPoint intersection points, or null if no intersections were found
+        return gp;
     }
 
 }

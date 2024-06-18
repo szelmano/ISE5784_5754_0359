@@ -5,13 +5,15 @@ package primitives;
  * The material properties determine how the object interacts with light.
  */
 public class Material {
-    public Double3 kD = Double3.ZERO; // Diffuse reflection coefficient
-    public Double3 kS = Double3.ZERO; // Specular reflection coefficient
-    public int nShininess = 0;        // Shininess coefficient for specular reflection
+    /** Diffuse reflection coefficient. */
+    public Double3 kD = Double3.ZERO;
+    /** Specular reflection coefficient. */
+    public Double3 kS = Double3.ZERO;
+    /** Shininess coefficient for specular reflection. */
+    public int Shininess = 0;
 
     /**
      * Sets the diffuse reflection coefficient.
-     *
      * @param kD The diffuse reflection coefficient.
      * @return The current instance of Material (for chaining calls).
      */
@@ -22,7 +24,6 @@ public class Material {
 
     /**
      * Sets the specular reflection coefficient.
-     *
      * @param kS The specular reflection coefficient.
      * @return The current instance of Material (for chaining calls).
      */
@@ -33,7 +34,6 @@ public class Material {
 
     /**
      * Sets the diffuse reflection coefficient using a single double value.
-     *
      * @param kD The diffuse reflection coefficient.
      * @return The current instance of Material (for chaining calls).
      */
@@ -44,7 +44,6 @@ public class Material {
 
     /**
      * Sets the specular reflection coefficient using a single double value.
-     *
      * @param kS The specular reflection coefficient.
      * @return The current instance of Material (for chaining calls).
      */
@@ -55,12 +54,11 @@ public class Material {
 
     /**
      * Sets the shininess coefficient for specular reflection.
-     *
-     * @param nShininess The shininess coefficient.
+     * @param Shininess The shininess coefficient.
      * @return The current instance of Material (for chaining calls).
      */
-    public Material setShininess(int nShininess) {
-        this.nShininess = nShininess;
+    public Material setShininess(int Shininess) {
+        this.Shininess = Shininess;
         return this;
     }
 }

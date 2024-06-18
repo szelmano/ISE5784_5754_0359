@@ -6,11 +6,11 @@ import primitives.Color;
  * Abstract class representing a light source with a certain intensity.
  */
 abstract class Light {
+    /** The intensity of the light source. */
     protected Color intensity;
 
     /**
      * Constructs a light source with the specified intensity.
-     *
      * @param intensity The color intensity of the light.
      */
     protected Light(Color intensity) {
@@ -18,8 +18,7 @@ abstract class Light {
     }
 
     /**
-     * Gets the intensity of the light.
-     *
+     * Function that gets the intensity of the light.
      * @return The color intensity of the light.
      */
     public Color getIntensity() {

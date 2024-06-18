@@ -13,7 +13,6 @@ import scene.Scene;
 
 /**
  * Test rendering a basic image
- *
  * @author Dan
  */
 public class RenderTests {
@@ -69,13 +68,19 @@ public class RenderTests {
         scene.geometries.add( // center
                 new Sphere( 50, new Point(0, 0, -100)),
                 // up left
-                new Triangle(new Point(-100, 0, -100), new Point(0, 100, -100), new Point(-100, 100, -100))
+                new Triangle(new Point(-100, 0, -100),
+                        new Point(0, 100, -100),
+                        new Point(-100, 100, -100))
                         .setEmission(new Color(GREEN)),
                 // down left
-                new Triangle(new Point(-100, 0, -100), new Point(0, -100, -100), new Point(-100, -100, -100))
+                new Triangle(new Point(-100, 0, -100),
+                        new Point(0, -100, -100),
+                        new Point(-100, -100, -100))
                         .setEmission(new Color(RED)),
                 // down right
-                new Triangle(new Point(100, 0, -100), new Point(0, -100, -100), new Point(100, -100, -100))
+                new Triangle(new Point(100, 0, -100),
+                        new Point(0, -100, -100),
+                        new Point(100, -100, -100))
                         .setEmission(new Color(BLUE)));
         scene.setAmbientLight(new AmbientLight(new Color(WHITE), new Double3(0.2, 0.2, 0.2))); //
 

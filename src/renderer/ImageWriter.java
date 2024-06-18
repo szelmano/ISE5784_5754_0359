@@ -56,8 +56,7 @@ public class ImageWriter {
 
     // ***************** Operations ******************** //
 
-    /** Function writeToImage produces unoptimized png file of the image according
-     * to
+    /** Function writeToImage produces unoptimized png file of the image according to
      * pixel color matrix in the directory of the project */
     public void writeToImage() {
         try {
@@ -69,8 +68,7 @@ public class ImageWriter {
         }
     }
 
-    /** The function writePixel writes a color of a specific pixel into pixel color
-     * matrix
+    /** The function writePixel writes a color of a specific pixel into pixel color matrix
      * @param xIndex X axis index of the pixel
      * @param yIndex Y axis index of the pixel
      * @param color  final color of the pixel */
