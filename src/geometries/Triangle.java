@@ -31,15 +31,15 @@ public class Triangle extends Polygon {
      * @return A list of GeoPoint intersection points, or null if no intersection is found.
      */
     @Override
-    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray,double maxDistance) {
         Point p0 = ray.getHead(); // The starting point of the ray
         Vector v = ray.getDirection(); // The direction vector of the ray
         Plane plane = this.plane;
 
-        if (plane.findGeoIntersectionsHelper(ray) == null)
+        if (plane.findGeoIntersectionsHelper(ray,maxDistance) == null)
             return null;
 
-        Point intersectionPoint = plane.findGeoIntersectionsHelper(ray).getFirst().point;
+        Point intersectionPoint = plane.findGeoIntersectionsHelper(ray,maxDistance).getFirst().point;
 
         // Vectors from the ray's starting point to the vertices of the triangle
         Vector v1 = this.vertices.get(0).subtract(p0);

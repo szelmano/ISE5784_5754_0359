@@ -43,7 +43,7 @@ public class Sphere extends RadialGeometry {
      * @return A list of GeoPoint  intersection points, or null if no intersection is found.
      */
     @Override
-    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray,double maxDistance) {
         Point p0 = ray.getHead();
         Vector v = ray.getDirection();
 
@@ -59,7 +59,7 @@ public class Sphere extends RadialGeometry {
             return null;
 
         double th = alignZero(Math.sqrt(radius*radius - d*d));
-        if(th <= 0)
+        if(th <= 0||alignZero(th-maxDistance)<=0)
             return null;
 
         double t1 = alignZero(tm - th);

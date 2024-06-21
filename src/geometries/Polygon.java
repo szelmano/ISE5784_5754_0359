@@ -95,7 +95,7 @@ public class Polygon extends Geometry {
      * @return A list of GeoPoint intersection points, or null if no intersection is found
      */
     @Override
-    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray,double maxDistance) {
         Point p0 = ray.getHead();
         Vector v = ray.getDirection();
         Plane plane = this.plane;
@@ -110,7 +110,7 @@ public class Polygon extends Geometry {
 
         // Find the intersection point t on the plane
         double t = alignZero(normal.dotProduct(q.subtract(p0)) / nv);
-        if (t <= 0) {
+        if (t <= 0||alignZero(t-maxDistance)<=0 ) {
             return null;
         }
 

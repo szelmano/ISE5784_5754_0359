@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class GeometriesTests {
 
     /**
-     * Test method for {@link geometries.Geometries#findIntersections(primitives.Ray)}.
+     * Test method for {@link geometries.Geometries#findGeoIntersections(primitives.Ray)}.
      */
     @Test
     void testFindIntersections() {
@@ -25,7 +25,7 @@ public class GeometriesTests {
         // ============ Equivalence Partitions Tests ==============
         // TC01: Ray intersects only sphere and plane (3 points)
         assertEquals(3,
-                geometries.findIntersections(
+                geometries.findGeoIntersections(
                         new Ray(new Point(1,1,-2),
                                 new Vector(0,0,1))).size(),
                 "TC01: Ray intersects only sphere and plane (3 points)- wrong points of intersection");
@@ -33,26 +33,26 @@ public class GeometriesTests {
         // =============== Boundary Values Tests ==================
         // TC11: Ray intersects all the geometries (4 points)
         assertEquals(4,
-                geometries.findIntersections(
+                geometries.findGeoIntersections(
                         new Ray(new Point(0.5, 0.5, -2),
                                 new Vector(0, 0, 1))).size(),
                 " TC11: Ray intersects all the geometries (4 points) - wrong points of intersection");
 
         // TC12: Ray intersects one the geometries (1 point)
         assertEquals(1,
-                geometries.findIntersections(
+                geometries.findGeoIntersections(
                         new Ray(new Point(5, 0, -2),
                                 new Vector(0, 0, 1))).size(),
                 "TC12: Ray intersects one the geometries (1 points) - wrong points of intersection");
 
         // TC13: Ray doesn't intersect any geometries (0 points)
-        assertNull( geometries.findIntersections(
+        assertNull( geometries.findGeoIntersections(
                         new Ray(new Point(2.5,-5.5,-2),
                                 new Vector(6.5,10.5,-3))),
                 "TC13: Ray doesn't intersect any geometries (0 points) - found a point of intersection");
 
         // TC14: Empty collection of geometries
-        assertNull(new Geometries().findIntersections(
+        assertNull(new Geometries().findGeoIntersections(
                         new Ray(new Point(2.5,-5.5,-2),
                                 new Vector(6.5,10.5,-3))),
                 "TC14: Empty collection of geometries - found an intersection");

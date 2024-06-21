@@ -16,7 +16,7 @@ public abstract class Intersectable {
      * @return A list of points where the ray intersects the geometry, or null if there are no intersections.
      */
     public List<Point> findIntersections(Ray ray) {
-        var geoList = findGeoIntersections(ray);
+        var geoList = findGeoIntersections(ray,Double.POSITIVE_INFINITY);
         return geoList == null ? null : geoList.stream().map(gp -> gp.point).toList();
     }
 
@@ -25,8 +25,8 @@ public abstract class Intersectable {
      * @param ray The ray to find intersections with.
      * @return A list of GeoPoint objects representing the intersections, or null if there are no intersections.
      */
-    public final List<GeoPoint> findGeoIntersections(Ray ray) {
-        return findGeoIntersectionsHelper(ray);
+    public final List<GeoPoint> findGeoIntersections(Ray ray,double maxDistance) {
+        return findGeoIntersectionsHelper(ray,maxDistance);
     }
 
     /**
@@ -34,7 +34,7 @@ public abstract class Intersectable {
      * @param ray The ray to find intersections with.
      * @return A list of GeoPoint objects representing the intersections, or null if there are no intersections.
      */
-    protected abstract List<GeoPoint> findGeoIntersectionsHelper(Ray ray);
+    protected abstract List<GeoPoint> findGeoIntersectionsHelper(Ray ray,double maxDistance);
 
     /**
      * A static nested class representing a point of intersection between a ray and a geometry.

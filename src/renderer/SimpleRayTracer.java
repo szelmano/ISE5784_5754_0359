@@ -4,6 +4,9 @@ import geometries.Intersectable.GeoPoint;
 import lighting.LightSource;
 import primitives.*;
 import scene.Scene;
+
+import java.util.List;
+
 import static primitives.Util.alignZero;
 
 /**
@@ -11,8 +14,12 @@ import static primitives.Util.alignZero;
  * This ray tracer calculates the color of the closest intersection point of a ray with the scene's geometries.
  */
 public class SimpleRayTracer extends RayTracerBase {
+
+    private static final double DELTA = 0.1;
+
     /**
      * Constructs a SimpleRayTracer with the given scene.
+     *
      * @param scene The scene to be rendered.
      */
     public SimpleRayTracer(Scene scene) {
@@ -21,18 +28,20 @@ public class SimpleRayTracer extends RayTracerBase {
 
     /**
      * Traces a ray and returns the color at the ray's intersection point.
+     *
      * @param ray The ray to be traced.
      * @return The color at the ray's intersection point, or the background color if no intersections are found.
      */
     @Override
     public Color traceRay(Ray ray) {
-        GeoPoint intersections = ray.findClosestGeoPoint(scene.geometries.findGeoIntersections(ray));
-        return intersections == null ? scene.background : calcColor(intersections, ray);
+        var intersections =scene.geometries.findGeoIntersections(ray);
+        return intersections == null ? scene.background : calcColor(ray.findClosestGeoPoint(intersections),ray);
     }
 
     /**
      * Calculates the color at the given point.
-     * @param gp The point for which the color is calculated.
+     *
+     * @param gp  The point for which the color is calculated.
      * @param ray The ray that intersected with the geometry at point gp.
      * @return The color at the given point.
      */
@@ -42,7 +51,8 @@ public class SimpleRayTracer extends RayTracerBase {
 
     /**
      * Calculates the local lighting effects (diffuse and specular reflections) at a given intersection point.
-     * @param gp The intersection point on the geometry.
+     *
+     * @param gp  The intersection point on the geometry.
      * @param ray The ray that intersected with the geometry at point gp.
      * @return The color contribution from local lighting effects at the intersection point.
      */
@@ -57,7 +67,7 @@ public class SimpleRayTracer extends RayTracerBase {
         for (LightSource lightSource : scene.lights) {
             Vector l = lightSource.getL(gp.point);
             double nl = alignZero(n.dotProduct(l));
-            if (nl * nv > 0) {
+            if ((nl * nv > 0) && unshaded(gp, l, v, nl, lightSource)) {
                 Color il = lightSource.getIntensity(gp.point);
                 color = color.add(il.scale(calcDiffusive(material, nl).add(calcSpecular(material, n, l, nl, v))));
             }
@@ -68,8 +78,9 @@ public class SimpleRayTracer extends RayTracerBase {
     /**
      * Calculates the diffuse reflection color based on the material properties and the dot product of normal
      * and light vector.
+     *
      * @param material The material of the intersected geometry.
-     * @param nl The dot product of normal vector and light vector.
+     * @param nl       The dot product of normal vector and light vector.
      * @return The diffuse reflection color.
      */
     private Double3 calcDiffusive(Material material, double nl) {
@@ -79,17 +90,33 @@ public class SimpleRayTracer extends RayTracerBase {
     /**
      * Calculates the specular reflection color based on the material properties, light vector, normal vector,
      * and the viewing vector.
-     * @param material The material of the intersected geometry.
-     * @param normal The normal vector at the intersection point.
+     *
+     * @param material    The material of the intersected geometry.
+     * @param normal      The normal vector at the intersection point.
      * @param lightVector The vector towards the light source.
-     * @param nl The dot product of normal vector and light vector.
-     * @param vector The direction vector of the viewing ray.
+     * @param nl          The dot product of normal vector and light vector.
+     * @param vector      The direction vector of the viewing ray.
      * @return The specular reflection color.
      */
     private Double3 calcSpecular(Material material, Vector normal, Vector lightVector, double nl, Vector vector) {
         Vector reflectedVector = lightVector.subtract(normal.scale(2 * nl));
         double cosTeta = alignZero(-vector.dotProduct(reflectedVector));
         return cosTeta <= 0 ? Double3.ZERO : material.kS.scale(Math.pow(cosTeta, material.Shininess));
+    }
+
+    private boolean unshaded(GeoPoint gp, Vector l, Vector n, double nl, LightSource light) {
+        Vector lDir = l.scale(-1);
+        Vector epsVector = n.scale(nl < 0 ? DELTA : -DELTA);
+        Point point = gp.point.add(epsVector);
+        Ray lightRay = new Ray(point, lDir);
+        List<GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay);
+        if (intersections == null)
+            return true;
+        for (GeoPoint intersectionPoint : intersections)
+            if (intersectionPoint.point.distance(gp.point) > light.getDistance(intersectionPoint.point))
+                return false;
+
+        return true;
     }
 
 }
