@@ -15,11 +15,11 @@ import static primitives.Util.alignZero;
  */
 public class SimpleRayTracer extends RayTracerBase {
 
+    /** A small constant value used to slightly move the origin of the shadow rays to avoid self-shadowing. */
     private static final double DELTA = 0.1;
 
     /**
      * Constructs a SimpleRayTracer with the given scene.
-     *
      * @param scene The scene to be rendered.
      */
     public SimpleRayTracer(Scene scene) {
@@ -28,7 +28,6 @@ public class SimpleRayTracer extends RayTracerBase {
 
     /**
      * Traces a ray and returns the color at the ray's intersection point.
-     *
      * @param ray The ray to be traced.
      * @return The color at the ray's intersection point, or the background color if no intersections are found.
      */
@@ -40,7 +39,6 @@ public class SimpleRayTracer extends RayTracerBase {
 
     /**
      * Calculates the color at the given point.
-     *
      * @param gp  The point for which the color is calculated.
      * @param ray The ray that intersected with the geometry at point gp.
      * @return The color at the given point.
@@ -51,7 +49,6 @@ public class SimpleRayTracer extends RayTracerBase {
 
     /**
      * Calculates the local lighting effects (diffuse and specular reflections) at a given intersection point.
-     *
      * @param gp  The intersection point on the geometry.
      * @param ray The ray that intersected with the geometry at point gp.
      * @return The color contribution from local lighting effects at the intersection point.
@@ -67,7 +64,7 @@ public class SimpleRayTracer extends RayTracerBase {
         for (LightSource lightSource : scene.lights) {
             Vector l = lightSource.getL(gp.point);
             double nl = alignZero(n.dotProduct(l));
-            if ((nl * nv > 0) && unshaded(gp, l, v, nl, lightSource)) {
+            if ((nl * nv > 0) && unshaded(gp, l, n, lightSource)) {
                 Color il = lightSource.getIntensity(gp.point);
                 color = color.add(il.scale(calcDiffusive(material, nl).add(calcSpecular(material, n, l, nl, v))));
             }
@@ -78,7 +75,6 @@ public class SimpleRayTracer extends RayTracerBase {
     /**
      * Calculates the diffuse reflection color based on the material properties and the dot product of normal
      * and light vector.
-     *
      * @param material The material of the intersected geometry.
      * @param nl       The dot product of normal vector and light vector.
      * @return The diffuse reflection color.
@@ -90,7 +86,6 @@ public class SimpleRayTracer extends RayTracerBase {
     /**
      * Calculates the specular reflection color based on the material properties, light vector, normal vector,
      * and the viewing vector.
-     *
      * @param material    The material of the intersected geometry.
      * @param normal      The normal vector at the intersection point.
      * @param lightVector The vector towards the light source.
@@ -104,18 +99,26 @@ public class SimpleRayTracer extends RayTracerBase {
         return cosTeta <= 0 ? Double3.ZERO : material.kS.scale(Math.pow(cosTeta, material.Shininess));
     }
 
-    private boolean unshaded(GeoPoint gp, Vector l, Vector n, double nl, LightSource light) {
+    /**
+     * Checks if a point on a geometry is not shadowed by other geometries.
+     * @param gp     The intersection point on the geometry.
+     * @param l      The direction vector from the point to the light source.
+     * @param n      The normal vector at the intersection point.
+     * @param light  The light source being considered.
+     * @return true if the point is not shadowed, false otherwise.
+     */
+    private boolean unshaded(GeoPoint gp, Vector l, Vector n, LightSource light) {
         Vector lDir = l.scale(-1);
-        Vector epsVector = n.scale(nl < 0 ? DELTA : -DELTA);
+        Vector epsVector = n.scale(n.dotProduct(l) < 0 ? DELTA : -DELTA);
         Point point = gp.point.add(epsVector);
         Ray lightRay = new Ray(point, lDir);
-        List<GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay);
-        if (intersections == null)
-            return true;
-        for (GeoPoint intersectionPoint : intersections)
-            if (intersectionPoint.point.distance(gp.point) > light.getDistance(intersectionPoint.point))
+        List<GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay, light.getDistance(gp.point));
+        if (intersections == null) return true;
+        for (GeoPoint intersectionPoint : intersections) {
+            if (intersectionPoint.point.distance(gp.point) < light.getDistance(gp.point)) {
                 return false;
-
+            }
+        }
         return true;
     }
 

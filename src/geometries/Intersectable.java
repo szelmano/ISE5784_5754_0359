@@ -16,7 +16,7 @@ public abstract class Intersectable {
      * @return A list of points where the ray intersects the geometry, or null if there are no intersections.
      */
     public List<Point> findIntersections(Ray ray) {
-        var geoList = findGeoIntersections(ray,Double.POSITIVE_INFINITY);
+        var geoList = findGeoIntersections(ray);
         return geoList == null ? null : geoList.stream().map(gp -> gp.point).toList();
     }
 
@@ -25,13 +25,26 @@ public abstract class Intersectable {
      * @param ray The ray to find intersections with.
      * @return A list of GeoPoint objects representing the intersections, or null if there are no intersections.
      */
-    public final List<GeoPoint> findGeoIntersections(Ray ray,double maxDistance) {
-        return findGeoIntersectionsHelper(ray,maxDistance);
+    public final List<GeoPoint> findGeoIntersections(Ray ray) {
+        return findGeoIntersections(ray,Double.POSITIVE_INFINITY);
     }
 
     /**
-     * Finds intersection points as GeoPoint objects between a given ray and the geometry.
+     * Finds the intersection points as GeoPoint objects between a given ray and the geometry,
+     * within a given maximum distance.
      * @param ray The ray to find intersections with.
+     * @param maxDistance The maximum distance from the ray's origin to the intersection points.
+     * @return A list of GeoPoint objects representing the intersections, or null if there are no intersections.
+     */
+    public List<GeoPoint> findGeoIntersections(Ray ray, double maxDistance) {
+        return findGeoIntersectionsHelper(ray, maxDistance);
+    }
+
+    /**
+     * Abstract method to be implemented by subclasses to find intersection points
+     * as GeoPoint objects between a given ray and the geometry, within a given maximum distance.
+     * @param ray The ray to find intersections with.
+     * @param maxDistance The maximum distance from the ray's origin to the intersection points.
      * @return A list of GeoPoint objects representing the intersections, or null if there are no intersections.
      */
     protected abstract List<GeoPoint> findGeoIntersectionsHelper(Ray ray,double maxDistance);

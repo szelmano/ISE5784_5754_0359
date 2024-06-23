@@ -110,7 +110,7 @@ public class Polygon extends Geometry {
 
         // Find the intersection point t on the plane
         double t = alignZero(normal.dotProduct(q.subtract(p0)) / nv);
-        if (t <= 0||alignZero(t-maxDistance)<=0 ) {
+        if (t < 0 || alignZero(t-maxDistance) > 0 ) {
             return null;
         }
 
@@ -118,7 +118,8 @@ public class Polygon extends Geometry {
 
         try {
             // Initialize vectors for the first edge and the point to intersection
-            Vector edgeVector = this.vertices.getFirst().subtract(this.vertices.get(this.vertices.size() - 1)).normalize();
+            Vector edgeVector = this.vertices.getFirst().
+                    subtract(this.vertices.get(this.vertices.size() - 1)).normalize();
             Vector vecToPoint = intersectionPoint.subtract(this.vertices.get(this.vertices.size() - 1)).normalize();
             Vector normalVector = edgeVector.crossProduct(vecToPoint).normalize(); // First vector to compare to others
 

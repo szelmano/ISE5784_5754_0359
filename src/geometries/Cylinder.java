@@ -56,7 +56,8 @@ public class Cylinder extends Tube {
     }
 
     @Override
-    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray,double maxDistance) { return super.findGeoIntersectionsHelper(ray,maxDistance); }
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray,double maxDistance)
+    { return super.findGeoIntersectionsHelper(ray,maxDistance); }
 
 }
 
