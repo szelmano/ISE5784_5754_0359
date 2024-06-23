@@ -64,7 +64,7 @@ public class SimpleRayTracer extends RayTracerBase {
         for (LightSource lightSource : scene.lights) {
             Vector l = lightSource.getL(gp.point);
             double nl = alignZero(n.dotProduct(l));
-            if ((nl * nv > 0) && unshaded(gp, l, n, lightSource)) {
+            if ((nl * nv > 0) && unshaded(gp, l, n, lightSource,nl)) {
                 Color il = lightSource.getIntensity(gp.point);
                 color = color.add(il.scale(calcDiffusive(material, nl).add(calcSpecular(material, n, l, nl, v))));
             }
@@ -105,11 +105,12 @@ public class SimpleRayTracer extends RayTracerBase {
      * @param l      The direction vector from the point to the light source.
      * @param n      The normal vector at the intersection point.
      * @param light  The light source being considered.
+     * @param nl          The dot product of normal vector and light vector.
      * @return true if the point is not shadowed, false otherwise.
      */
-    private boolean unshaded(GeoPoint gp, Vector l, Vector n, LightSource light) {
+    private boolean unshaded(GeoPoint gp, Vector l, Vector n, LightSource light,double nl) {
         Vector lDir = l.scale(-1);
-        Vector epsVector = n.scale(n.dotProduct(l) < 0 ? DELTA : -DELTA);
+        Vector epsVector = n.scale(nl < 0 ? DELTA : -DELTA);
         Point point = gp.point.add(epsVector);
         Ray lightRay = new Ray(point, lDir);
         List<GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay, light.getDistance(gp.point));

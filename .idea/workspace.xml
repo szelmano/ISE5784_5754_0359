@@ -5,15 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="547a3f2e-d435-4d3c-81da-bf2e91b4f8a4" name="Changes" comment="stage 6 doc and bones">
-      <change afterPath="$PROJECT_DIR$/unittests/renderer/ShadowTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Cylinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Cylinder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Intersectable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Intersectable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Plane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Plane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Polygon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Polygon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Sphere.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Sphere.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lighting/LightSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lighting/LightSource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lighting/PointLight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lighting/PointLight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lighting/SpotLight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lighting/SpotLight.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unittests/renderer/ShadowTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/renderer/ShadowTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,56 +59,56 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "JUnit.All in ISE5784_5754_0359.executor": "Run",
-    "JUnit.ImageWriterTest.testWriteToImage.executor": "Run",
-    "JUnit.ImageWriterTests.testWriteToImage.executor": "Run",
-    "JUnit.IntegrationTests.executor": "Run",
-    "JUnit.LightsTests.sphereMultipleLights.executor": "Run",
-    "JUnit.LightsTests.sphereSpotSharp.executor": "Run",
-    "JUnit.LightsTests.trianglesSpotSharp.executor": "Run",
-    "JUnit.PlaneTests.testFindIntersections.executor": "Run",
-    "JUnit.PointTests.executor": "Run",
-    "JUnit.PointTests.testAdd.executor": "Run",
-    "JUnit.PointTests.testDistanceSquared.executor": "Run",
-    "JUnit.PointTests.testSubtract.executor": "Run",
-    "JUnit.RayTests.testFindClosestPoint.executor": "Run",
-    "JUnit.RenderTests.basicRenderXml.executor": "Run",
-    "JUnit.RenderTests.executor": "Run",
-    "JUnit.RenderTests.renderMultiColorTest.executor": "Run",
-    "JUnit.RenderTests.renderTwoColorTest.executor": "Run",
-    "JUnit.ShadowTests.executor": "Run",
-    "JUnit.ShadowTests.sphereTriangleInitial (1).executor": "Run",
-    "JUnit.ShadowTests.sphereTriangleInitial.executor": "Run",
-    "JUnit.ShadowTests.sphereTriangleMove1.executor": "Run",
-    "JUnit.ShadowTests.sphereTriangleMove2.executor": "Run",
-    "JUnit.ShadowTests.sphereTriangleSpot1.executor": "Run",
-    "JUnit.SphereTests.testFindIntersections.executor": "Debug",
-    "JUnit.TriangleTests.testFindIntersections.executor": "Run",
-    "JUnit.VectorTests.testNormalize.executor": "Run",
-    "JUnit.geometries in ISE5784_5754_0359.executor": "Run",
-    "JUnit.renderer in ISE5784_5754_0359.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_directory_selection": "C:/Users/owner/Desktop/מחשב לבן שיראל/שיראל/מכון טל/שנה ב תשפד/סמסטר ב/מיני פרוייקט מבוא להנדסת תוכנה/ISE5784_5754_0359/src/renderer",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "onboarding.tips.debug.path": "C:/Users/owner/Desktop/מחשב לבן שיראל/שיראל/מכון טל/שנה ב תשפד/סמסטר ב/מיני פרוייקט מבוא להנדסת תוכנה/ISE5784_5754_0359/src/Main.java",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.All in ISE5784_5754_0359.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ImageWriterTest.testWriteToImage.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ImageWriterTests.testWriteToImage.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.IntegrationTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LightsTests.sphereMultipleLights.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LightsTests.sphereSpotSharp.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LightsTests.trianglesSpotSharp.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PlaneTests.testFindIntersections.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PointTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PointTests.testAdd.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PointTests.testDistanceSquared.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PointTests.testSubtract.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RayTests.testFindClosestPoint.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RenderTests.basicRenderXml.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RenderTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RenderTests.renderMultiColorTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RenderTests.renderTwoColorTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ShadowTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ShadowTests.sphereTriangleInitial (1).executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ShadowTests.sphereTriangleInitial.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ShadowTests.sphereTriangleMove1.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ShadowTests.sphereTriangleMove2.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ShadowTests.sphereTriangleSpot1.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SphereTests.testFindIntersections.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.TriangleTests.testFindIntersections.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.VectorTests.testNormalize.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.geometries in ISE5784_5754_0359.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.renderer in ISE5784_5754_0359.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Users/owner/Desktop/מחשב לבן שיראל/שיראל/מכון טל/שנה ב תשפד/סמסטר ב/מיני פרוייקט מבוא להנדסת תוכנה/ISE5784_5754_0359/src/renderer&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/owner/Desktop/מחשב לבן שיראל/שיראל/מכון טל/שנה ב תשפד/סמסטר ב/מיני פרוייקט מבוא להנדסת תוכנה/ISE5784_5754_0359/src/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="renderer" />
@@ -126,7 +124,15 @@
       <recent name="geometries" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ShadowTests">
+  <component name="RunManager" selected="JUnit.All in ISE5784_5754_0359">
+    <configuration name="All in ISE5784_5754_0359" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5784_5754_0359" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ShadowTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5784_5754_0359" />
       <extension name="coverage">
@@ -138,22 +144,6 @@
       <option name="PACKAGE_NAME" value="renderer" />
       <option name="MAIN_CLASS_NAME" value="renderer.ShadowTests" />
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ShadowTests.sphereTriangleInitial (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5784_5754_0359" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="renderer.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="renderer" />
-      <option name="MAIN_CLASS_NAME" value="renderer.ShadowTests" />
-      <option name="METHOD_NAME" value="sphereTriangleInitial" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -208,11 +198,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.All in ISE5784_5754_0359" />
         <item itemvalue="JUnit.ShadowTests" />
         <item itemvalue="JUnit.ShadowTests.sphereTriangleMove1" />
         <item itemvalue="JUnit.ShadowTests.sphereTriangleSpot1" />
         <item itemvalue="JUnit.ShadowTests.sphereTriangleMove2" />
-        <item itemvalue="JUnit.ShadowTests.sphereTriangleInitial (1)" />
       </list>
     </recent_temporary>
   </component>

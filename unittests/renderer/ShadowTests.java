@@ -48,50 +48,50 @@ public class ShadowTests {
     /** Produce a picture of a sphere and triangle with point light and shade */
     @Test
     public void sphereTriangleInitial() {
-        sphereTriangleHelper("shadowSphereTriangleInitial", //
+        sphereTriangleHelper("shadowSphereTriangleInitial",
                 new Triangle(new Point(-70, -40, 0),
                         new Point(-40, -70, 0),
-                        new Point(-68, -68, -4)), //
+                        new Point(-68, -68, -4)),
                 new Point(-100, -100, 200));
     }
 
     /** Sphere-Triangle shading - move triangle up-right */
     @Test
     public void sphereTriangleMove1() {
-        sphereTriangleHelper("shadowSphereTriangleMove1", //
+        sphereTriangleHelper("shadowSphereTriangleMove1",
                 new Triangle(new Point(-60, -30, 0),
                         new Point(-30, -60, 0),
-                        new Point(-58, -58, -4)), //
+                        new Point(-58, -58, -4)),
                 new Point(-100, -100, 200));
     }
 
     /** Sphere-Triangle shading - move triangle upper-righter */
     @Test
     public void sphereTriangleMove2() {
-        sphereTriangleHelper("shadowSphereTriangleMove2", //
+        sphereTriangleHelper("shadowSphereTriangleMove2",
                 new Triangle(new Point(-50, -20, 0),
                         new Point(-20, -50, 0),
-                        new Point(-48, -48, -4)), //
+                        new Point(-48, -48, -4)),
                 new Point(-100, -100, 200));
     }
 
     /** Sphere-Triangle shading - move spot closer */
     @Test
     public void sphereTriangleSpot1() {
-        sphereTriangleHelper("shadowSphereTriangleSpot1", //
+        sphereTriangleHelper("shadowSphereTriangleSpot1",
                 new Triangle(new Point(-70, -40, 0),
                         new Point(-40, -70, 0),
-                        new Point(-68, -68, -4)), //
+                        new Point(-68, -68, -4)),
                 new Point(-90, -90, 120));
     }
 
     /** Sphere-Triangle shading - move spot even more close */
     @Test
     public void sphereTriangleSpot2() {
-        sphereTriangleHelper("shadowSphereTriangleSpot2", //
+        sphereTriangleHelper("shadowSphereTriangleSpot2",
                 new Triangle(new Point(-70, -40, 0),
                         new Point(-40, -70, 0),
-                        new Point(-68, -68, -4)), //
+                        new Point(-68, -68, -4)),
                 new Point(-78, -78, 80));
     }
 
@@ -101,17 +101,21 @@ public class ShadowTests {
     public void trianglesSphere() {
         scene.geometries.add(
                 new Triangle(new Point(-150, -150, -115), new Point(150, -150, -135),
-                        new Point(75, 75, -150)) //
-                        .setMaterial(new Material().setKs(0.8).setShininess(60)), //
-                new Triangle(new Point(-150, -150, -115), new Point(-70, 70, -140), new Point(75, 75, -150)) //
-                        .setMaterial(new Material().setKs(0.8).setShininess(60)), //
-                new Sphere(30d, new Point(0, 0, -11)) //
+                        new Point(75, 75, -150))
+                        .setMaterial(new Material().setKs(0.8).setShininess(60)),
+                new Triangle(new Point(-150, -150, -115),
+                        new Point(-70, 70, -140),
+                        new Point(75, 75, -150))
+                        .setMaterial(new Material().setKs(0.8).setShininess(60)),
+                new Sphere(30d, new Point(0, 0, -11))
                         .setEmission(new Color(BLUE)) //
-                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(30)) //
+                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(30))
         );
         scene.setAmbientLight(new AmbientLight(new Color(WHITE), 0.15));
         scene.lights.add(
-                new SpotLight(new Color(700, 400, 400), new Point(40, 40, 115), new Vector(-1, -1, -4)) //
+                new SpotLight(new Color(700, 400, 400),
+                        new Point(40, 40, 115),
+                        new Vector(-1, -1, -4))
                         .setKl(4E-4).setKq(2E-5));
 
         camera.setImageWriter(new ImageWriter("shadowTrianglesSphere", 600, 600))

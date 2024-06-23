@@ -6,8 +6,7 @@ import primitives.Vector;
 import static primitives.Util.alignZero;
 
 /**
- * Represents a spot light source that emits light from a specific position in a specific direction.
- * The light's intensity decreases with distance and angle according to the attenuation factors and direction.
+ * Represents a spotlight source that emits light from a specific position in a specific direction.
  */
 public class SpotLight extends PointLight {
     /** The light direction of the spotlight. */
@@ -16,7 +15,7 @@ public class SpotLight extends PointLight {
     private double narrowBeam = 1;
 
     /**
-     * Constructs a spot light source with the specified intensity, position, and direction.
+     * Constructs a spotlight source with the specified intensity, position, and direction.
      * @param intensity The color intensity of the light.
      * @param position The position of the light source.
      * @param direction The direction of the light beam.
