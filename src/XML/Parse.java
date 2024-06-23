@@ -63,7 +63,7 @@ public class Parse {
     public static Sphere parseSphere(Element element) {
         double radius = Double.parseDouble(element.getAttribute("radius"));
         Point center = parsePoint(element.getAttribute("center"));
-        return new Sphere(radius, center);
+        return new Sphere(center, radius);
     }
 
     /**

@@ -53,7 +53,7 @@ public class IntegrationTests {
                 Ray ray = camera.constructRay(nX, nY, j, i);
 
                 // Find intersection points of the ray with the geometric entity.
-                List<Intersectable.GeoPoint> intersectionPoints = geo.findGeoIntersections(ray);
+                List<Point> intersectionPoints = geo.findIntersections(ray);
 
                 // If there are intersection points, add their count to the total.
                 countIntersection += ((intersectionPoints == null) ? 0 : intersectionPoints.size());
@@ -77,28 +77,28 @@ public class IntegrationTests {
 
 
         // TC01: Sphere in front of the camera (2 points)
-        assertCountIntersections(2,camera1, new Sphere(1,
-                new Point(0, 0, -3)),
+        assertCountIntersections(2,camera1, new Sphere(new Point(0, 0, -3), 1
+                ),
                 "TC01: Sphere in front of the camera", 3, 3);
 
         // TC02: Sphere intersects the view plane before the camera (18 points)
         assertCountIntersections(18, camera2,
-                new Sphere(2.5, new Point(0, 0, -2.5)),
+                new Sphere(new Point(0, 0, -2.5), 2.5),
                 "TC02: Sphere intersects the view plane before the camera", 3, 3);
 
         // TC03: Sphere intersects the view plane before the camera (10 points)
-        assertCountIntersections(  10, camera2, new Sphere(2,
-                new Point(0, 0, -2)),
+        assertCountIntersections(  10, camera2, new Sphere(new Point(0, 0, -2), 2
+                ),
                 "TC03: Sphere intersects the view plane before the camera", 3, 3);
 
         // TC04: Sphere contains the view plane and the camera (9 points)
         assertCountIntersections(  9, camera1,
-                new Sphere(4, Point.ZERO),
+                new Sphere(Point.ZERO, 4),
                 "TC04: Sphere contains the view plane and the camera", 3, 3);
 
         // TC05: Sphere behind the camera (0 points)
         assertCountIntersections( 0, camera1,
-                new Sphere(0.5, new Point(0, 0, 1)),
+                new Sphere(new Point(0, 0, 1), 0.5),
                 "TC05: Sphere behind the camera", 3, 3);
     }
 

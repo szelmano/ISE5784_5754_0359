@@ -17,6 +17,8 @@ public class SimpleRayTracer extends RayTracerBase {
 
     /** A small constant value used to slightly move the origin of the shadow rays to avoid self-shadowing. */
     private static final double DELTA = 0.1;
+    private static final int MAX_CALC_COLOR_LEVEL = 10;
+    private static final double MIN_CALC_COLOR_K = 0.001;
 
     /**
      * Constructs a SimpleRayTracer with the given scene.

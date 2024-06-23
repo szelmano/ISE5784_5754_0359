@@ -35,7 +35,7 @@ public class RenderTests {
      */
     @Test
     public void renderTwoColorTest() {
-        scene.geometries.add(new Sphere(50d, new Point(0, 0, -100)),
+        scene.geometries.add(new Sphere(new Point(0, 0, -100), 50d),
                 new Triangle(new Point(-100, 0, -100),
                         new Point(0, 100, -100),
                         new Point(-100, 100, -100)), // up
@@ -66,7 +66,7 @@ public class RenderTests {
     @Test
     public void renderMultiColorTest() {
         scene.geometries.add( // center
-                new Sphere( 50, new Point(0, 0, -100)),
+                new Sphere(new Point(0, 0, -100), 50),
                 // up left
                 new Triangle(new Point(-100, 0, -100),
                         new Point(0, 100, -100),
