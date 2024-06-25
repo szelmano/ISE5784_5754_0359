@@ -138,8 +138,9 @@ public class Camera implements Cloneable {
         int nY = imageWriter.getNy();
 
         for (int i = 0; i < nX; ++i)
-            for (int j = 0; j < nY; ++j)
+            for (int j = 0; j < nY; ++j) {
                 castRay(nX, nY, j, i);
+            }
         return this;
     }
 

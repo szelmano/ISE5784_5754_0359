@@ -19,7 +19,7 @@ public class SimpleRayTracer extends RayTracerBase {
     private static final double DELTA = 0.1;
     private static final int MAX_CALC_COLOR_LEVEL = 10;
     private static final double MIN_CALC_COLOR_K = 0.001;
-    private static final double INITIAL_K = 1.0;
+    private static final Double3 INITIAL_K = Double3.ONE;
 
     /**
      * Constructs a SimpleRayTracer with the given scene.
@@ -36,8 +36,8 @@ public class SimpleRayTracer extends RayTracerBase {
      */
     @Override
     public Color traceRay(Ray ray) {
-        var intersections = scene.geometries.findGeoIntersections(ray);
-        return intersections == null ? scene.background : calcColor(ray.findClosestGeoPoint(intersections),ray);
+       GeoPoint closestPoint = findClosestIntersection(ray);
+        return closestPoint == null ? scene.background : calcColor(closestPoint,ray);
     }
 
 //    /**
@@ -51,18 +51,20 @@ public class SimpleRayTracer extends RayTracerBase {
 //    }
 
     private Color calcColor(GeoPoint gp, Ray ray) {
-        return calcColor(gp, ray, MAX_CALC_COLOR_LEVEL, new Double3(INITIAL_K)).add(scene.ambientLight.getIntensity());
+        return calcColor(gp, ray, MAX_CALC_COLOR_LEVEL, INITIAL_K)
+                .add(scene.ambientLight.getIntensity());
     }
 
     private Color calcColor(GeoPoint gp, Ray ray, int level, Double3 k) {
         Color color = calcLocalEffects(gp, ray);
-        return 1 == level ? color : color.add(calcGlobalEffects(gp, ray, level, k));
+        return 1 == level ? color
+                : color.add(calcGlobalEffects(gp, ray, level, k));
     }
 
     private Color calcGlobalEffects(GeoPoint gp, Ray ray, int level, Double3 k) {
         Material material = gp.geometry.getMaterial();
-        return calcGlobalEffect(constructRefractedRay(gp, ray), material.kR, level, k)
-                .add(calcGlobalEffect(constructReflectedRay(gp, ray), material.kT, level, k));
+        return calcGlobalEffect(constructRefractedRay(gp, ray), material.kT, level, k)
+                .add(calcGlobalEffect(constructReflectedRay(gp, ray), material.kR, level, k));
     }
 
 
@@ -86,8 +88,8 @@ public class SimpleRayTracer extends RayTracerBase {
     }
 
     private GeoPoint findClosestIntersection(Ray ray) {
-        return ray.findClosestGeoPoint(scene.geometries.findGeoIntersections(ray));
-    }
+        List<GeoPoint> intersections = scene.geometries.findGeoIntersections(ray);
+        return ray.findClosestGeoPoint(intersections);    }
 
     /**
      * Constructs a reflected ray from a given intersection point and the original ray.
