@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="547a3f2e-d435-4d3c-81da-bf2e91b4f8a4" name="Changes" comment="stage 7 tag 7.1">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="547a3f2e-d435-4d3c-81da-bf2e91b4f8a4" name="Changes" comment="stage 7 help">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/primitives/Util.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Util.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/primitives/Double3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Double3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/primitives/Ray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Ray.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unittests/renderer/ReflectionRefractionTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/renderer/ReflectionRefractionTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +73,14 @@
     "JUnit.PointTests.testDistanceSquared.executor": "Run",
     "JUnit.PointTests.testSubtract.executor": "Run",
     "JUnit.RayTests.testFindClosestPoint.executor": "Run",
-    "JUnit.ReflectionRefractionTests.executor": "Debug",
+    "JUnit.ReflectionRefractionTests.complexScene.executor": "Run",
+    "JUnit.ReflectionRefractionTests.createBeautifulImage.executor": "Run",
+    "JUnit.ReflectionRefractionTests.createComplexScene.executor": "Run",
+    "JUnit.ReflectionRefractionTests.createGalaxy.executor": "Run",
+    "JUnit.ReflectionRefractionTests.createUniqueImage.executor": "Run",
+    "JUnit.ReflectionRefractionTests.customScene.executor": "Debug",
+    "JUnit.ReflectionRefractionTests.customSceneTest.executor": "Run",
+    "JUnit.ReflectionRefractionTests.executor": "Run",
     "JUnit.ReflectionRefractionTests.twoSpheres.executor": "Run",
     "JUnit.RenderTests.basicRenderXml.executor": "Run",
     "JUnit.RenderTests.executor": "Run",
@@ -124,16 +131,8 @@
       <recent name="geometries" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ReflectionRefractionTests.twoSpheres">
-    <configuration name="All in ISE5784_5754_0359" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5784_5754_0359" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ReflectionRefractionTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.ReflectionRefractionTests.customSceneTest">
+    <configuration name="ReflectionRefractionTests.createBeautifulImage" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5784_5754_0359" />
       <extension name="coverage">
         <pattern>
@@ -143,7 +142,56 @@
       </extension>
       <option name="PACKAGE_NAME" value="renderer" />
       <option name="MAIN_CLASS_NAME" value="renderer.ReflectionRefractionTests" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="METHOD_NAME" value="createBeautifulImage" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReflectionRefractionTests.createComplexScene" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5784_5754_0359" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="renderer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.ReflectionRefractionTests" />
+      <option name="METHOD_NAME" value="createComplexScene" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReflectionRefractionTests.createUniqueImage" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5784_5754_0359" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="renderer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.ReflectionRefractionTests" />
+      <option name="METHOD_NAME" value="createUniqueImage" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReflectionRefractionTests.customSceneTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5784_5754_0359" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="renderer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.ReflectionRefractionTests" />
+      <option name="METHOD_NAME" value="customSceneTest" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -164,42 +212,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ShadowTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5784_5754_0359" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="renderer.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="renderer" />
-      <option name="MAIN_CLASS_NAME" value="renderer.ShadowTests" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="renderer in ISE5784_5754_0359" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5784_5754_0359" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="renderer.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="renderer" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ReflectionRefractionTests.customSceneTest" />
         <item itemvalue="JUnit.ReflectionRefractionTests.twoSpheres" />
-        <item itemvalue="JUnit.ReflectionRefractionTests" />
-        <item itemvalue="JUnit.All in ISE5784_5754_0359" />
-        <item itemvalue="JUnit.renderer in ISE5784_5754_0359" />
-        <item itemvalue="JUnit.ShadowTests" />
+        <item itemvalue="JUnit.ReflectionRefractionTests.createUniqueImage" />
+        <item itemvalue="JUnit.ReflectionRefractionTests.createComplexScene" />
+        <item itemvalue="JUnit.ReflectionRefractionTests.createBeautifulImage" />
       </list>
     </recent_temporary>
   </component>
@@ -443,7 +462,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1719130334734</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL‎-00028" summary="stage 7 help">
+      <option name="closed" value="true" />
+      <created>1719295863787</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL‎-00028" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1719295863787</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -489,7 +516,8 @@
     <MESSAGE value="Step 6 part A - 1,2,3 - not all" />
     <MESSAGE value="stage 6 doc and bones" />
     <MESSAGE value="stage 7 tag 7.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="stage 7 tag 7.1" />
+    <MESSAGE value="stage 7 help" />
+    <option name="LAST_COMMIT_MESSAGE" value="stage 7 help" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -498,11 +526,6 @@
           <properties class="java.lang.StackOverflowError" package="java.lang" />
           <option name="timeStamp" value="27" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/unittests/renderer/ReflectionRefractionTests.java</url>
-          <line>42</line>
-          <option name="timeStamp" value="79" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>

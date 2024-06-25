@@ -15,6 +15,8 @@ public class Ray {
     private final Point head;
     /** The direction of the ray */
     private final Vector direction;
+    private static final double DELTA = 0.1;
+
 
     /**
      * Constructs a new Ray object with the specified starting point and direction.
@@ -25,6 +27,19 @@ public class Ray {
         this.head = head;
         // Normalize the direction vector to ensure it has unit length
         this.direction = direction.normalize();
+    }
+
+    /**
+     * a function  that  makes a new ray with a point that is moved delta with the direction of the normal
+     * @param p point
+     * @param direction direction
+     * @param n  the normal
+     */
+    public Ray(Point p, Vector direction, Vector n) {
+        this.direction = direction.normalize();
+        double nv = n.dotProduct(this.direction);
+        Vector dltVector=n.scale(nv<0 ? -DELTA : DELTA);//move the normal a bit by delta
+        head = p.add(dltVector);
     }
 
     /**

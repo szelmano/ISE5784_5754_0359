@@ -2,6 +2,9 @@ package renderer;
 
 import static java.awt.Color.*;
 
+import geometries.Plane;
+import geometries.Polygon;
+import lighting.PointLight;
 import org.junit.jupiter.api.Test;
 
 import geometries.Sphere;
@@ -98,5 +101,38 @@ public class ReflectionRefractionTests {
                 .renderImage()
                 .writeToImage();
     }
+
+    @Test
+    public void customSceneTest() {
+        // Define your geometries and lights here
+        scene.geometries.add(
+                new Sphere(new Point(-50, -35, -50), 30d).setEmission(new Color(255, 0, 0)) // Red sphere
+                        .setMaterial(new Material().setKd(0.4).setKs(0.6).setShininess(100).setKt(0)),
+                new Sphere(new Point(-20, -5, 0), 20d).setEmission(new Color(0, 100, 150)) // Blue sphere with transparency
+                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(80).setKt(0.3)),
+                new Triangle(new Point(0, 100, -80), new Point(30, 20, -100), new Point(100, 70, -80)) // Adjusted triangle positions and rotation
+                        .setEmission(new Color(0, 150, 50))
+                        .setMaterial(new Material().setKd(0.6).setKs(0.4).setShininess(60)),
+                new Triangle(new Point(15, 30, -50), new Point(90, -30, -70), new Point(50, 80, -60)) // Adjusted triangle positions and rotation
+                        .setEmission(new Color(100, 0, 150))
+                        .setMaterial(new Material().setKd(0.6).setKs(0.4).setShininess(70))
+        );
+
+        scene.setAmbientLight(new AmbientLight(new Color(50, 50, 50), 0.4)); // Ambient light affecting all geometries
+
+        scene.lights.add(
+                new SpotLight(new Color(400, 300, 200), new Point(-50, 50, 0), new Vector(1, -1, -1)) // Spot light position and direction
+                        .setKl(0.0001).setKq(0.000005)
+        );
+
+        // Adjust camera settings
+        cameraBuilder.setLocation(new Point(0, 0, 200)).setVpDistance(200)
+                .setVpSize(200, 200)
+                .setImageWriter(new ImageWriter("customSceneTest", 600, 600))
+                .build()
+                .renderImage()
+                .writeToImage();
+    }
+
 }
 
