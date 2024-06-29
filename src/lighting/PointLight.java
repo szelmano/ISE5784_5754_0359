@@ -8,19 +8,14 @@ import primitives.Vector;
  * Represents a point light source that emits light from a specific position in space.
  */
 public class PointLight extends Light implements LightSource {
-    /**
-     * The position of the point light source
-     */
+    /** The position of the point light source. */
     public Point position;
-    /**
-     * Attenuation factors: constant, linear, and quadratic
-     */
+    /** Attenuation factors: constant, linear, and quadratic. */
     private double kC = 1, kL = 0, kQ = 0;
 
 
     /**
      * Constructs a point light source with the specified intensity and position.
-     *
      * @param intensity The color intensity of the light.
      * @param position  The position of the light source.
      */
@@ -31,7 +26,6 @@ public class PointLight extends Light implements LightSource {
 
     /**
      * Sets the constant attenuation factor.
-     *
      * @param kC The constant attenuation factor.
      * @return The current instance of PointLight (for chaining calls).
      */
@@ -42,7 +36,6 @@ public class PointLight extends Light implements LightSource {
 
     /**
      * Sets the linear attenuation factor.
-     *
      * @param kL The linear attenuation factor.
      * @return The current instance of PointLight (for chaining calls).
      */
@@ -53,7 +46,6 @@ public class PointLight extends Light implements LightSource {
 
     /**
      * Sets the quadratic attenuation factor.
-     *
      * @param kQ The quadratic attenuation factor.
      * @return The current instance of PointLight (for chaining calls).
      */
@@ -64,7 +56,6 @@ public class PointLight extends Light implements LightSource {
 
     /**
      * Function that gets the intensity of the light at a specific point.
-     *
      * @param p The point at which the light intensity is calculated.
      * @return The color intensity of the light at the specified point.
      */
@@ -76,7 +67,6 @@ public class PointLight extends Light implements LightSource {
 
     /**
      * Function that gets the direction vector of the light from the light source to a specific point.
-     *
      * @param p The point from which the direction is calculated.
      * @return The direction vector from the light source to the specified point.
      */
@@ -87,7 +77,6 @@ public class PointLight extends Light implements LightSource {
 
     /**
      * Function that gets the distance from the light source to a specific point.
-     *
      * @param p The point to which the distance is calculated.
      * @return The distance from the light source to the specified point.
      */

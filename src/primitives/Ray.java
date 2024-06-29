@@ -11,11 +11,13 @@ import static primitives.Util.isZero;
  * Represents a ray in 3D space, defined by its starting point and direction.
  */
 public class Ray {
-    /** The starting point of the ray */
+    /** The starting point of the ray. */
     private final Point head;
-    /** The direction of the ray */
+    /** The direction of the ray. */
     private final Vector direction;
+    /** A small constant value used to slightly move the origin of the shadow rays to avoid self-shadowing. */
     private static final double DELTA = 0.1;
+
 
 
     /**
@@ -30,10 +32,11 @@ public class Ray {
     }
 
     /**
-     * a function  that  makes a new ray with a point that is moved delta with the direction of the normal
-     * @param p point
-     * @param direction direction
-     * @param n  the normal
+     * Constructs a new Ray object with the specified starting point, direction, and normal.
+     * The starting point is moved slightly in the direction of the normal to avoid self-shadowing.
+     * @param p The starting point of the ray.
+     * @param direction The direction of the ray.
+     * @param n The normal vector at the starting point.
      */
     public Ray(Point p, Vector direction, Vector n) {
         this.direction = direction.normalize();
