@@ -95,6 +95,36 @@ public class Vector extends Point {
         return new Vector(xyz.reduce(len));
     }
 
+
+    /**
+     * Rotates this vector around a given axis by a specified angle.
+     *
+     * @param axis The axis around which to rotate.
+     * @param angleRadians The angle of rotation in radians.
+     * @return The rotated vector.
+     */
+    public Vector rotateAround(Vector axis, double angleRadians) {
+        double cosAngle = Math.cos(angleRadians);
+        double sinAngle = Math.sin(angleRadians);
+        double oneMinusCosAngle = 1 - cosAngle;
+
+        // Calculate the components of the new vector after rotation
+        double newX = (cosAngle + axis.xyz.d1 * axis.xyz.d1 * oneMinusCosAngle) * this.xyz.d1 +
+                (axis.xyz.d1 * axis.xyz.d2 * oneMinusCosAngle - axis.xyz.d3 * sinAngle) * this.xyz.d2 +
+                (axis.xyz.d1 * axis.xyz.d3 * oneMinusCosAngle + axis.xyz.d2 * sinAngle) * this.xyz.d3;
+
+        double newY = (axis.xyz.d2 * axis.xyz.d1 * oneMinusCosAngle + axis.xyz.d3 * sinAngle) * this.xyz.d1 +
+                (cosAngle + axis.xyz.d2 * axis.xyz.d2 * oneMinusCosAngle) * this.xyz.d2 +
+                (axis.xyz.d2 * axis.xyz.d3 * oneMinusCosAngle - axis.xyz.d1 * sinAngle) * this.xyz.d3;
+
+        double newZ = (axis.xyz.d3 * axis.xyz.d1 * oneMinusCosAngle - axis.xyz.d2 * sinAngle) * this.xyz.d1 +
+                (axis.xyz.d3 * axis.xyz.d2 * oneMinusCosAngle + axis.xyz.d1 * sinAngle) * this.xyz.d2 +
+                (cosAngle + axis.xyz.d3 * axis.xyz.d3 * oneMinusCosAngle) * this.xyz.d3;
+
+        return new Vector(newX, newY, newZ);
+    }
+
+
     @Override
     public boolean equals(Object obj) {
         return super.equals(obj);

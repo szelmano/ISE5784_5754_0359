@@ -8,6 +8,7 @@ import scene.Scene;
 import java.util.List;
 
 import static primitives.Util.alignZero;
+import static primitives.Util.isZero;
 
 /**
  * A simple ray tracer that extends the RayTracerBase class.
@@ -130,7 +131,7 @@ public class SimpleRayTracer extends RayTracerBase {
      */
     private Ray constructReflectedRay(GeoPoint gp, Vector v, Vector n) {
         double nv = n.dotProduct(v);
-        if (nv == 0) return null;
+        if (isZero(nv)) return null;
         Vector vector = v.subtract(n.scale(2 * nv));
         return new Ray(gp.point, vector, n);
     }
@@ -146,7 +147,7 @@ public class SimpleRayTracer extends RayTracerBase {
         Vector n = gp.geometry.getNormal(gp.point);
         double nv = alignZero(n.dotProduct(v));
         Color color = gp.geometry.getEmission();
-        if (nv == 0)
+        if (isZero(nv))
             return color;
         Material material = gp.geometry.getMaterial();
         for (LightSource lightSource : scene.lights) {

@@ -197,12 +197,36 @@ public class Camera implements Cloneable {
         imageWriter.writeToImage();
     }
 
+
+    public Camera translate(Vector translation) {
+        this.location = this.location.add(translation);
+        return this;
+    }
+
+
+    public Camera rotate(double angleDegrees) {
+        double angleRadians = Math.toRadians(angleDegrees);
+
+        // Rotate vUp and vRight around vTo by the given angle
+        Vector newVUp = vUp.rotateAround(vTo, angleRadians);
+        Vector newVRight = vRight.rotateAround(vTo, angleRadians);
+
+        this.vUp = newVUp;
+        this.vRight = newVRight;
+
+        return this;
+    }
+
+
+
+
     /**
      * Builder class for constructing Camera instances.
      */
     public static class Builder {
         final private Camera camera;
-
+        private Vector translation;
+        private double rotationAngle = 0;
         /**
          * Default constructor initializing a new Camera instance.
          */
@@ -213,6 +237,18 @@ public class Camera implements Cloneable {
          * @param camera The existing Camera instance.
          */
         public Builder(Camera camera) { this.camera = camera; }
+
+
+        public Builder setTranslation(Vector translation) {
+            this.translation = translation;
+            return this;
+        }
+
+        public Builder setRotationAngle(double rotationAngle) {
+            this.rotationAngle = rotationAngle;
+            return this;
+        }
+
 
         /**
          * Sets the location of the camera.
@@ -417,6 +453,14 @@ public class Camera implements Cloneable {
             }
             if (this.camera.distance < 0) {
                 throw new IllegalArgumentException("Distance cannot be negative");
+            }
+
+            if (translation!=null) {
+                camera.translate(translation);
+            }
+
+            if (rotationAngle != 0) {
+                camera.rotate(rotationAngle);
             }
 
             if (this.camera.vRight == null) {

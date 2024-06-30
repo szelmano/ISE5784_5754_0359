@@ -7,9 +7,11 @@
     <list default="true" id="547a3f2e-d435-4d3c-81da-bf2e91b4f8a4" name="Changes" comment="stage 7 help">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lighting/PointLight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lighting/PointLight.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/primitives/Ray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Ray.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/primitives/Vector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Vector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unittests/lighting/ShadowTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/unittests/renderer/ImageWriterTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/renderer/ImageWriterTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/unittests/renderer/ReflectionRefractionTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/renderer/ReflectionRefractionTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -74,6 +76,7 @@
     "JUnit.PointTests.testDistanceSquared.executor": "Run",
     "JUnit.PointTests.testSubtract.executor": "Run",
     "JUnit.RayTests.testFindClosestPoint.executor": "Run",
+    "JUnit.ReflectionRefractionTests.SunsetBeachScene.executor": "Run",
     "JUnit.ReflectionRefractionTests.combinedScene.executor": "Run",
     "JUnit.ReflectionRefractionTests.complexScene.executor": "Run",
     "JUnit.ReflectionRefractionTests.createBeautifulImage.executor": "Run",
@@ -82,8 +85,12 @@
     "JUnit.ReflectionRefractionTests.createUniqueImage.executor": "Run",
     "JUnit.ReflectionRefractionTests.customScene.executor": "Debug",
     "JUnit.ReflectionRefractionTests.customSceneTest.executor": "Run",
+    "JUnit.ReflectionRefractionTests.customSceneTest1.executor": "Run",
+    "JUnit.ReflectionRefractionTests.customSceneTestWithBonuses.executor": "Run",
+    "JUnit.ReflectionRefractionTests.customSpaceshipSceneTestWithBonuses.executor": "Run",
     "JUnit.ReflectionRefractionTests.dogWithLights.executor": "Run",
     "JUnit.ReflectionRefractionTests.executor": "Run",
+    "JUnit.ReflectionRefractionTests.israelFlagScene.executor": "Run",
     "JUnit.ReflectionRefractionTests.israeliFlagTest.executor": "Run",
     "JUnit.ReflectionRefractionTests.spaceScene.executor": "Run",
     "JUnit.ReflectionRefractionTests.tryIt.executor": "Run",
@@ -137,7 +144,7 @@
       <recent name="geometries" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ReflectionRefractionTests">
+  <component name="RunManager" selected="JUnit.ReflectionRefractionTests.SunsetBeachScene">
     <configuration name="All in ISE5784_5754_0359" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5784_5754_0359" />
       <option name="PACKAGE_NAME" value="" />
@@ -146,7 +153,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ReflectionRefractionTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ReflectionRefractionTests.SunsetBeachScene" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5784_5754_0359" />
       <extension name="coverage">
         <pattern>
@@ -156,28 +163,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="renderer" />
       <option name="MAIN_CLASS_NAME" value="renderer.ReflectionRefractionTests" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ReflectionRefractionTests.combinedScene" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5784_5754_0359" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="renderer.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="renderer" />
-      <option name="MAIN_CLASS_NAME" value="renderer.ReflectionRefractionTests" />
-      <option name="METHOD_NAME" value="combinedScene" />
+      <option name="METHOD_NAME" value="SunsetBeachScene" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ReflectionRefractionTests.israeliFlagTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ReflectionRefractionTests.customSceneTestWithBonuses" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5784_5754_0359" />
       <extension name="coverage">
         <pattern>
@@ -187,13 +179,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="renderer" />
       <option name="MAIN_CLASS_NAME" value="renderer.ReflectionRefractionTests" />
-      <option name="METHOD_NAME" value="israeliFlagTest" />
+      <option name="METHOD_NAME" value="customSceneTestWithBonuses" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ReflectionRefractionTests.tryIt" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ReflectionRefractionTests.customSpaceshipSceneTestWithBonuses" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5784_5754_0359" />
       <extension name="coverage">
         <pattern>
@@ -203,7 +195,23 @@
       </extension>
       <option name="PACKAGE_NAME" value="renderer" />
       <option name="MAIN_CLASS_NAME" value="renderer.ReflectionRefractionTests" />
-      <option name="METHOD_NAME" value="tryIt" />
+      <option name="METHOD_NAME" value="customSpaceshipSceneTestWithBonuses" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReflectionRefractionTests.israelFlagScene" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5784_5754_0359" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="renderer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.ReflectionRefractionTests" />
+      <option name="METHOD_NAME" value="israelFlagScene" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -211,11 +219,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ReflectionRefractionTests" />
-        <item itemvalue="JUnit.ReflectionRefractionTests.tryIt" />
-        <item itemvalue="JUnit.ReflectionRefractionTests.combinedScene" />
-        <item itemvalue="JUnit.ReflectionRefractionTests.israeliFlagTest" />
+        <item itemvalue="JUnit.ReflectionRefractionTests.SunsetBeachScene" />
+        <item itemvalue="JUnit.ReflectionRefractionTests.customSpaceshipSceneTestWithBonuses" />
         <item itemvalue="JUnit.All in ISE5784_5754_0359" />
+        <item itemvalue="JUnit.ReflectionRefractionTests.israelFlagScene" />
+        <item itemvalue="JUnit.ReflectionRefractionTests.customSceneTestWithBonuses" />
       </list>
     </recent_temporary>
   </component>
@@ -523,6 +531,16 @@
           <properties class="java.lang.StackOverflowError" package="java.lang" />
           <option name="timeStamp" value="27" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/primitives/Vector.java</url>
+          <line>18</line>
+          <option name="timeStamp" value="93" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/primitives/Vector.java</url>
+          <line>29</line>
+          <option name="timeStamp" value="94" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>

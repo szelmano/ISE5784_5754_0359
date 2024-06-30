@@ -39,11 +39,4 @@ class ImageWriterTests {
         imageWriter.writeToImage();
     }
 
-    /**
-     * Test method for {@link renderer.ImageWriter#writePixel(int, int, Color)}
-     */
-    @Test
-    void testWritePixel() {
-    }
-
 }
