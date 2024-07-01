@@ -1,8 +1,11 @@
 package geometries;
 
 import primitives.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
+import static primitives.Util.alignZero;
 import static primitives.Util.isZero;
 
 /**
@@ -56,8 +59,36 @@ public class Cylinder extends Tube {
     }
 
     @Override
-    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray,double maxDistance)
-    { return super.findGeoIntersectionsHelper(ray,maxDistance); }
+    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray,double maxDistance) {
+        List<GeoPoint> intersections = super.findGeoIntersectionsHelper(ray,maxDistance);
+
+        List<GeoPoint> pointList = new ArrayList<>();
+
+        if(intersections != null) {
+            for (GeoPoint geoPoint : intersections) {
+                double projection = geoPoint.point.subtract(axis.getHead()).dotProduct(axis.getDirection());
+                if (alignZero(projection) > 0 && alignZero(projection - this.height) < 0)
+                    pointList.add(new GeoPoint(this,geoPoint.point));
+            }
+        }
+
+        // intersect with base
+        Circle base = new Circle(axis.getHead(), radius, axis.getDirection());
+        intersections = base.findGeoIntersectionsHelper(ray,maxDistance);
+        if(intersections != null)
+            pointList.add(new GeoPoint(this,intersections.get(0).point));
+
+        base = new Circle(axis.getPoint(height), radius, axis.getDirection());
+        intersections = base.findGeoIntersectionsHelper(ray,maxDistance);
+        if(intersections != null)
+            pointList.add(new GeoPoint(this, intersections.get(0).point));
+
+        if (pointList.size() == 0)
+            return null;
+        return pointList;
+    }
+
+
 
 }
 
