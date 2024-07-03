@@ -7,7 +7,8 @@
     <list default="true" id="547a3f2e-d435-4d3c-81da-bf2e91b4f8a4" name="Changes" comment="stage 7 help">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unittests/renderer/ReflectionRefractionTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/renderer/ReflectionRefractionTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Circle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Circle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

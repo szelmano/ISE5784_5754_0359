@@ -34,7 +34,7 @@ public class Circle extends Geometry {
     }
 
     @Override
-    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray,double maxDistance) {
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxDistance) {
         List<GeoPoint> planeIntersection = this.plane.findGeoIntersectionsHelper(ray,maxDistance);
         if(planeIntersection == null)
             return null;

@@ -15,8 +15,8 @@ import static primitives.Util.isZero;
  * This ray tracer calculates the color of the closest intersection point of a ray with the scene's geometries.
  */
 public class SimpleRayTracer extends RayTracerBase {
-    /** A small constant value used to slightly move the origin of the shadow rays to avoid self-shadowing. */
-    private static final double DELTA = 0.1;
+//    /** A small constant value used to slightly move the origin of the shadow rays to avoid self-shadowing. */
+//    private static final double DELTA = 0.1;
     /** Maximum recursion level for calculating global effects (reflection/refraction). */
     private static final int MAX_CALC_COLOR_LEVEL = 10;
     /** Minimum factor for calculating color contribution. */
@@ -142,7 +142,7 @@ public class SimpleRayTracer extends RayTracerBase {
      * @param ray The ray that intersected with the geometry at point gp.
      * @return The color contribution from local lighting effects at the intersection point.
      */
-    private Color calcLocalEffects(GeoPoint gp, Ray ray,Double3 k) {
+    private Color calcLocalEffects(GeoPoint gp, Ray ray, Double3 k) {
         Vector v = ray.getDirection();
         Vector n = gp.geometry.getNormal(gp.point);
         double nv = alignZero(n.dotProduct(v));
