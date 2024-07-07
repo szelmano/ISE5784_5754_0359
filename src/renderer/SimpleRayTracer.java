@@ -192,30 +192,6 @@ public class SimpleRayTracer extends RayTracerBase {
         return cosTeta <= 0 ? Double3.ZERO : material.kS.scale(Math.pow(cosTeta, material.Shininess));
     }
 
-//    /**
-//     * Checks if a point on a geometry is not shadowed by other geometries.
-//     * @param gp    The intersection point on the geometry.
-//     * @param l     The direction vector from the point to the light source.
-//     * @param n     The normal vector at the intersection point.
-//     * @param light The light source being considered.
-//     * @param nl    The dot product of normal vector and light vector.
-//     * @return true if the point is not shadowed, false otherwise.
-//     */
-//    private boolean unshaded(GeoPoint gp, Vector l, Vector n, LightSource light, double nl) {
-//        Vector lDir = l.scale(-1);
-//        Vector epsVector = n.scale(nl < 0 ? DELTA : -DELTA);
-//        Point point = gp.point.add(epsVector);
-//        Ray lightRay = new Ray(point, lDir);
-//        List<GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay, light.getDistance(gp.point));
-//        if (intersections == null) return true;
-//        for (GeoPoint intersectionPoint : intersections) {
-//            if (intersectionPoint.point.distance(gp.point) < light.getDistance(gp.point)) {
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
-
     /**
      * Calculates the transparency factor for a given intersection point and light source.
      * @param gp  The intersection point on the geometry.

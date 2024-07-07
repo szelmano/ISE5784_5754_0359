@@ -7,8 +7,8 @@
     <list default="true" id="547a3f2e-d435-4d3c-81da-bf2e91b4f8a4" name="Changes" comment="stage 7 help">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Circle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Circle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/SimpleRayTracer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unittests/renderer/ReflectionRefractionTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/renderer/ReflectionRefractionTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,6 +93,7 @@
     &quot;JUnit.ReflectionRefractionTests.israeliFlagTest.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.ReflectionRefractionTests.myChristmasTree.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.ReflectionRefractionTests.myShape4.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ReflectionRefractionTests.projectP1Test.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.ReflectionRefractionTests.spaceScene.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.ReflectionRefractionTests.testBlurryGlass.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.ReflectionRefractionTests.trianglesTransparentSphere.executor&quot;: &quot;Run&quot;,
@@ -148,7 +149,7 @@
       <recent name="geometries" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CylinderTests.testFindIntersections">
+  <component name="RunManager" selected="JUnit.All in ISE5784_5754_0359">
     <configuration name="All in ISE5784_5754_0359" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5784_5754_0359" />
       <option name="PACKAGE_NAME" value="" />
@@ -173,22 +174,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ReflectionRefractionTests.createPhoneImage" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ISE5784_5754_0359" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="renderer.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="renderer" />
-      <option name="MAIN_CLASS_NAME" value="renderer.ReflectionRefractionTests" />
-      <option name="METHOD_NAME" value="createPhoneImage" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ReflectionRefractionTests.gumsP" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5784_5754_0359" />
       <extension name="coverage">
@@ -200,6 +185,22 @@
       <option name="PACKAGE_NAME" value="renderer" />
       <option name="MAIN_CLASS_NAME" value="renderer.ReflectionRefractionTests" />
       <option name="METHOD_NAME" value="gumsP" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReflectionRefractionTests.projectP1Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ISE5784_5754_0359" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="renderer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.ReflectionRefractionTests" />
+      <option name="METHOD_NAME" value="projectP1Test" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -223,11 +224,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.CylinderTests.testFindIntersections" />
         <item itemvalue="JUnit.All in ISE5784_5754_0359" />
+        <item itemvalue="JUnit.ReflectionRefractionTests.projectP1Test" />
+        <item itemvalue="JUnit.CylinderTests.testFindIntersections" />
         <item itemvalue="JUnit.ReflectionRefractionTests.gumsP" />
         <item itemvalue="JUnit.ReflectionRefractionTests.trianglesTransparentSphere" />
-        <item itemvalue="JUnit.ReflectionRefractionTests.createPhoneImage" />
       </list>
     </recent_temporary>
   </component>

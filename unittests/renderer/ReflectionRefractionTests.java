@@ -14,10 +14,16 @@ import lighting.SpotLight;
 import primitives.*;
 import scene.Scene;
 
-/** Tests for reflection and transparency functionality, test for partial
+import java.util.LinkedList;
+import java.util.List;
+
+/**
+ * Tests for reflection and transparency functionality, test for partial
  * shadows
  * (with transparency)
- * @author dzilb */
+ *
+ * @author dzilb
+ */
 public class ReflectionRefractionTests {
     /**
      * Scene for the tests
@@ -237,405 +243,130 @@ public class ReflectionRefractionTests {
     }
 
 
+    /**
+     * test for ablone game model picture
+     */
     @Test
-    public void myShape4() {
+    public void abaloneGameTest() {
+        scene.lights.add(new SpotLight(new Color(300, 0, 0), new Point(0, 50, -600),//
+                new Vector(0, -50, -1))
+                .setKl(4E-5).setKq(2E-7));
+        scene.lights.add(new PointLight(new Color(0, 0, 200), new Point(250, 25, -600))//
+                .setKl(0.00001).setKq(0.000001));
 
-        final Camera.Builder cameraBuilder1 = Camera.getBuilder()
-                .setDirection(new Vector(1, 0, 0), new Vector(0, 0, 1))
-                .setRayTracer(new SimpleRayTracer(scene));
+        scene.lights.add(new DirectionalLight(new Color(150, 150, 150), new Vector(0, 0, -1)));
 
-        scene.setAmbientLight(new AmbientLight(new Color(255, 255, 255).reduce(6), new Double3(0.15))).lights
-                .add(new SpotLight(new Color(RED), new Point(-300, 6, 10), new Vector(1, 0, 0)));
 
-        double angle = 0;
-        double height = 0;
+        // camara above the bord
+        // cameraBuilder.setLocation(new Point(0, 0, 0)).setDirection(new Vector(0, 0, -1), new Vector(0, 1, 0))
+        //         .setVpSize(150, 150).setDistance(400);
 
-        scene.geometries.add(new Plane(new Point(-4, 4, 0), new Vector(0, 0, 1))
-                .setMaterial(new Material().setKd(0.8).setKs(0.6).setShininess(100).setKt(0.7).setKr(0.5)));
+        // camara in front of the bord
+        cameraBuilder.setLocation(new Point(0, -750, 0)).setDirection(new Vector(0, 750, -800), new Vector(0, 800, 750))
+                .setVpSize(150, 150).setDistance(400);
 
-        java.awt.Color[] colors = {YELLOW, RED, ORANGE, BLUE};
 
-        for (int i = 25; i < 200; ++i) {
-            int colorIndex = i % colors.length;
+        int tableDepth = -800;
+        Point p1 = new Point(0, 120, tableDepth);
+        Point p2 = new Point(104.4, 60, tableDepth);
+        Point p3 = new Point(104.4, -60, tableDepth);
+        Point p4 = new Point(0, -120, tableDepth);
+        Point p5 = new Point(-104.4, -60, tableDepth);
+        Point p6 = new Point(-104.4, 60, tableDepth);
 
-            scene.geometries
-                    .add(new Sphere(new Point(i / 25.0 * Math.cos(angle), i / 25.0 * Math.sin(angle), height), 0.5)
-                            .setEmission(new Color(colors[colorIndex]).reduce(2))
-                            .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(80).setKt(0.3)));
+        Polygon table = new Polygon(p1, p2, p3, p4, p5, p6);
+        Material triangleMat = new Material().setKr(0.7).setKd(0.3).setKs(1).setShininess(20).setKt(0.6);
+        table.setEmission(new Color(0, 0, 0)).setMaterial(triangleMat);
+        Material firstMat = new Material().setKr(0.05).setKd(0.1).setKs(1).setShininess(100);
 
-            angle += Math.PI / 15.0;
-            height += 0.15;
-        }
+        double depthSp = -793;
 
-        java.awt.Color[] colors2 = {BLUE, GREEN, PINK, BLACK, RED, GRAY};
+        Sphere s1 = new Sphere(new Point(0, 101, depthSp), 10);
+        Sphere s2 = new Sphere(new Point(-22, 88.5, depthSp), 10);
+        Sphere s3 = new Sphere(new Point(-44, 76, depthSp), 10);
+        Sphere s4 = new Sphere(new Point(-66, 63.5, depthSp), 10);
+        Sphere s5 = new Sphere(new Point(-88, 51, depthSp), 10);
+        s1.setMaterial(firstMat);
+        s2.setMaterial(firstMat);
+        s3.setMaterial(firstMat);
+        s4.setMaterial(firstMat);
+        s5.setMaterial(firstMat);
 
-        height = 10;
-        for (int i = 25; i < 100; ++i) {
-            int colorIndex = i % colors2.length;
+        Sphere s16 = new Sphere(new Point(-88, 27, depthSp), 10);
+        Sphere s15 = new Sphere(new Point(-66, 39.5, depthSp), 10);
+        Sphere s14 = new Sphere(new Point(-44, 52, depthSp), 10);
+        Sphere s13 = new Sphere(new Point(-22, 64.5, depthSp), 10);
+        Sphere s12 = new Sphere(new Point(0, 77, depthSp), 10);
+        Sphere s11 = new Sphere(new Point(22, 89.5, depthSp), 10);
+        s11.setMaterial(firstMat);
+        s12.setMaterial(firstMat);
+        s13.setMaterial(firstMat);
+        s14.setMaterial(firstMat);
+        s15.setMaterial(firstMat);
+        s16.setMaterial(firstMat);
 
-            scene.geometries.add(new Sphere(new Point(i / 25.0 * Math.cos(angle), i * Math.sin(angle), height), 0.3)
-                    .setEmission(new Color(colors2[colorIndex]).reduce(2))
-                    .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(80).setKt(0.3)));
+        Sphere s21 = new Sphere(new Point(0, 51, depthSp), 10);
+        Sphere s22 = new Sphere(new Point(-22, 39.5, depthSp), 10);
+        Sphere s23 = new Sphere(new Point(-44, 27, depthSp), 10);
 
-            angle += Math.PI / 30.0;
-            height += 0.5;
-        }
+        s21.setMaterial(firstMat);
+        s22.setMaterial(firstMat);
+        s23.setMaterial(firstMat);
 
-        height = 10;
-        for (int i = 25; i < 300; ++i) {
 
-            scene.geometries.add(new Sphere(new Point(i / 25.0 * Math.cos(angle), i * Math.sin(angle), height), 0.05)
-                    .setEmission(new Color(WHITE))
-                    .setMaterial(new Material().setKd(1).setKs(1).setShininess(100).setKt(1)));
+        // gray balls
 
-            angle += Math.PI / 60.0;
-            height += 0.1 % 50;
-        }
+        Sphere s71 = new Sphere(new Point(0, -51, depthSp), 10);
+        Sphere s72 = new Sphere(new Point(22, -39.5, depthSp), 10);
+        Sphere s73 = new Sphere(new Point(44, -27, depthSp), 10);
+        Color secColor = new Color(100, 100, 100);
+        s71.setEmission(secColor).setMaterial(firstMat);
+        s72.setEmission(secColor).setMaterial(firstMat);
+        s73.setEmission(secColor).setMaterial(firstMat);
 
-        scene.lights
-                .add(new SpotLight(new Color(255, 255, 255).reduce(2), new Point(-150, 0, 5), new Vector(1, 0, 0)));
+        Sphere s81 = new Sphere(new Point(88, -27, depthSp), 10);
+        Sphere s82 = new Sphere(new Point(66, -39.5, depthSp), 10);
+        Sphere s83 = new Sphere(new Point(44, -52, depthSp), 10);
+        Sphere s84 = new Sphere(new Point(22, -64.5, depthSp), 10);
+        Sphere s85 = new Sphere(new Point(0, -77, depthSp), 10);
+        Sphere s86 = new Sphere(new Point(-22, -89.5, depthSp), 10);
+        s81.setEmission(secColor).setMaterial(firstMat);
+        s82.setEmission(secColor).setMaterial(firstMat);
+        s83.setEmission(secColor).setMaterial(firstMat);
+        s84.setEmission(secColor).setMaterial(firstMat);
+        s85.setEmission(secColor).setMaterial(firstMat);
+        s86.setEmission(secColor).setMaterial(firstMat);
 
-        scene.lights.add(new SpotLight(new Color(GREEN).reduce(2), new Point(50, 0, 5), new Vector(1, 0, 0)));
+        Sphere s91 = new Sphere(new Point(88, -51, depthSp), 10);
+        Sphere s92 = new Sphere(new Point(66, -63.5, depthSp), 10);
+        Sphere s93 = new Sphere(new Point(44, -76, depthSp), 10);
+        Sphere s94 = new Sphere(new Point(22, -88.5, depthSp), 10);
+        Sphere s95 = new Sphere(new Point(0, -101, depthSp), 10);
+        s91.setEmission(secColor).setMaterial(firstMat);
+        s92.setEmission(secColor).setMaterial(firstMat);
+        s93.setEmission(secColor).setMaterial(firstMat);
+        s94.setEmission(secColor).setMaterial(firstMat);
+        s95.setEmission(secColor).setMaterial(firstMat);
 
-        scene.setBackground(new Color(BLUE).reduce(TRANSLUCENT));
-        cameraBuilder1.setLocation(new Point(-330, 0, 5))
-                .setVpDistance(1000).setVpSize(200d, 200)
-                .setImageWriter(new ImageWriter("myShape4", 500, 500))
-                .build()
-                .renderImage()
-                .writeToImage();
+
+        scene.setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), 0.15));
+
+        scene.geometries.add(table, //
+                s1, s2, s3, s4, s5, //
+                s11, s12, s13, s14, s15, s16, //
+                s21, s22, s23, //
+                s71, s72, s73, //
+                s81, s82, s83, s84, s85, s86,//
+                s91, s92, s93, s94, s95);
+
+        cameraBuilder
+                .setImageWriter(new ImageWriter("abalone game", 1000, 1000))
+                .build().renderImage().writeToImage();
 
     }
 
-    @Test
-    public void testBlurryGlass() {
-
-        Vector vTo = new Vector(0, 1, 0);
-        final Camera.Builder cameraBuilder2 = Camera.getBuilder().setLocation(new Point(0, -230, 0).add(vTo.scale(-13))).setDirection( vTo, new Vector(0, 0, 1))
-                .setVpSize(200d, 200).setVpDistance(1000);
-        ;
-
-        scene.setAmbientLight(new AmbientLight(new Color(gray).reduce(2), new Double3(0.15)));
-
-        for (int i = -4; i < 6; i += 2) {
-            scene.geometries.add(
-                    new Sphere( new Point(5 * i, -1.50, -3),3).setEmission(new Color(red).reduce(4).reduce(2))
-                            .setMaterial(new Material().setKd(0.2).setKs(1).setShininess(80).setKt(0)),
-
-                    new Sphere( new Point(5 * i, 5, 3),3).setEmission(new Color(green).reduce(2))
-                            .setMaterial(new Material().setKd(0.2).setKs(1).setShininess(80).setKt(0)),
-                    new Sphere( new Point(5 * i, -8, -8),3).setEmission(new Color(yellow).reduce(2))
-                            .setMaterial(new Material().setKd(0.2).setKs(1).setShininess(80).setKt(0)),
-
-                    new Polygon(new Point(5 * i - 4, -5, -11), new Point(5 * i - 4, -5, 5), new Point(5 * i + 4, -5, 5),
-                            new Point(5 * i + 4, -5, -11)).setEmission(new Color(250, 235, 215).reduce(2))
-                            .setMaterial(new Material().setKd(0.001).setKs(0.002).setShininess(1).setKt(0.95))
-
-            );
-        }
-
-        scene.geometries.add(new Plane(new Point(1, 10, 1), new Point(2, 10, 1), new Point(5, 10, 0))
-                .setEmission(new Color(white).reduce(3))
-                .setMaterial(new Material().setKd(0.2).setKs(0).setShininess(0).setKt(0))
-
-        );
-
-        // scene.lights.add(new PointLight(new Color(100, 100, 150), new Point(0, 6,
-        // 0)));
-        scene.lights.add(new DirectionalLight(new Color(white).reduce(1), new Vector(-0.4, 1, 0)));
-        scene.lights.add(new SpotLight(new Color(white).reduce(2), new Point(20.43303, -7.37104, 13.77329),
-                new Vector(-20.43, 7.37, -13.77)).setKl(0.6));
-
-        ImageWriter imageWriter = new ImageWriter("blurryGlass2", 500, 500);
-        cameraBuilder2.setImageWriter(imageWriter) //
-                .setRayTracer(new SimpleRayTracer(scene)).build()//
-                .renderImage() //
-                .writeToImage();
-
-    }
-
-
-
-    //sphere functions for making gum
-    private int GumRadius= 40;
-    private Geometry makingStandardGums(Double centerX, Double centerY, Double centerZ, Color color){
-
-        return makingGums(GumRadius,centerX,centerY,centerZ,color);
-    }
-
-    private Geometry makingGums(double r, Double centerX, Double centerY, Double centerZ, Color color){
-
-        return new Sphere(new Point(centerX,centerY,centerZ),r)
-                .setEmission(color)
-                .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(30));
-    }
-
-
-    @Test
-    public void gumsP(){
-
-         Scene scene44 = new Scene("Test111 scene");
-        final Camera.Builder cameraBuilder5 = Camera.getBuilder().setLocation(new Point(2000, 600, 400)).setDirection( new Vector(-1, 0, 0),
-                        new Vector(0, 0, 1))
-                .setVpSize(200, 200).setVpDistance(260)
-                .setRayTracer(new SimpleRayTracer(scene44));
-
-        //region scene
-        scene44.setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE),new Double3(0.10)));
-        //endregion
-
-        //region points
-        //points to square
-        Point v1=new Point(0,100,0);
-        Point v2=new Point(0,1100,0);
-        Point v3=new Point(1000,1100,0);
-        Point v4=new Point(1000,100,0);
-
-        //points to back block
-        Point b1=new Point(0,1100,1200);
-        Point b2=new Point(0,100,1200);
-
-        //points for walls
-        Point c1=new Point(1000,1100,1200);
-        Point c2=new Point(1000,100,1200);
-        //endregion
-
-        //region colors
-        Color florColor=new Color(108, 174, 255);
-        Color Flor = new Color(88, 154, 235);
-        Color pinkGum=new Color(249, 136, 201);
-        Color pink2Gum=new Color(227, 96, 202);
-        Color yellowGum=new Color(239, 223, 112);
-        Color yellow2Gum=new Color(250, 187, 1);
-        Color blue1Gum=new Color(73, 205, 233);
-        Color blue2Gum=new Color(30, 205, 233);
-        Color perpleGum=new Color(209, 135, 221);
-        Color redGum=new Color(237, 73, 99);
-        Color greenGum=new Color(27, 179, 122);
-        //endregion
-
-        //region lights
-        PointLight pointLight = new PointLight(new Color(gray),
-                new Point(800, 900, 1100));
-
-        SpotLight Spot = new SpotLight(new Color(gray),
-                c2,
-                new Vector(-1,1,-1));
-
-        DirectionalLight directionalLight = new DirectionalLight(new Color(gray),
-                new Vector(1,1,0));//new Point(1000D,600D,0D)
-
-        scene44.lights.add(pointLight);
-        scene44.lights.add(Spot);
-        scene44.lights.add(directionalLight);
-        //endregion
-
-        //region poligons
-        scene44.geometries.add(
-
-                new Polygon(v1,v2,v3,v4).setEmission(new Color(BLACK))
-                        .setMaterial(new Material().setKd(0).setKr(0.2).setShininess(50)),
-                new Polygon(v1,v2,b1,b2).setEmission(Flor)
-                        .setMaterial(new Material().setKs(0.2).setKd(0.1).setKt(0.9).setShininess(1)),
-                new Polygon(v2,v3,c1,b1).setEmission(Flor)
-                        .setMaterial(new Material().setKs(0.2).setKd(0.1).setKt(0.9).setShininess(1)),
-                new Polygon(v1,v4,c2,b2).setEmission(Flor)
-                        .setMaterial(new Material().setKs(0.2).setKd(0.1).setKt(0.9).setShininess(1))
-        );
-        //endregion
-
-        //region parameters for cylinders
-        int radius=200;
-        int highTemp=300;
-        int sumLoop1=15;
-        int sumLoop2=15;
-        int hige1=5;
-        int hige2=1;
-        int startHigh=400;
-        //endregion
-
-        //region cylinders
-        //צנצנת ראשית
-        Cylinder cylinder= (Cylinder) new Cylinder(startHigh,radius, new Ray(new Point(500,600,0),
-                new Vector(0,0,1)))
-                .setEmission(new Color(0,0,0))
-                .setMaterial( new Material().setKd(0.2).setKs(0.8).setShininess(100).setKt(0.9));
-        //תחתית הצנצנת
-        Cylinder cylinder1= (Cylinder) new Cylinder(10,radius, new Ray(new Point(500,600,0),
-                new Vector(0,0,1)))
-                .setEmission(new Color(0, 0, 0))
-                .setMaterial( new Material().setKd(0.1).setKs( 0.2).setShininess(1).setKt(1.0));
-
-        //המכסה של הצנצנת
-        Cylinder cylinder2= (Cylinder) new Cylinder(50,radius+10,
-                new Ray(new Point(500,600,startHigh+sumLoop1*hige1),
-                        new Vector(0,0,1)))
-                .setEmission(new Color(188, 48, 152))
-                .setMaterial( new Material().setKd(0.8).setKs( 0.1).setShininess(50).setKt(0.5));
-
-        scene44.geometries.add(
-                cylinder,cylinder1,cylinder2);
-
-
-        for(int i=0;i<sumLoop1;i++){
-            radius-=0.3;
-            cylinder= (Cylinder) new Cylinder
-                    (hige1,radius,new Ray(new Point(500,600,startHigh+(i*hige1)),
-                            new Vector(0,0,1)))
-                    .setEmission(new Color(0,0,0))
-                    .setMaterial( new Material().setKd(0.2).setKs(0.8).setShininess(100).setKt(0.9));
-            scene44.geometries.add(cylinder);
-        }
-        //endregion
-
-        //region gums outside the jar
-        scene44.geometries.add(
-
-                new Sphere(new Point(200,1000,50),50).setEmission(yellow2Gum)
-                        .setMaterial(new Material().setKd(0).setKr(0.2).setShininess(50)),
-                makingGums(GumRadius,850D,310D,50D,pink2Gum),
-                makingGums(50D,600D,280D,50D,yellow2Gum),
-                makingGums(45D,800D,220D,50D,greenGum),
-                makingGums(50D,400D,900D,50D, blue2Gum),
-                makingGums(50D,600D,950D,50D, redGum)
-        );
-        //endregion
-
-        //region gums in jar
-
-        //to place the gums in the jar
-        //X = Xc + r * 2 * cos(theta)
-        //Y = Yc + r * 2 * sin(theta)
-        //Xc is the X center of the cylinder
-        //Yc is the Y center of the cylinder
-        //r is the radius of the spheres
-
-        scene44.geometries.add(
-
-                // region floor 0
-                makingStandardGums(580D,600D,50D,pinkGum),//ϴ=0 |1.0.0
-                makingStandardGums(540D,669.2820323,50D,blue2Gum),//ϴ= π/3 |2.0.0
-                makingStandardGums(460D,669.2820323,50D,yellowGum), //ϴ= 2π/3 |3.0.0
-                makingStandardGums(420D,600D,50D,redGum), //ϴ= π |4.0.0
-                makingStandardGums(460D,530.7179677,50D,pinkGum), //ϴ= 4π/3 |5.0.0
-                makingStandardGums(540D,530.7179677,50D,yellow2Gum), //ϴ= 5π/3 |6.0.0
-                makingStandardGums(580D,680D,50D,pinkGum),//ϴ=0 |1.1.0
-                makingStandardGums(540D,749.2820323,50D,blue2Gum),//ϴ= π/3 |2.1.0
-                makingStandardGums(460D,749.2820323,50D,yellowGum), //ϴ= 2π/3  |3.1.0
-                makingStandardGums(420D,520D,50D,redGum), //ϴ= π |4.-1.0
-                makingStandardGums(460D,450.7179677,50D,blue1Gum), //ϴ= 4π/3 |5.-1.0
-                makingStandardGums(540D,450.7179677,50D,yellow2Gum),//ϴ= 5π/3 |6.-1.0
-                makingStandardGums(610D,510D,50D,pinkGum),//ϴ=0 |0001.-1.0 *
-                makingStandardGums(630D,640D,50D,perpleGum),//ϴ=0 |0.0.0 *
-                makingStandardGums(645D,565D,50D,greenGum),//ϴ=0 |0.1.0 *
-                makingStandardGums(390D,690D,50D,redGum), //ϴ= π |0004.1.0 *
-                makingStandardGums(370D,570D,50D,perpleGum), //ϴ= π |0004.2.0 *
-                makingStandardGums(345D,630D,50D,blue1Gum),//ϴ= π  |0004.3.0 *
-                //endregion
-
-                // region floor 1
-                makingStandardGums(580D,600D,130D,blue2Gum),//ϴ=0 |1.0.1
-                makingStandardGums(540D,669.2820323,130D,pinkGum),//ϴ= π/3 |2.0.1
-                makingStandardGums(460D,669.2820323,130D,perpleGum), //ϴ= 2π/3 |3.0.1
-                makingStandardGums(420D,600D,130D,redGum), //ϴ= π |4.0.1
-                makingStandardGums(460D,530.7179677,130D,blue2Gum), //ϴ= 4π/3 |5.0.1
-                makingStandardGums(540D,530.7179677,130D,perpleGum), //ϴ= 5π/3 |6.0.1
-                makingStandardGums(580D,680D,130D,blue2Gum),//ϴ=0 |1.1.1
-                makingStandardGums(540D,749.2820323,130D,pinkGum),//ϴ= π/3 |2.1.1
-                makingStandardGums(460D,749.2820323,130D,perpleGum), //ϴ= 2π/3  |3.1.1
-                makingStandardGums(420D,520D,130D,redGum), //ϴ= π |4.-1.1
-                makingStandardGums(460D,450.7179677,130D,pinkGum), //ϴ= 4π/3 |5.-1.1
-                makingStandardGums(540D,450.7179677,130D,perpleGum),//ϴ= 5π/3 |6.-1.1
-                makingStandardGums(620D,500D,130D,blue2Gum),//ϴ=0 |0001.-1.1 *
-                makingStandardGums(630D,640D,130D,redGum),//ϴ=0 |0.0.1 *
-                makingStandardGums(645D,565D,130D,yellowGum),//ϴ=0 |0.1.1 *
-                makingStandardGums(390D,690D,130D,redGum), //ϴ= π |0004.1.1 *
-                makingStandardGums(370D,570D,130D,yellowGum), //ϴ= π |0004.2.1 *
-                makingStandardGums(345D,630D,130D,pinkGum),//ϴ= π  |0004.3.1 *
-                //endregion
-
-                // region floor 2
-                makingStandardGums(580D,600D,210D,greenGum),//ϴ=0 |1.0.2
-                makingStandardGums(540D,669.2820323,210D,blue2Gum),//ϴ= π/3 |2.0.2
-                makingStandardGums(460D,669.2820323,210D,yellowGum), //ϴ= 2π/3 |3.0.2
-                makingStandardGums(420D,600D,210D,redGum), //ϴ= π |4.0.2
-                makingStandardGums(460D,530.7179677,210D,pinkGum), //ϴ= 4π/3 |5.0.2
-                makingStandardGums(540D,530.7179677,210D,yellow2Gum), //ϴ= 5π/3 |6.0.2
-                makingStandardGums(580D,680D,210D,pinkGum),//ϴ=0 |1.1.2
-                makingStandardGums(540D,749.2820323,210D,blue2Gum),//ϴ= π/3 |2.1.2
-                makingStandardGums(460D,749.2820323,210D,yellowGum), //ϴ= 2π/3  |3.1.2
-                makingStandardGums(420D,520D,210D,redGum), //ϴ= π |4.-1.2
-                makingStandardGums(460D,450.7179677,210D,blue1Gum), //ϴ= 4π/3 |5.-1.2
-                makingStandardGums(540D,450.7179677,210D,yellow2Gum),//ϴ= 5π/3 |6.-1.2
-                makingStandardGums(610D,510D,210D,pinkGum),//ϴ=0 |0001.-1.2 *
-                makingStandardGums(630D,640D,210D,perpleGum),//ϴ=0 |0.0.2 *
-                makingStandardGums(645D,565D,210D,blue1Gum),//ϴ=0 |0.1.2 *
-                makingStandardGums(390D,690D,210D,redGum), //ϴ= π |0004.1.2 *
-                makingStandardGums(370D,570D,210D,perpleGum), //ϴ= π |0004.2.2 *
-                makingStandardGums(345D,630D,210D,blue1Gum),//ϴ= π  |0004.3.2 *
-                //endregion
-
-                // region floor 3
-                makingStandardGums(580D,600D,290D,blue2Gum),//ϴ=0 |1.0.3
-                makingStandardGums(540D,669.2820323,290D,pinkGum),//ϴ= π/3 |2.0.3
-                makingStandardGums(460D,669.2820323,290D,perpleGum), //ϴ= 2π/3 |3.0.3
-                makingStandardGums(420D,600D,290D,redGum), //ϴ= π |4.0.3
-                makingStandardGums(460D,530.7179677,290D,blue2Gum), //ϴ= 4π/3 |5.0.3
-                makingStandardGums(540D,530.7179677,290D,perpleGum), //ϴ= 5π/3 |6.0.3
-                makingStandardGums(580D,680D,290D,blue2Gum),//ϴ=0 |1.1.3
-                makingStandardGums(540D,749.2820323,290D,pinkGum),//ϴ= π/3 |2.1.3
-                makingStandardGums(460D,749.2820323,290D,perpleGum), //ϴ= 2π/3  |3.1.3
-                makingStandardGums(420D,520D,290D,redGum), //ϴ= π |4.-1.3
-                makingStandardGums(460D,450.7179677,290D,pinkGum), //ϴ= 4π/3 |5.-1.3
-                makingStandardGums(540D,450.7179677,290D,perpleGum),//ϴ= 5π/3 |6.-1.3
-                makingStandardGums(620D,500D,290D,blue2Gum),//ϴ=0 |0001.-1.3 *
-                makingStandardGums(630D,640D,290D,yellowGum),//ϴ=0 |0.0.3 *
-                makingStandardGums(645D,565D,290D,redGum),//ϴ=0 |0.1.3 *
-                makingStandardGums(390D,690D,290D,redGum), //ϴ= π |0004.1.3 *
-                makingStandardGums(370D,570D,290D,yellowGum), //ϴ= π |0004.2.3 *
-                makingStandardGums(345D,630D,290D,pinkGum),//ϴ= π  |0004.3.3 *
-                //endregion
-
-                // region floor 4
-                makingStandardGums(580D,600D,370D,pinkGum),//ϴ=0 |1.0.4
-                makingStandardGums(540D,669.2820323,370D,blue2Gum),//ϴ= π/3 |2.0.4
-                makingStandardGums(460D,669.2820323,370D,yellow2Gum), //ϴ= 2π/3 |3.0.4
-                makingStandardGums(420D,600D,370D,redGum), //ϴ= π |4.0.4
-                makingStandardGums(460D,530.7179677,370D,pinkGum), //ϴ= 4π/3 |5.0.4
-                makingStandardGums(540D,530.7179677,370D,yellow2Gum), //ϴ= 5π/3 |6.0.4
-                makingStandardGums(580D,680D,370D,pinkGum),//ϴ=0 |1.1.4
-                makingStandardGums(540D,749.2820323,370D,blue2Gum),//ϴ= π/3 |2.1.4
-                makingStandardGums(460D,749.2820323,370D,yellowGum), //ϴ= 2π/3  |3.1.4
-                makingStandardGums(420D,520D,370D,redGum), //ϴ= π |4.-1.4
-                makingStandardGums(460D,450.7179677,370D,blue1Gum), //ϴ= 4π/3 |5.-1.4
-                // makingStandartGums(540D,450.7179677,370D,yellow2Gum),//ϴ= 5π/3 |6.-1.4
-                // makingStandartGums(610D,510D,370D,pinkGum),//ϴ=0 |0001.-1.4 *
-                makingStandardGums(630D,640D,370D,perpleGum),//ϴ=0 |0.0.4 *
-                // makingStandartGums(645D,565D,370D,greenGum),//ϴ=0 |0.1.4 *
-                makingStandardGums(390D,690D,370D,redGum), //ϴ= π |0004.1.4 *
-                makingStandardGums(370D,570D,370D,perpleGum), //ϴ= π |0004.2.4 *
-                makingStandardGums(345D,630D,370D,blue1Gum)//ϴ= π  |0004.3.4 *
-                //endregion
-
-
-        );
-        //endregion
-
-        //region buildPhoto
-        //camera.setAntiAliasingFactor(9);
-        cameraBuilder5.setImageWriter(new ImageWriter("gumsPicture", 600, 600)).build()
-                .renderImage()
-                .writeToImage();
-        //endregion
-
-//        //region buildPhoto
-//        camera.setAntiAliasingFactor(9);
-//        camera.setImageWriter(new ImageWriter("gumsAntiAliasingPicture", 600, 600))
-//                .renderImage()
-//                .writeToImage();
-//        //endregion
-
-    }
 }
+
+
 
 
