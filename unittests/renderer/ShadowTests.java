@@ -40,7 +40,7 @@ public class ShadowTests {
                         .setKl(1E-5).setKq(1.5E-7));
         camera.setImageWriter(new ImageWriter(pictName, 400, 400))
                 .build()
-                .renderImage() //
+                .renderImage(1) //
                 .writeToImage();
     }
 
@@ -119,7 +119,7 @@ public class ShadowTests {
 
         camera.setImageWriter(new ImageWriter("shadowTrianglesSphere", 600, 600))
                 .build()
-                .renderImage()
+                .renderImage(1)
                 .writeToImage();
     }
 

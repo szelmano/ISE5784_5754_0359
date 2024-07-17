@@ -80,8 +80,8 @@ public class SimpleRayTracer extends RayTracerBase {
         Material material = gp.geometry.getMaterial();
         Vector v = ray.getDirection();
         Vector n = gp.geometry.getNormal(gp.point);
-        return calcGlobalEffect(constructRefractedRay(gp, v, n), material.kT, level, k)
-                .add(calcGlobalEffect(constructReflectedRay(gp, v, n), material.kR, level, k));
+        return calcGlossyMattColor(constructRefractedRay(gp, v, n),n, level, k ,material,material.kT)
+                .add(calcGlossyMattColor(constructReflectedRay(gp, v, n),n, level, k ,material,material.kR));
     }
 
     /**
@@ -101,6 +101,19 @@ public class SimpleRayTracer extends RayTracerBase {
                 .scale(kx);
     }
 
+    private Color calcGlossyMattColor(Ray ray, Vector n, int level, Double3 k, Material material, Double3 kx) {
+        Color color = Color.BLACK;
+        Vector dir = ray.getDirection();
+        List<Ray> rayBeam = ray.calculateBeam(material.beamBoard);
+        int counter = 0;
+        for (Ray ray1 : rayBeam) {
+            if (dir.dotProduct(n) * ray1.getDirection().dotProduct(n) > 0) {
+                color = color.add(calcGlobalEffect(ray1, kx,level,k));
+                ++counter;
+            }
+        }
+        return color.reduce(counter);
+    }
 
     /**
      * Finds the closest intersection point of a ray with the scene's geometries.

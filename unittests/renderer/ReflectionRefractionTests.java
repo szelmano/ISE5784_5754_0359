@@ -14,9 +14,6 @@ import lighting.SpotLight;
 import primitives.*;
 import scene.Scene;
 
-import java.util.LinkedList;
-import java.util.List;
-
 /**
  * Tests for reflection and transparency functionality, test for partial
  * shadows
@@ -54,7 +51,7 @@ public class ReflectionRefractionTests {
                 .setVpSize(150, 150)
                 .setImageWriter(new ImageWriter("refractionTwoSpheres", 500, 500))
                 .build()
-                .renderImage()
+                .renderImage(1)
                 .writeToImage();
     }
 
@@ -89,7 +86,7 @@ public class ReflectionRefractionTests {
                 .setVpSize(2500, 2500)
                 .setImageWriter(new ImageWriter("reflectionTwoSpheresMirrored", 500, 500))
                 .build()
-                .renderImage()
+                .renderImage(1)
                 .writeToImage();
     }
 
@@ -120,7 +117,7 @@ public class ReflectionRefractionTests {
                 .setVpSize(200, 200)
                 .setImageWriter(new ImageWriter("refractionShadow", 600, 600))
                 .build()
-                .renderImage()
+                .renderImage(1)
                 .writeToImage();
     }
 
@@ -155,7 +152,7 @@ public class ReflectionRefractionTests {
                 .setVpSize(200, 200)
                 .setImageWriter(new ImageWriter("customSceneTest", 600, 600))
                 .build()
-                .renderImage()
+                .renderImage(1)
                 .writeToImage();
     }
 
@@ -193,7 +190,7 @@ public class ReflectionRefractionTests {
         // Render the image and save it
         cameraBuilder.setImageWriter(new ImageWriter("customSceneTestWithBonuses", 600, 600))
                 .build()
-                .renderImage()
+                .renderImage(1)
                 .writeToImage();
     }
 
@@ -238,7 +235,7 @@ public class ReflectionRefractionTests {
                 .setVpSize(200, 200)
                 .setImageWriter(new ImageWriter("customSceneTest", 600, 600))
                 .build()
-                .renderImage()
+                .renderImage(1)
                 .writeToImage();
     }
 
@@ -277,6 +274,7 @@ public class ReflectionRefractionTests {
         Polygon table = new Polygon(p1, p2, p3, p4, p5, p6);
         Material triangleMat = new Material().setKr(0.7).setKd(0.3).setKs(1).setShininess(20).setKt(0.6);
         table.setEmission(new Color(0, 0, 0)).setMaterial(triangleMat);
+
         Material firstMat = new Material().setKr(0.05).setKd(0.1).setKs(1).setShininess(100);
 
         double depthSp = -793;
@@ -312,6 +310,10 @@ public class ReflectionRefractionTests {
         s21.setMaterial(firstMat);
         s22.setMaterial(firstMat);
         s23.setMaterial(firstMat);
+
+        Sphere downSpr = new Sphere(new Point(0, -10, -870), 60);
+        downSpr.setEmission(new Color(0, 0, 0)).setMaterial(new Material().setKt(0.5).
+                setShininess(100).setKs(0.5).setKd(0.5));
 
 
         // gray balls
@@ -351,7 +353,7 @@ public class ReflectionRefractionTests {
 
         scene.setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), 0.15));
 
-        scene.geometries.add(table, //
+        scene.geometries.add(table, downSpr, //
                 s1, s2, s3, s4, s5, //
                 s11, s12, s13, s14, s15, s16, //
                 s21, s22, s23, //
@@ -361,7 +363,7 @@ public class ReflectionRefractionTests {
 
         cameraBuilder
                 .setImageWriter(new ImageWriter("abalone game", 1000, 1000))
-                .build().renderImage().writeToImage();
+                .build().renderImage(1).writeToImage();
 
     }
 

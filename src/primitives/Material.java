@@ -1,5 +1,7 @@
 package primitives;
 
+import renderer.BeamBoard;
+
 /**
  * Represents the material properties of a geometric object.
  * The material properties determine how the object interacts with light.
@@ -15,6 +17,25 @@ public class Material {
     public Double3 kR = Double3.ZERO;
     /** Shininess coefficient for specular reflection. */
     public int Shininess = 0;
+
+    public BeamBoard beamBoard =new BeamBoard(0);
+
+    public Material setKB(double kB) {
+        beamBoard.setWidth(kB);
+        return this;
+    }
+
+    /**
+     * Sets the density of the beam for the blackboard material.
+     *
+     * @param density The density value to set.
+     * @return The Material object itself.
+     */
+
+    public Material setDensity(int density) {
+        beamBoard.setDensityBeam(density);
+        return this;
+}
 
     /**
      * Sets the diffuse reflection coefficient.

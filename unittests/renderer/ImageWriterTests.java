@@ -12,7 +12,7 @@ import static java.awt.Color.*;
 class ImageWriterTests {
 
     /**
-     * Test method for {@link renderer.ImageWriter#writeToImage()}
+     * Test method for {@link ImageWriter#writeToImage()}
      */
     @Test
     void testWriteToImage() {

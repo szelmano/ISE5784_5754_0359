@@ -4,7 +4,6 @@ import primitives.*;
 
 import java.util.MissingResourceException;
 
-import static primitives.Util.alignZero;
 import static primitives.Util.isZero;
 
 /**
@@ -133,13 +132,13 @@ public class Camera implements Cloneable {
      * Renders the image by casting rays through each pixel.
      * @return The camera after rendering the image.
      */
-    public Camera renderImage() {
+    public Camera renderImage(int size) {
         int nX = imageWriter.getNx();
         int nY = imageWriter.getNy();
 
         for (int i = 0; i < nX; ++i)
             for (int j = 0; j < nY; ++j) {
-                castRay(nX, nY, j, i);
+                castRay(nX, nY, j, i,size);
             }
         return this;
     }
@@ -151,7 +150,8 @@ public class Camera implements Cloneable {
      * @param column The column index of the pixel.
      * @param row The row index of the pixel.
      */
-    private void castRay(int nX, int nY, int column, int row) {
+    private void castRay(int nX, int nY, int column, int row,int size) {
+
         Ray ray = constructRay(nX, nY, column, row);
         Color color = rayTracer.traceRay(ray);
         imageWriter.writePixel(column, row, color);
