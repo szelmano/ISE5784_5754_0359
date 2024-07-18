@@ -54,7 +54,6 @@ public class BeamBoard {
 
     /**
      * Constructs a blackboard with the specified width.
-     *
      * @param kB The width of the blackboard.
      */
     public BeamBoard(double kB) {
@@ -65,7 +64,6 @@ public class BeamBoard {
 
     /**
      * Gets the density of rays in the beam.
-     *
      * @return The density of rays in the beam.
      */
     public int getDensityBeam() {
@@ -74,7 +72,6 @@ public class BeamBoard {
 
     /**
      * Sets the density of rays in the beam.
-     *
      * @param densityBeam The density of rays in the beam.
      * @return The updated blackboard.
      */
@@ -89,7 +86,6 @@ public class BeamBoard {
 
     /**
      * Gets the width of the blackboard.
-     *
      * @return The width of the blackboard.
      */
     public double getWidth() {
@@ -98,7 +94,6 @@ public class BeamBoard {
 
     /**
      * Sets the width of the blackboard.
-     *
      * @param width The width of the blackboard.
      * @return The updated blackboard.
      */
@@ -108,6 +103,7 @@ public class BeamBoard {
         halfPixel = pixelSize / 2;
         return this;
     }
+
     public BeamBoard setDictance(double dic) {
         this.distance = dic;
         return this;
@@ -115,7 +111,6 @@ public class BeamBoard {
 
     /**
      * Sets the rays for the given ray.
-     *
      * @param ray The ray for which to set the rays.
      * @return The list of points representing the rays.
      */
@@ -135,7 +130,6 @@ public class BeamBoard {
 
     /**
      * Constructs a grid of points along the given ray.
-     *
      * @param ray the ray to construct the grid along
      * @return a list of points forming the grid
      */
@@ -158,6 +152,6 @@ public class BeamBoard {
             }
         }
         return points;
-}
+    }
 
 }

@@ -11,23 +11,16 @@ import static primitives.Util.*;
  * Represents a ray in 3D space, defined by its starting point and direction.
  */
 public class Ray {
-    /**
-     * The starting point of the ray.
-     */
+    /** The starting point of the ray. */
     private final Point head;
-    /**
-     * The direction of the ray.
-     */
+    /** The direction of the ray. */
     private final Vector direction;
-    /**
-     * A small constant value used to slightly move the origin of the shadow rays to avoid self-shadowing.
-     */
+    /** A small constant value used to slightly move the origin of the shadow rays to avoid self-shadowing. */
     private static final double DELTA = 0.1;
 
 
     /**
      * Constructs a new Ray object with the specified starting point and direction.
-     *
      * @param head      The starting point of the ray.
      * @param direction The direction of the ray.
      */
@@ -40,7 +33,6 @@ public class Ray {
     /**
      * Constructs a new Ray object with the specified starting point, direction, and normal.
      * The starting point is moved slightly in the direction of the normal to avoid self-shadowing.
-     *
      * @param p         The starting point of the ray.
      * @param direction The direction of the ray.
      * @param n         The normal vector at the starting point.
@@ -54,7 +46,6 @@ public class Ray {
 
     /**
      * Function that gets the head of the ray.
-     *
      * @return The head of the ray.
      */
     public Point getHead() {
@@ -63,7 +54,6 @@ public class Ray {
 
     /**
      * Function that gets the direction of the ray.
-     *
      * @return The direction of the ray.
      */
     public Vector getDirection() {
@@ -72,7 +62,6 @@ public class Ray {
 
     /**
      * Calculates a point on the ray at a given distance from the ray's head.
-     *
      * @param t The distance from the ray's origin along the ray's direction.
      * @return The point on the ray at distance `t` from the origin.
      */
@@ -106,7 +95,6 @@ public class Ray {
 
     /**
      * Finds the closest point to the head of the ray from a list of points.
-     *
      * @param points List of points to check.
      * @return The point closest to the head of the ray, or null if the list is empty.
      */
@@ -117,7 +105,6 @@ public class Ray {
 
     /**
      * Finds the closest GeoPoint to the head of the ray from a list of GeoPoints.
-     *
      * @param gp List of GeoPoints to check.
      * @return The GeoPoint closest to the head of the ray, or null if the list is empty.
      */

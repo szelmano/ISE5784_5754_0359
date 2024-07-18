@@ -31,7 +31,7 @@ public class Triangle extends Polygon {
      * @return A list of GeoPoint intersection points, or null if no intersection is found.
      */
     @Override
-    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray,double maxDistance) {
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxDistance) {
         Point p0 = ray.getHead(); // The starting point of the ray
         Vector v = ray.getDirection(); // The direction vector of the ray
         Plane plane = this.plane;

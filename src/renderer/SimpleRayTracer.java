@@ -80,8 +80,8 @@ public class SimpleRayTracer extends RayTracerBase {
         Material material = gp.geometry.getMaterial();
         Vector v = ray.getDirection();
         Vector n = gp.geometry.getNormal(gp.point);
-        return calcGlossyMattColor(constructRefractedRay(gp, v, n),n, level, k ,material,material.kT)
-                .add(calcGlossyMattColor(constructReflectedRay(gp, v, n),n, level, k ,material,material.kR));
+        return calcGlossyMattColor(constructRefractedRay(gp, v, n), n, level, k, material, material.kT)
+                .add(calcGlossyMattColor(constructReflectedRay(gp, v, n), n, level, k, material, material.kR));
     }
 
     /**

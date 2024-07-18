@@ -18,7 +18,7 @@ public class Material {
     /** Shininess coefficient for specular reflection. */
     public int Shininess = 0;
 
-    public BeamBoard beamBoard =new BeamBoard(0);
+    public BeamBoard beamBoard = new BeamBoard(0);
 
     public Material setKB(double kB) {
         beamBoard.setWidth(kB);
@@ -27,11 +27,9 @@ public class Material {
 
     /**
      * Sets the density of the beam for the blackboard material.
-     *
      * @param density The density value to set.
      * @return The Material object itself.
      */
-
     public Material setDensity(int density) {
         beamBoard.setDensityBeam(density);
         return this;

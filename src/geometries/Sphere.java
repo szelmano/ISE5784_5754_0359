@@ -16,7 +16,6 @@ public class Sphere extends RadialGeometry {
 
     /**
      * Constructs a new Sphere object with the specified radius and center point.
-     *
      * @param center The center point of the sphere.
      * @param radius The radius of the sphere.
      */
@@ -44,7 +43,7 @@ public class Sphere extends RadialGeometry {
      * @return A list of GeoPoint  intersection points, or null if no intersection is found.
      */
     @Override
-    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray,double maxDistance) {
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxDistance) {
         Point p0 = ray.getHead();
         Vector v = ray.getDirection();
 

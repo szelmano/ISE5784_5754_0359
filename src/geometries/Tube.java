@@ -52,7 +52,7 @@ public class Tube extends RadialGeometry {
     }
 
     @Override
-    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray,double maxDistance) {
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxDistance) {
         // solve for t : At^2 + Bt + C = 0
         // axis params: pa,va, ray params: p,vr
 
