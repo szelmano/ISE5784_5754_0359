@@ -95,10 +95,6 @@ public class Camera implements Cloneable {
      */
     public Ray constructRay(int nX, int nY, int j, int i) {
 
-        // Verify that nX and nY are not zero to avoid division by zero
-        if (nY == 0 || nX == 0)
-            throw new IllegalArgumentException("It is impossible to divide by 0");
-
         // Calculate the center point of the image plane (pC) by moving from the camera location
         // along the viewing direction (vTo) by the specified distance
         Point pC = location.add(vTo.scale(distance));
@@ -135,10 +131,14 @@ public class Camera implements Cloneable {
     public Camera renderImage(int size) {
         int nX = imageWriter.getNx();
         int nY = imageWriter.getNy();
+        // Verify that nX and nY are not zero to avoid division by zero
+        if (nY == 0 || nX == 0)
+            throw new IllegalArgumentException("It is impossible to divide by 0");
 
         for (int i = 0; i < nX; ++i)
             for (int j = 0; j < nY; ++j) {
                 castRay(nX, nY, j, i,size);
+
             }
         return this;
     }
@@ -151,7 +151,6 @@ public class Camera implements Cloneable {
      * @param row The row index of the pixel.
      */
     private void castRay(int nX, int nY, int column, int row,int size) {
-
         Ray ray = constructRay(nX, nY, column, row);
         Color color = rayTracer.traceRay(ray);
         imageWriter.writePixel(column, row, color);

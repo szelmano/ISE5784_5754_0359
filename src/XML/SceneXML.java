@@ -86,14 +86,18 @@ public class SceneXML {
                 scene.geometries.add(parseTriangle(triangleElement));
             }
 
-            NodeList tubesList = geometriesElement.getElementsByTagName("tube");
-            for (int i = 0; i < tubesList.getLength(); i++) {
-                Element tubeElement = (Element) tubesList.item(i);
-                scene.geometries.add(parseTube(tubeElement));
-            }
+            addGeometries(geometriesElement, scene, "tube");
         }
 
         return scene;
+    }
+
+    private static void addGeometries(Element geometriesElement, Scene scene, String geometryName) {
+        NodeList tubesList = geometriesElement.getElementsByTagName(geometryName);
+        for (int i = 0; i < tubesList.getLength(); i++) {
+            Element tubeElement = (Element) tubesList.item(i);
+            scene.geometries.add(parseTube(tubeElement));
+        }
     }
 
 }

@@ -83,7 +83,7 @@ public class Parse {
      * @param element The tube element.
      * @return The Tube object created from the element.
      */
-    public static Tube parseTube(Element element) {
+    public static Geometry parseTube(Element element) {
         double radius = Double.parseDouble(element.getAttribute("radius"));
         Ray axisRay = parseRay(element.getAttribute("axis"));
         return new Tube(radius, axisRay);

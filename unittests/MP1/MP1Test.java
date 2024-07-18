@@ -115,13 +115,13 @@ class MP1Test {
         towerSphere1.setEmission(new Color(0,0,0)).setMaterial(new Material().setKt(0.5).
                 setShininess(100).setKs(0.5).setKd(0.5));
 
-//        Point p11=new Point(0,1000,-1200);
-//        Point p12=new Point(0,250,-1200);
-//        Point p13=new Point(1000,-200,-1000);
-//        Point p14=new Point(1000,1000,-1000);
-//        Polygon mir=new Polygon(p11,p12,p13,p14);
-//        Material mirrorMaterial = new Material().setKr(1.0).setKd(0); // חומר מראה
-//        mir.setMaterial(mirrorMaterial);
+        Point p11=new Point(100,500,-1200);
+        Point p12=new Point(100,250,-1200);
+        Point p13=new Point(1000,-200,-1000);
+        Point p14=new Point(1000,1000,-1000);
+        Polygon mir=new Polygon(p11,p12,p13,p14);
+        Material mirrorMaterial = new Material().setKr(1.0).setKd(0); // חומר מראה
+        mir.setMaterial(mirrorMaterial);
 
 
 
