@@ -15,8 +15,6 @@ import static primitives.Util.isZero;
  * This ray tracer calculates the color of the closest intersection point of a ray with the scene's geometries.
  */
 public class SimpleRayTracer extends RayTracerBase {
-//    /** A small constant value used to slightly move the origin of the shadow rays to avoid self-shadowing. */
-//    private static final double DELTA = 0.1;
     /** Maximum recursion level for calculating global effects (reflection/refraction). */
     private static final int MAX_CALC_COLOR_LEVEL = 10;
     /** Minimum factor for calculating color contribution. */

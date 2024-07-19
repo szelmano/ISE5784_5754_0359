@@ -56,36 +56,11 @@ public class SceneXML {
         if (geometriesList.getLength() > 0) {
             Element geometriesElement = (Element) geometriesList.item(0);
 
-            NodeList cylindersList = geometriesElement.getElementsByTagName("cylinder");
-            for (int i = 0; i < cylindersList.getLength(); i++) {
-                Element cylinderElement = (Element) cylindersList.item(i);
-                scene.geometries.add(parseCylinder(cylinderElement));
-            }
-
-            NodeList planesList = geometriesElement.getElementsByTagName("plane");
-            for (int i = 0; i < planesList.getLength(); i++) {
-                Element planeElement = (Element) planesList.item(i);
-                scene.geometries.add(parsePlane(planeElement));
-            }
-
-            NodeList polygonsList = geometriesElement.getElementsByTagName("polygon");
-            for (int i = 0; i < polygonsList.getLength(); i++) {
-                Element polygonElement = (Element) polygonsList.item(i);
-                scene.geometries.add(parsePolygon(polygonElement));
-            }
-
-            NodeList spheresList = geometriesElement.getElementsByTagName("sphere");
-            for (int i = 0; i < spheresList.getLength(); i++) {
-                Element sphereElement = (Element) spheresList.item(i);
-                scene.geometries.add(parseSphere(sphereElement));
-            }
-
-            NodeList trianglesList = geometriesElement.getElementsByTagName("triangle");
-            for (int i = 0; i < trianglesList.getLength(); i++) {
-                Element triangleElement = (Element) trianglesList.item(i);
-                scene.geometries.add(parseTriangle(triangleElement));
-            }
-
+            addGeometries(geometriesElement, scene, "cylinder");
+            addGeometries(geometriesElement, scene, "plane");
+            addGeometries(geometriesElement, scene, "polygon");
+            addGeometries(geometriesElement, scene, "sphere");
+            addGeometries(geometriesElement, scene, "triangle");
             addGeometries(geometriesElement, scene, "tube");
         }
 
@@ -93,11 +68,35 @@ public class SceneXML {
     }
 
     private static void addGeometries(Element geometriesElement, Scene scene, String geometryName) {
-        NodeList tubesList = geometriesElement.getElementsByTagName(geometryName);
-        for (int i = 0; i < tubesList.getLength(); i++) {
-            Element tubeElement = (Element) tubesList.item(i);
-            scene.geometries.add(parseTube(tubeElement));
+        NodeList geometryList = geometriesElement.getElementsByTagName(geometryName);
+        for (int i = 0; i < geometryList.getLength(); i++) {
+            Element geometryElement = (Element) geometryList.item(i);
+            switch (geometryName) {
+                case "cylinder":
+                    scene.geometries.add(parseCylinder(geometryElement));
+                    break;
+                case "plane":
+                    scene.geometries.add(parsePlane(geometryElement));
+                    break;
+                case "polygon":
+                    try {
+                        scene.geometries.add(parsePolygon(geometryElement));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case "sphere":
+                    scene.geometries.add(parseSphere(geometryElement));
+                    break;
+                case "triangle":
+                    scene.geometries.add(parseTriangle(geometryElement));
+                    break;
+                case "tube":
+                    scene.geometries.add(parseTube(geometryElement));
+                    break;
+                default:
+                    throw new IllegalArgumentException("Unsupported geometry type: " + geometryName);
+            }
         }
     }
-
 }
