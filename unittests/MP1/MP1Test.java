@@ -178,8 +178,8 @@ class MP1Test {
                 s91, s92, s93, s94, s95);
 
         cameraBuilder
-                .setImageWriter(new ImageWriter("abalone game", 1000, 1000))
-                .build().renderImage(5).writeToImage();
+                .setImageWriter(new ImageWriter("abalone game2", 1000, 1000))
+                .build().renderImage(50).writeToImage();
 
     }
 

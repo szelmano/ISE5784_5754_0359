@@ -11,7 +11,7 @@ import java.util.Random;
 import static primitives.Util.isZero;
 
 
-public class BeamBoard {
+public class BlackBoard {
     private static final Random random = new Random();
 
     /**
@@ -20,12 +20,12 @@ public class BeamBoard {
     private Point pC;
 
     /**
-     * The upward direction vector on the blackboard.
+     * The up vector of the blackboard.
      */
     private Vector vUp;
 
     /**
-     * The right direction vector on the blackboard.
+     * The right vector of the blackboard.
      */
     private Vector vRight;
 
@@ -40,7 +40,7 @@ public class BeamBoard {
     private int densityBeam = 9;
 
     /**
-     * The distance between the blackboard and the rays.
+     * The distance between the blackboard and the beginning rays.
      */
     private   double distance = 3;
 
@@ -54,20 +54,12 @@ public class BeamBoard {
 
     /**
      * Constructs a blackboard with the specified width.
-     * @param kB The width of the blackboard.
+     * @param width The width of the blackboard.
      */
-    public BeamBoard(double kB) {
-        width = kB;
+    public BlackBoard(double width) {
+        this.width = width;
         pixelSize = width / relative;
         halfPixel = pixelSize / 2;
-    }
-
-    /**
-     * Gets the density of rays in the beam.
-     * @return The density of rays in the beam.
-     */
-    public int getDensityBeam() {
-        return densityBeam;
     }
 
     /**
@@ -75,7 +67,7 @@ public class BeamBoard {
      * @param densityBeam The density of rays in the beam.
      * @return The updated blackboard.
      */
-    public BeamBoard setDensityBeam(int densityBeam) {
+    public BlackBoard setDensityBeam(int densityBeam) {
         this.densityBeam = densityBeam;
         relative = (int) (densityBeam * Math.sqrt(1.27324));
         align = (relative - 1) / 2d;
@@ -84,28 +76,21 @@ public class BeamBoard {
         return this;
     }
 
-    /**
-     * Gets the width of the blackboard.
-     * @return The width of the blackboard.
-     */
-    public double getWidth() {
-        return width;
-    }
 
     /**
      * Sets the width of the blackboard.
      * @param width The width of the blackboard.
      * @return The updated blackboard.
      */
-    public BeamBoard setWidth(double width) {
+    public BlackBoard setWidth(double width) {
         this.width = width;
         pixelSize = width / relative;
         halfPixel = pixelSize / 2;
         return this;
     }
 
-    public BeamBoard setDictance(double dic) {
-        this.distance = dic;
+    public BlackBoard setDictance(double distance) {
+        this.distance = distance;
         return this;
     }
 
@@ -115,16 +100,16 @@ public class BeamBoard {
      * @return The list of points representing the rays.
      */
     public List<Point> setRays(Ray ray) {
-        Vector vRay = ray.getDirection();
-        Point pRay = ray.getHead();
-        pC = pRay.add(vRay.scale(distance));
+        Vector dir = ray.getDirection();
+        Point p0 = ray.getHead();
+        pC = p0.add(dir.scale(distance));
 
-        if (vRay.equals(new Vector(0,0,1)) || vRay.equals(new Vector(0,0,-1)))
+        if (dir.equals(new Vector(0,0,1)) || dir.equals(new Vector(0,0,-1)))
             vUp = new Vector(0,1,0);
         else
-            vUp = new Vector(-vRay.getY(), vRay.getX(), 0).normalize();
+            vUp = dir.getOrthogonalVector();
 
-        this.vRight = vRay.crossProduct(vUp);
+        this.vRight = dir.crossProduct(vUp);
         return constructGrid(ray);
     }
 

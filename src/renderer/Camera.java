@@ -1,11 +1,9 @@
 package renderer;
 
 import primitives.*;
+import primitives.Vector;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.MissingResourceException;
-import java.util.Random;
+import java.util.*;
 
 import static primitives.Util.isZero;
 
@@ -32,6 +30,8 @@ public class Camera implements Cloneable {
     private ImageWriter imageWriter;
     /** The ray tracer for tracing rays in the scene. */
     private RayTracerBase rayTracer;
+
+    private BlackBoard blackBoard =new BlackBoard(0);
 
 
     /**
@@ -127,46 +127,21 @@ public class Camera implements Cloneable {
         return new Ray(location, pIJ.subtract(location));
     }
 
+
     // New method to construct multiple rays through a pixel
     public List<Ray> constructRays(int nX, int nY, int j, int i, int numRays) {
         Random random = new Random();
         List<Ray> rays = new ArrayList<>();
+         blackBoard.setDictance(this.distance);
+         blackBoard.setWidth(width/nX);
+         blackBoard.setDensityBeam(numRays);
+        Ray ray = constructRay(nX, nY, j, i);
+         rays= ray.calculateBeam(blackBoard);
 
-        // Calculate the center point of the image plane (pC)
-        Point pC = location.add(vTo.scale(distance));
-        // Calculate the width (rX) and height (rY) of a single pixel on the image plane
-        double rX = width / nX;
-        double rY = height / nY;
+         return rays;
 
-        // Generate multiple rays for the given pixel
-        for (int k = 0; k < numRays; k++) {
-            // Calculate random offset within the pixel
-            double offsetX = (random.nextDouble() - 0.5) * rX;
-            double offsetY = (random.nextDouble() - 0.5) * rY;
-
-            // Calculate the position of the ray's target point on the image plane
-            double xJ = (j - (nX - 1) / 2d) * rX + offsetX;
-            double yI = -(i - (nY - 1) / 2d) * rY + offsetY;
-
-            // Initialize the point Pij to the center of the image plane (Pc)
-            Point pIJ = pC;
-
-            // If xJ is not zero, move Pij horizontally by xJ along the right direction (vRight)
-            if (!isZero(xJ)) {
-                pIJ = pIJ.add(vRight.scale(xJ));
-            }
-
-            // If yI is not zero, move Pij vertically by yI along the up direction (vUp)
-            if (!isZero(yI)) {
-                pIJ = pIJ.add(vUp.scale(yI));
-            }
-
-            // Create a new Ray from the camera location (location) towards the calculated point (Pij)
-            rays.add(new Ray(location, pIJ.subtract(location)));
-        }
-
-        return rays;
     }
+
 
     /**
      * Renders the image by casting rays through each pixel.
@@ -195,14 +170,17 @@ public class Camera implements Cloneable {
      * @param row The row index of the pixel.
      */
     private void castRay(int nX, int nY, int column, int row, int size) {
-        Color color;
+        Color color=Color.BLACK;
         if (size == 1) {
             Ray ray = constructRay(nX, nY, column, row);
             color = rayTracer.traceRay(ray);
         } else {
             List<Ray> rays = constructRays(nX, nY, column, row, size);
-            color = averageColor(rays);
-        }
+            for (Ray ray1 : rays) {
+                    color = color.add( rayTracer.traceRay(ray1));
+                }
+            color=color.reduce(rays.size());
+            }
         imageWriter.writePixel(column, row, color);
     }
 
@@ -537,6 +515,7 @@ public class Camera implements Cloneable {
                 throw new RuntimeException(e);
             }
         }
+
     }
 
 }

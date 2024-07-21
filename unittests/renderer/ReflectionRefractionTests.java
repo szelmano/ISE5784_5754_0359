@@ -194,52 +194,6 @@ public class ReflectionRefractionTests {
                 .writeToImage();
     }
 
-    @Test
-    public void customScene() {
-        scene.geometries.add(
-                new Sphere(new Point(-50, -35, -50), 30d)
-                        .setEmission(new Color(255, 0, 0)) // Red sphere
-                        .setMaterial(new Material().setKd(0.4).setKs(0.6).setShininess(100).setKt(0)),
-                new Sphere(new Point(-20, -5, 0), 20d)
-                        .setEmission(new Color(0, 100, 150)) // Blue sphere with transparency
-                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(80).setKt(0.3)),
-                new Triangle(new Point(0, 100, -80), new Point(30, 20, -100), new Point(100, 70, -80)) // Adjusted triangle positions and rotation
-                        .setEmission(new Color(0, 150, 50))
-                        .setMaterial(new Material().setKd(0.6).setKs(0.4).setShininess(60)),
-                new Triangle(new Point(15, 30, -50), new Point(90, -30, -70), new Point(50, 80, -60)) // Adjusted triangle positions and rotation
-                        .setEmission(new Color(100, 0, 150))
-                        .setMaterial(new Material().setKd(0.6).setKs(0.4).setShininess(70)),
-                new Polygon(new Point(0, 0, 0), new Point(10, 0, 0), new Point(10, 10, 0), new Point(0, 10, 0)) // A polygon
-                        .setEmission(new Color(50, 50, 50))
-                        .setMaterial(new Material().setKd(0.4).setKs(0.6).setShininess(80)),
-                new Cylinder(40, 10, new Ray(new Point(30, 30, 30), new Vector(0, 1, 0))) // A cylinder
-                        .setEmission(new Color(0, 255, 0))
-                        .setMaterial(new Material().setKd(0.6).setKs(0.4).setShininess(100)),
-                new Tube(5, new Ray(new Point(-30, -30, -30), new Vector(1, 1, 1))) // A tube
-                        .setEmission(new Color(0, 0, 255))
-                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(60)),
-                new Plane(new Point(0, 0, -150), new Vector(0, 0, 1)) // A plane
-                        .setEmission(new Color(255, 255, 0))
-                        .setMaterial(new Material().setKd(0.3).setKs(0.3).setShininess(40))
-        );
-
-        scene.setAmbientLight(new AmbientLight(new Color(50, 50, 50), 0.4)); // Ambient light affecting all geometries
-
-        scene.lights.add(
-                new SpotLight(new Color(400, 300, 200), new Point(-50, 50, 0), new Vector(1, -1, -1)) // Spot light position and direction
-                        .setKl(0.0001).setKq(0.000005)
-        );
-
-        // Adjust camera settings
-        cameraBuilder.setLocation(new Point(0, 0, 200)).setVpDistance(200)
-                .setVpSize(200, 200)
-                .setImageWriter(new ImageWriter("customSceneTest", 600, 600))
-                .build()
-                .renderImage(1)
-                .writeToImage();
-    }
-
-
     /**
      * test for ablone game model picture
      */
@@ -253,10 +207,6 @@ public class ReflectionRefractionTests {
 
         scene.lights.add(new DirectionalLight(new Color(150, 150, 150), new Vector(0, 0, -1)));
 
-
-        // camara above the bord
-        // cameraBuilder.setLocation(new Point(0, 0, 0)).setDirection(new Vector(0, 0, -1), new Vector(0, 1, 0))
-        //         .setVpSize(150, 150).setDistance(400);
 
         // camara in front of the bord
         cameraBuilder.setLocation(new Point(0, -750, 0)).setDirection(new Vector(0, 750, -800), new Vector(0, 800, 750))

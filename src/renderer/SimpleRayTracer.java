@@ -6,6 +6,7 @@ import primitives.*;
 import scene.Scene;
 
 import java.util.List;
+import java.util.Objects;
 
 import static primitives.Util.alignZero;
 import static primitives.Util.isZero;
@@ -79,7 +80,7 @@ public class SimpleRayTracer extends RayTracerBase {
         Vector v = ray.getDirection();
         Vector n = gp.geometry.getNormal(gp.point);
         return calcGlossyMattColor(constructRefractedRay(gp, v, n), n, level, k, material, material.kT)
-                .add(calcGlossyMattColor(constructReflectedRay(gp, v, n), n, level, k, material, material.kR));
+                .add(calcGlossyMattColor(Objects.requireNonNull(constructReflectedRay(gp, v, n)), n, level, k, material, material.kR));
     }
 
     /**
@@ -102,7 +103,7 @@ public class SimpleRayTracer extends RayTracerBase {
     private Color calcGlossyMattColor(Ray ray, Vector n, int level, Double3 k, Material material, Double3 kx) {
         Color color = Color.BLACK;
         Vector dir = ray.getDirection();
-        List<Ray> rayBeam = ray.calculateBeam(material.beamBoard);
+        List<Ray> rayBeam = ray.calculateBeam(material.blackBoard);
         int counter = 0;
         for (Ray ray1 : rayBeam) {
             if (dir.dotProduct(n) * ray1.getDirection().dotProduct(n) > 0) {

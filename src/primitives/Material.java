@@ -1,6 +1,6 @@
 package primitives;
 
-import renderer.BeamBoard;
+import renderer.BlackBoard;
 
 /**
  * Represents the material properties of a geometric object.
@@ -18,10 +18,10 @@ public class Material {
     /** Shininess coefficient for specular reflection. */
     public int Shininess = 0;
 
-    public BeamBoard beamBoard = new BeamBoard(0);
+    public BlackBoard blackBoard = new BlackBoard(0);
 
-    public Material setKB(double kB) {
-        beamBoard.setWidth(kB);
+    public Material setKb(double kB) {
+        blackBoard.setWidth(kB);
         return this;
     }
 
@@ -31,7 +31,7 @@ public class Material {
      * @return The Material object itself.
      */
     public Material setDensity(int density) {
-        beamBoard.setDensityBeam(density);
+        blackBoard.setDensityBeam(density);
         return this;
 }
 

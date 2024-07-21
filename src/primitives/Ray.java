@@ -1,7 +1,7 @@
 package primitives;
 
 import geometries.Intersectable.GeoPoint;
-import renderer.BeamBoard;
+import renderer.BlackBoard;
 
 import java.util.*;
 
@@ -72,26 +72,6 @@ public class Ray {
         return head.add(direction.scale(t));
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        return (obj instanceof Ray other)
-                && this.head.equals(other.head)
-                && this.direction.equals(other.direction);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(head, direction);
-    }
-
-    @Override
-    public String toString() {
-        return "Ray{" +
-                "head=" + head +
-                ", direction=" + direction +
-                '}';
-    }
 
     /**
      * Finds the closest point to the head of the ray from a list of points.
@@ -127,14 +107,38 @@ public class Ray {
         return closestPoint;
     }
 
-    public List<Ray> calculateBeam(BeamBoard beamBoard) {
+    public List<Ray> calculateBeam(BlackBoard blackBoard) {
         List<Ray> rays = new LinkedList<>();
-        List<Point> points = beamBoard.setRays(this);
+        List<Point> points = blackBoard.setRays(this);
         for (Point point : points) {
             rays.add(new Ray(head, point.subtract(head)));
         }
         return rays;
     }
+
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        return (obj instanceof Ray other)
+                && this.head.equals(other.head)
+                && this.direction.equals(other.direction);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(head, direction);
+    }
+
+    @Override
+    public String toString() {
+        return "Ray{" +
+                "head=" + head +
+                ", direction=" + direction +
+                '}';
+    }
+
 
 }
 
