@@ -107,6 +107,11 @@ public class Ray {
         return closestPoint;
     }
 
+    /**
+     * Calculates a beam of rays based on the blackboard material.
+     * @param blackBoard The blackboard used to calculate the rays.
+     * @return A list of rays calculated from the blackboard.
+     */
     public List<Ray> calculateBeam(BlackBoard blackBoard) {
         List<Ray> rays = new LinkedList<>();
         List<Point> points = blackBoard.setRays(this);
@@ -115,8 +120,6 @@ public class Ray {
         }
         return rays;
     }
-
-
 
     @Override
     public boolean equals(Object obj) {

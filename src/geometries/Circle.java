@@ -9,18 +9,22 @@ import java.util.List;
 import static primitives.Util.alignZero;
 
 /**
- * represent a Circle in 3D
+ * Represents a circle.
+ * A circle is defined by its center, radius and plane containing the circle.
  */
 public class Circle extends Geometry {
+    /**  The plane containing the circle. */
     Plane plane;
+    /** The center point of the circle. */
     Point center;
+    /** The radius of the circle. */
     double radius;
 
     /**
-     * ctr for Circle
-     * @param center of the circle
-     * @param radius of the circle
-     * @param normal to the plane containing the circle
+     * Constructs a new Cylinder object with the specified.
+     * @param center The center of the circle.
+     * @param radius The radius of the circle.
+     * @param normal The normal to the plane containing the circle.
      */
     public Circle(Point center, double radius, Vector normal) {
         this.center = center;

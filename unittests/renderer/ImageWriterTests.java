@@ -23,7 +23,6 @@ class ImageWriterTests {
             }
         }
 
-
         for (int i = 0; i < imageWriter.getNx(); i = i + 50) {
             for (int j = 0; j < imageWriter.getNy(); j++) {
                 imageWriter.writePixel(i, j, new Color(blue));

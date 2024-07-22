@@ -3,7 +3,7 @@ package lighting;
 import primitives.*;
 
 /**
- * Interface representing a light source in a scene.
+ * Interface class representing a light source in a scene.
  */
 public interface LightSource {
 

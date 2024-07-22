@@ -13,43 +13,25 @@ import static primitives.Util.isZero;
 
 public class BlackBoard {
     private static final Random random = new Random();
-
-    /**
-     * The center point of the blackboard.
-     */
+    /** The center point of the blackboard. */
     private Point pC;
-
-    /**
-     * The up vector of the blackboard.
-     */
+    /** The up vector of the blackboard. */
     private Vector vUp;
-
-    /**
-     * The right vector of the blackboard.
-     */
+    /** The right vector of the blackboard. */
     private Vector vRight;
-
-    /**
-     * The width of the blackboard. Default value is 0.
-     */
+    /** The width of the blackboard. Default value is 0. */
     private double width;
-
-    /**
-     * The density of rays in the beam. Default value is 9.
-     */
+    /** The density of rays in the beam. Default value is 9. */
     private int densityBeam = 9;
-
-    /**
-     * The distance between the blackboard and the beginning rays.
-     */
+    /** The distance between the blackboard and the beginning rays. */
     private   double distance = 3;
-
+    /** Relative density used for grid construction. */
     private int relative = (int) (densityBeam * Math.sqrt(1.27324));
-
+    /** Alignment value used for grid construction. */
     private double align = (relative - 1) / 2d;
-
+    /** Size of a pixel in the blackboard grid. */
     private double pixelSize;
-    
+    /** Half of the pixel size in the blackboard grid. */
     private double halfPixel;
 
     /**
@@ -89,6 +71,11 @@ public class BlackBoard {
         return this;
     }
 
+    /**
+     * Sets the distance between the blackboard and the beginning rays.
+     * @param distance The distance to set.
+     * @return The updated blackboard.
+     */
     public BlackBoard setDictance(double distance) {
         this.distance = distance;
         return this;

@@ -46,12 +46,12 @@ class MP1Test {
 
 
         // camara above the bord
-        // cameraBuilder.setLocation(new Point(0, 0, 0)).setDirection(new Vector(0, 0, -1), new Vector(0, 1, 0))
-        //         .setVpSize(150, 150).setDistance(400);
+         cameraBuilder.setLocation(new Point(0, 0, 0)).setDirection(new Vector(0, 0, -1), new Vector(0, 1, 0))
+                 .setVpSize(150, 150).setDistance(400);
 
         // camara in front of the bord
-        cameraBuilder.setLocation(new Point(0, -750, 0)).setDirection(new Vector(0, 750, -800), new Vector(0, 800, 750))
-                .setVpSize(150, 150).setDistance(400);
+       // cameraBuilder.setLocation(new Point(0, -750, 0)).setDirection(new Vector(0, 750, -800), new Vector(0, 800, 750))
+          //      .setVpSize(150, 150).setDistance(400);
 
 
         int tableDepth = -800;
@@ -66,6 +66,16 @@ class MP1Test {
         Material triangleMat = new Material().setKr(0.7).setKd(0.3).setKs(1).setShininess(20).setKt(0.6);
           // .setKB(2).setDensity(4);
         table.setEmission(new Color(0, 0, 0)).setMaterial(triangleMat);
+
+        Point p11 = new Point(0, 150, -800);
+        Point p12 = new Point(104.4, 120, -800);
+        Point p13 = new Point(0, 90, -800);
+        Point p14 = new Point(104.4, 90, -800);
+
+        Polygon mir=new Polygon(p11,p12,p13,p14);
+        mir.setEmission(new Color(20, 20, 20))
+                .setMaterial(new Material().setKr(1));
+
 
         Material firstMat = new Material().setKr(0.05).setKd(0.1).setKs(1).setShininess(100);
 
@@ -106,27 +116,8 @@ class MP1Test {
         // Point center = new Point(0, 50, -800);
 
         Sphere downSpr = new Sphere(new Point(0, 5, -870), 50);
-        downSpr.setEmission(new Color(0,0,0)).setMaterial(new Material().setKt(0.5).
+        downSpr.setEmission(new Color(GRAY)).setMaterial(new Material().setKt(0.5).
                 setShininess(100).setKs(0.5).setKd(0.5));
-
-        Sphere towerSphere1 = new Sphere(new Point(0, -50, -880), 50); // ספרה ראשונה
-
-// הוספת חומר לספרות
-        towerSphere1.setEmission(new Color(0,0,0)).setMaterial(new Material().setKt(0.5).
-                setShininess(100).setKs(0.5).setKd(0.5));
-
-        Point p11=new Point(100,500,-1200);
-        Point p12=new Point(100,250,-1200);
-        Point p13=new Point(1000,-200,-1000);
-        Point p14=new Point(1000,1000,-1000);
-        Polygon mir=new Polygon(p11,p12,p13,p14);
-        Material mirrorMaterial = new Material().setKr(1.0).setKd(0); // חומר מראה
-        mir.setMaterial(mirrorMaterial);
-
-
-
-// הוספת הספרות לסצנה
-        scene.geometries.add(towerSphere1);
 
 
         // gray balls
@@ -169,7 +160,7 @@ class MP1Test {
 
         scene.setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), 0.15));
 
-        scene.geometries.add(table, downSpr,  //
+        scene.geometries.add( table,downSpr,mir,  //
                 s1, s2, s3, s4, s5, //
                 s11, s12, s13, s14, s15, s16, //
                 s21, s22, s23, //
@@ -178,8 +169,8 @@ class MP1Test {
                 s91, s92, s93, s94, s95);
 
         cameraBuilder
-                .setImageWriter(new ImageWriter("abalone game2", 1000, 1000))
-                .build().renderImage(50).writeToImage();
+                .setImageWriter(new ImageWriter("MP1 test", 1000, 1000))
+                .build().renderImage(1).writeToImage();
 
     }
 

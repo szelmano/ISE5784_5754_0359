@@ -30,8 +30,8 @@ public class Camera implements Cloneable {
     private ImageWriter imageWriter;
     /** The ray tracer for tracing rays in the scene. */
     private RayTracerBase rayTracer;
-
-    private BlackBoard blackBoard =new BlackBoard(0);
+    /** The blackboard for generating multiple rays through a pixel for anti-aliasing. */
+    private BlackBoard blackBoard = new BlackBoard(0);
 
 
     /**
@@ -75,7 +75,6 @@ public class Camera implements Cloneable {
      * @return The distance.
      */
     public double getDistance() { return distance; }
-
 
     /**
      * Private default constructor to prevent instantiation.
@@ -128,20 +127,28 @@ public class Camera implements Cloneable {
     }
 
 
-    // New method to construct multiple rays through a pixel
+    /**
+     * Constructs multiple rays through a specified pixel for anti-aliasing.
+     * @param nX Number of pixels in width.
+     * @param nY Number of pixels in height.
+     * @param j  Column index of the pixel.
+     * @param i  Row index of the pixel.
+     * @param numRays Number of rays to construct.
+     * @return A list of rays through the specified pixel.
+     */
     public List<Ray> constructRays(int nX, int nY, int j, int i, int numRays) {
-        Random random = new Random();
-        List<Ray> rays = new ArrayList<>();
-         blackBoard.setDictance(this.distance);
-         blackBoard.setWidth(width/nX);
-         blackBoard.setDensityBeam(numRays);
+//        Random random = new Random();
+        List<Ray> rays;
+//                = new ArrayList<>();
+        blackBoard.setDictance(this.distance);
+        blackBoard.setWidth(width/nX);
+        blackBoard.setDensityBeam(numRays);
         Ray ray = constructRay(nX, nY, j, i);
-         rays= ray.calculateBeam(blackBoard);
+        rays= ray.calculateBeam(blackBoard);
 
-         return rays;
+        return rays;
 
     }
-
 
     /**
      * Renders the image by casting rays through each pixel.
@@ -184,18 +191,18 @@ public class Camera implements Cloneable {
         imageWriter.writePixel(column, row, color);
     }
 
-    /**
-     * Averages the color values of multiple rays.
-     * @param rays List of rays.
-     * @return The averaged color.
-     */
-    private Color averageColor(List<Ray> rays) {
-        Color accumulatedColor = new Color(0, 0, 0); // Assuming Color has a constructor with RGB values
-        for (Ray ray : rays) {
-            accumulatedColor = accumulatedColor.add(rayTracer.traceRay(ray));
-        }
-        return accumulatedColor.reduce(rays.size());
-    }
+//    /**
+//     * Averages the color values of multiple rays.
+//     * @param rays List of rays.
+//     * @return The averaged color.
+//     */
+//    private Color averageColor(List<Ray> rays) {
+//        Color accumulatedColor = new Color(0, 0, 0); // Assuming Color has a constructor with RGB values
+//        for (Ray ray : rays) {
+//            accumulatedColor = accumulatedColor.add(rayTracer.traceRay(ray));
+//        }
+//        return accumulatedColor.reduce(rays.size());
+//    }
 
     /**
      * Prints a grid on the image with the specified interval and color.
@@ -237,13 +244,21 @@ public class Camera implements Cloneable {
         imageWriter.writeToImage();
     }
 
-
+    /**
+     * Translates the camera by a given vector.
+     * @param translation The translation vector.
+     * @return The camera after translation.
+     */
     public Camera translate(Vector translation) {
         this.location = this.location.add(translation);
         return this;
     }
 
-
+    /**
+     * Rotates the camera around the forward vector (vTo) by the given angle.
+     * @param angleDegrees The angle to rotate in degrees.
+     * @return The camera after rotation.
+     */
     public Camera rotate(double angleDegrees) {
         double angleRadians = Math.toRadians(angleDegrees);
 
@@ -257,9 +272,6 @@ public class Camera implements Cloneable {
         return this;
     }
 
-
-
-
     /**
      * Builder class for constructing Camera instances.
      */
@@ -267,6 +279,7 @@ public class Camera implements Cloneable {
         final private Camera camera;
         private Vector translation;
         private double rotationAngle = 0;
+
         /**
          * Default constructor initializing a new Camera instance.
          */
@@ -278,12 +291,21 @@ public class Camera implements Cloneable {
          */
         public Builder(Camera camera) { this.camera = camera; }
 
-
+        /**
+         * Sets the translation vector for the camera.
+         * @param translation The translation vector.
+         * @return The current Builder instance.
+         */
         public Builder setTranslation(Vector translation) {
             this.translation = translation;
             return this;
         }
 
+        /**
+         * Sets the rotation angle for the camera.
+         * @param rotationAngle The rotation angle in degrees.
+         * @return The current Builder instance.
+         */
         public Builder setRotationAngle(double rotationAngle) {
             this.rotationAngle = rotationAngle;
             return this;

@@ -209,7 +209,8 @@ public class ReflectionRefractionTests {
 
 
         // camara in front of the bord
-        cameraBuilder.setLocation(new Point(0, -750, 0)).setDirection(new Vector(0, 750, -800), new Vector(0, 800, 750))
+        cameraBuilder.setLocation(new Point(0, -750, 0)).setDirection(new Vector(0, 750, -800),
+                        new Vector(0, 800, 750))
                 .setVpSize(150, 150).setDistance(400);
 
 

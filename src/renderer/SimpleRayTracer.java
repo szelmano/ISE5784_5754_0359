@@ -100,6 +100,16 @@ public class SimpleRayTracer extends RayTracerBase {
                 .scale(kx);
     }
 
+    /**
+     * Calculates the glossy and matte color contributions for a given ray.
+     * @param ray   The ray to trace.
+     * @param n     The normal vector at the intersection point.
+     * @param level The recursion level.
+     * @param k     The reflection/refraction factor.
+     * @param material The material properties.
+     * @param kx    The reflection/refraction coefficient.
+     * @return The color contribution from glossy and matte effects.
+     */
     private Color calcGlossyMattColor(Ray ray, Vector n, int level, Double3 k, Material material, Double3 kx) {
         Color color = Color.BLACK;
         Vector dir = ray.getDirection();

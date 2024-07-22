@@ -67,6 +67,12 @@ public class SceneXML {
         return scene;
     }
 
+    /**
+     * Adds geometries of a specific type to the scene.
+     * @param geometriesElement The XML element containing the geometries.
+     * @param scene The scene to which the geometries will be added.
+     * @param geometryName The name of the geometry type to be added (e.g., "cylinder", "plane").
+     */
     private static void addGeometries(Element geometriesElement, Scene scene, String geometryName) {
         NodeList geometryList = geometriesElement.getElementsByTagName(geometryName);
         for (int i = 0; i < geometryList.getLength(); i++) {
