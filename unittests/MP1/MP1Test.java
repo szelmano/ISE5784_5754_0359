@@ -46,12 +46,12 @@ class MP1Test {
 
 
         // camara above the bord
-         cameraBuilder.setLocation(new Point(0, 0, 0)).setDirection(new Vector(0, 0, -1), new Vector(0, 1, 0))
-                 .setVpSize(150, 150).setDistance(400);
+//         cameraBuilder.setLocation(new Point(0, 0, 0)).setDirection(new Vector(0, 0, -1), new Vector(0, 1, 0))
+//                 .setVpSize(150, 150).setDistance(400);
 
         // camara in front of the bord
-       // cameraBuilder.setLocation(new Point(0, -750, 0)).setDirection(new Vector(0, 750, -800), new Vector(0, 800, 750))
-          //      .setVpSize(150, 150).setDistance(400);
+        cameraBuilder.setLocation(new Point(0, -750, 0)).setDirection(new Vector(0, 750, -800), new Vector(0, 800, 750))
+                .setVpSize(150, 150).setDistance(400);
 
 
         int tableDepth = -800;
@@ -64,13 +64,13 @@ class MP1Test {
 
         Polygon table = new Polygon(p1, p2, p3, p4, p5, p6);
         Material triangleMat = new Material().setKr(0.7).setKd(0.3).setKs(1).setShininess(20).setKt(0.6);
-          // .setKB(2).setDensity(4);
+        //  .setKb(2).setDensity(9);
         table.setEmission(new Color(0, 0, 0)).setMaterial(triangleMat);
 
-        Point p11 = new Point(0, 150, -800);
-        Point p12 = new Point(104.4, 120, -800);
-        Point p13 = new Point(0, 90, -800);
-        Point p14 = new Point(104.4, 90, -800);
+        Point p11 = new Point(0, 170, -600);
+        Point p12 = new Point(0, 170, -900);
+        Point p13 = new Point(250, 50, -900);
+        Point p14 = new Point(250, 50, -600);
 
         Polygon mir=new Polygon(p11,p12,p13,p14);
         mir.setEmission(new Color(20, 20, 20))
@@ -115,7 +115,7 @@ class MP1Test {
 
         // Point center = new Point(0, 50, -800);
 
-        Sphere downSpr = new Sphere(new Point(0, 5, -870), 50);
+        Sphere downSpr = new Sphere(new Point(0, 0, -850), 50);
         downSpr.setEmission(new Color(GRAY)).setMaterial(new Material().setKt(0.5).
                 setShininess(100).setKs(0.5).setKd(0.5));
 
