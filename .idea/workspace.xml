@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="547a3f2e-d435-4d3c-81da-bf2e91b4f8a4" name="Changes" comment="MP1 camera position changes">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/unittests/MP1/MP1Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/MP1/MP1Test.java" afterDir="false" />
     </list>
@@ -153,7 +154,7 @@
       <recent name="geometries" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.MP1Test">
+  <component name="RunManager" selected="JUnit.MP1Test.MP1glossyTest">
     <configuration name="MP1Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ISE5784_5754_0359" />
       <extension name="coverage">
@@ -235,8 +236,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.MP1Test" />
         <item itemvalue="JUnit.MP1Test.MP1glossyTest" />
+        <item itemvalue="JUnit.MP1Test" />
         <item itemvalue="JUnit.ReflectionRefractionTests.abaloneGameTest" />
         <item itemvalue="JUnit.ReflectionRefractionTests.customScene" />
         <item itemvalue="JUnit.ReflectionRefractionTests.customSceneTestWithBonuses" />
