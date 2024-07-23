@@ -72,8 +72,17 @@ class MP1Test {
         Point p13 = new Point(250, 50, -900);
         Point p14 = new Point(250, 50, -600);
 
-        Polygon mir=new Polygon(p11,p12,p13,p14);
-        mir.setEmission(new Color(20, 20, 20))
+        Polygon mir1 = new Polygon(p11,p12,p13,p14);
+        mir1.setEmission(new Color(20, 20, 20))
+                .setMaterial(new Material().setKr(1));
+
+        Point p21 = new Point(0, 170, -600);
+        Point p22 = new Point(0, 170, -900);
+        Point p23 = new Point(-250, 50, -900);
+        Point p24 = new Point(-250, 50, -600);
+
+        Polygon mir2 = new Polygon(p21,p22,p23,p24);
+        mir2.setEmission(new Color(20, 20, 20))
                 .setMaterial(new Material().setKr(1));
 
 
@@ -160,7 +169,7 @@ class MP1Test {
 
         scene.setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), 0.15));
 
-        scene.geometries.add( table,downSpr,mir,  //
+        scene.geometries.add( table,downSpr,mir1, mir2,  //
                 s1, s2, s3, s4, s5, //
                 s11, s12, s13, s14, s15, s16, //
                 s21, s22, s23, //
