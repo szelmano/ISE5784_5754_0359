@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="547a3f2e-d435-4d3c-81da-bf2e91b4f8a4" name="Changes" comment="stage MIP1 Documentation">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="547a3f2e-d435-4d3c-81da-bf2e91b4f8a4" name="Changes" comment="MP1 camera position changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/unittests/MP1/MP1Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/unittests/MP1/MP1Test.java" afterDir="false" />
     </list>
@@ -501,7 +500,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1720339914793</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL‎-00030" summary="MP1 camera position changes">
+      <option name="closed" value="true" />
+      <created>1721724068534</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL‎-00030" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1721724068534</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -549,7 +556,8 @@
     <MESSAGE value="stage 7 tag 7.1" />
     <MESSAGE value="stage 7 help" />
     <MESSAGE value="stage 7 final" />
-    <option name="LAST_COMMIT_MESSAGE" value="stage 7 final" />
+    <MESSAGE value="MP1 camera position changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="MP1 camera position changes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
