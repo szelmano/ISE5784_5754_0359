@@ -33,13 +33,30 @@ class MP1Test {
      */
     @Test
     public void MP1glossyTest() {
-        scene.lights.add(new SpotLight(new Color(300, 0, 0), new Point(-200, -400, 50),//
+//        scene.lights.add(new SpotLight(new Color(200, 0, 200), new Point(-200, -400, 50),//
+//                new Vector(0, -1, -50))
+//                .setKl(4E-5).setKq(2E-7));
+//        scene.lights.add(new PointLight(new Color(0, 0, 300), new Point(350, -300, -1300))//
+//                .setKl(0.00001).setKq(0.000001));
+//
+//        scene.lights.add(new DirectionalLight(new Color(150, 150, 150), new Vector(0, -1, 0)));
+
+
+//       scene.lights.add(new SpotLight(new Color(0, 0, 300), new Point(0, -600, 50),//
+//                new Vector(0, -1, -50))
+//                .setKl(4E-5).setKq(2E-7));
+//        scene.lights.add(new PointLight(new Color(200, 0, 200), new Point(250, -600, 25))//
+//                .setKl(0.00001).setKq(0.000001));
+//
+//        scene.lights.add(new DirectionalLight(new Color(150, 150, 150), new Vector(0, -1, 0)));
+
+        scene.lights.add(new SpotLight(new Color(0, 0, 300), new Point(0, -500, 150), // מיקום גבוה יותר ממרכז הסצנה
                 new Vector(0, -1, -50))
                 .setKl(4E-5).setKq(2E-7));
-        scene.lights.add(new PointLight(new Color(0, 0, 200), new Point(350, -300, -1300))//
+        scene.lights.add(new PointLight(new Color(200, 0, 200), new Point(150, -700, -50)) // מיקום בצד ימין של הסצנה
                 .setKl(0.00001).setKq(0.000001));
+        scene.lights.add(new DirectionalLight(new Color(150, 150, 150), new Vector(0, -1, -0.5))); // כיוון כלפי מטה בזווית קלה
 
-        scene.lights.add(new DirectionalLight(new Color(150, 150, 150), new Vector(0, -1, 0)));
 
         // camara above the bord
 //          cameraBuilder.setLocation(new Point(0, 0, 0)).setDirection(new Vector(0, 0, -1), new Vector(0, 1, 0))
@@ -90,29 +107,27 @@ class MP1Test {
         Polygon floor = new Polygon(f1, f2, f4, f3);
         floor.setEmission(new Color(40,40,47)).setMaterial(new Material().setKr(0.05));
 
+        int j = 169;
+        for(int k = 0; k > -600; k = k - 61){
 
-//        int count=0;
-//        int j=169;
-//for(int k=0;k>-600;k=k-61){
-//
-//count=0;
-// for (int i=k;i<=300;i=i+62){
-//
-//        Point l1 = new Point(i, -900, j);
-//        Point l2 = new Point(i - 60, -900, j - 30);
-//        Point l3 = new Point(i + 60, -900, j - 30);
-//        Point l4 = new Point(i , -900, j - 60);
-//        Polygon tr = new Polygon(l1, l2, l4, l3);
-//     tr.setEmission(new Color(101, 67, 33))
-//             .setMaterial(new Material().setKr(0.1));
-//     count++;
-//     j=j-(31);
-//
-//        scene.geometries.add(tr);
-//    }
-// j=j+(31*count);
-// j=j-31;
-//}
+            int count=0;
+            for (int i = k; i <= 300; i = i + 62){
+
+                Point l1 = new Point(i, -900, j);
+                Point l2 = new Point(i - 60, -900, j - 30);
+                Point l3 = new Point(i + 60, -900, j - 30);
+                Point l4 = new Point(i , -900, j - 60);
+                Polygon tr = new Polygon(l1, l2, l4, l3);
+                tr.setEmission(new Color(50, 50, 50))
+                     .setMaterial(new Material().setKr(0.1));
+                count++;
+                j = j - 31;
+
+                 scene.geometries.add(tr);
+            }
+            j = j + (31 * count);
+            j = j - 31;
+        }
 
         Material firstMat = new Material().setKr(0.05).setKd(0.1).setKs(1).setShininess(100);
 
@@ -216,7 +231,7 @@ class MP1Test {
 
         cameraBuilder
                 .setImageWriter(new ImageWriter("MP1 test", 1000, 1000))
-                .build().renderImage(5).writeToImage();
+                .build().renderImage(1).writeToImage();
 
     }
 }
