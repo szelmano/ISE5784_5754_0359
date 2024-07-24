@@ -44,7 +44,9 @@ public class ReflectionRefractionTests {
                 new Sphere(new Point(0, 0, -50), 25d).setEmission(new Color(RED))
                         .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(100)));
         scene.lights.add(
-                new SpotLight(new Color(1000, 600, 0), new Point(-100, -100, 500), new Vector(-1, -1, -2))
+                new SpotLight(new Color(1000, 600, 0),
+                        new Point(-100, -100, 500),
+                        new Vector(-1, -1, -2))
                         .setKl(0.0004).setKq(0.0000006));
 
         cameraBuilder.setLocation(new Point(0, 0, 1000)).setVpDistance(1000)
@@ -110,7 +112,9 @@ public class ReflectionRefractionTests {
                         .setMaterial(new Material().setKd(0.2).setKs(0.2).setShininess(30).setKt(0.6)));
         scene.setAmbientLight(new AmbientLight(new Color(WHITE), 0.15));
         scene.lights.add(
-                new SpotLight(new Color(700, 400, 400), new Point(60, 50, 0), new Vector(0, 0, -1))
+                new SpotLight(new Color(700, 400, 400),
+                        new Point(60, 50, 0),
+                        new Vector(0, 0, -1))
                         .setKl(4E-5).setKq(2E-7));
 
         cameraBuilder.setLocation(new Point(0, 0, 1000)).setVpDistance(1000)
@@ -128,14 +132,20 @@ public class ReflectionRefractionTests {
     public void customSceneTest() {
         // Define your geometries and lights here
         scene.geometries.add(
-                new Sphere(new Point(-50, -35, -50), 30d).setEmission(new Color(255, 0, 0)) // Red sphere
+                new Sphere(new Point(-50, -35, -50), 30d)
+                        .setEmission(new Color(255, 0, 0)) // Red sphere
                         .setMaterial(new Material().setKd(0.4).setKs(0.6).setShininess(100).setKt(0)),
-                new Sphere(new Point(-20, -5, 0), 20d).setEmission(new Color(0, 100, 150)) // Blue sphere with transparency
+                new Sphere(new Point(-20, -5, 0), 20d)
+                        .setEmission(new Color(0, 100, 150)) // Blue sphere with transparency
                         .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(80).setKt(0.3)),
-                new Triangle(new Point(0, 100, -80), new Point(30, 20, -100), new Point(100, 70, -80)) // Adjusted triangle positions and rotation
+                new Triangle(new Point(0, 100, -80),
+                        new Point(30, 20, -100),
+                        new Point(100, 70, -80)) // Adjusted triangle positions and rotation
                         .setEmission(new Color(0, 150, 50))
                         .setMaterial(new Material().setKd(0.6).setKs(0.4).setShininess(60)),
-                new Triangle(new Point(15, 30, -50), new Point(90, -30, -70), new Point(50, 80, -60)) // Adjusted triangle positions and rotation
+                new Triangle(new Point(15, 30, -50),
+                        new Point(90, -30, -70),
+                        new Point(50, 80, -60)) // Adjusted triangle positions and rotation
                         .setEmission(new Color(100, 0, 150))
                         .setMaterial(new Material().setKd(0.6).setKs(0.4).setShininess(70))
         );
@@ -143,7 +153,9 @@ public class ReflectionRefractionTests {
         scene.setAmbientLight(new AmbientLight(new Color(50, 50, 50), 0.4)); // Ambient light affecting all geometries
 
         scene.lights.add(
-                new SpotLight(new Color(400, 300, 200), new Point(-50, 50, 0), new Vector(1, -1, -1)) // Spot light position and direction
+                new SpotLight(new Color(400, 300, 200),
+                        new Point(-50, 50, 0),
+                        new Vector(1, -1, -1)) // Spot light position and direction
                         .setKl(0.0001).setKq(0.000005)
         );
 
@@ -160,14 +172,20 @@ public class ReflectionRefractionTests {
     public void customSceneTestWithBonuses() {
         // Define your geometries and lights here
         scene.geometries.add(
-                new Sphere(new Point(-50, -35, -50), 30d).setEmission(new Color(255, 0, 0)) // Red sphere
+                new Sphere(new Point(-50, -35, -50), 30d)
+                        .setEmission(new Color(255, 0, 0)) // Red sphere
                         .setMaterial(new Material().setKd(0.4).setKs(0.6).setShininess(100).setKt(0)),
-                new Sphere(new Point(-20, -5, 0), 20d).setEmission(new Color(0, 100, 150)) // Blue sphere with transparency
+                new Sphere(new Point(-20, -5, 0), 20d)
+                        .setEmission(new Color(0, 100, 150)) // Blue sphere with transparency
                         .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(80).setKt(0.3)),
-                new Triangle(new Point(0, 100, -80), new Point(30, 20, -100), new Point(100, 70, -80)) // Adjusted triangle positions and rotation
+                new Triangle(new Point(0, 100, -80),
+                        new Point(30, 20, -100),
+                        new Point(100, 70, -80)) // Adjusted triangle positions and rotation
                         .setEmission(new Color(0, 150, 50))
                         .setMaterial(new Material().setKd(0.6).setKs(0.4).setShininess(60)),
-                new Triangle(new Point(15, 30, -50), new Point(90, -30, -70), new Point(50, 80, -60)) // Adjusted triangle positions and rotation
+                new Triangle(new Point(15, 30, -50),
+                        new Point(90, -30, -70),
+                        new Point(50, 80, -60)) // Adjusted triangle positions and rotation
                         .setEmission(new Color(100, 0, 150))
                         .setMaterial(new Material().setKd(0.6).setKs(0.4).setShininess(70))
         );
@@ -175,7 +193,9 @@ public class ReflectionRefractionTests {
         scene.setAmbientLight(new AmbientLight(new Color(50, 50, 50), 0.4)); // Ambient light affecting all geometries
 
         scene.lights.add(
-                new SpotLight(new Color(400, 300, 200), new Point(-50, 50, 0), new Vector(1, -1, -1)) // Spot light position and direction
+                new SpotLight(new Color(400, 300, 200),
+                        new Point(-50, 50, 0),
+                        new Vector(1, -1, -1)) // Spot light position and direction
                         .setKl(0.0001).setKq(0.000005)
         );
 
@@ -213,7 +233,7 @@ public class ReflectionRefractionTests {
                         new Vector(0, 800, 750))
                 .setVpSize(150, 150).setDistance(400);
 
-
+        // Table
         int tableDepth = -800;
         Point p1 = new Point(0, 120, tableDepth);
         Point p2 = new Point(104.4, 60, tableDepth);
@@ -223,99 +243,98 @@ public class ReflectionRefractionTests {
         Point p6 = new Point(-104.4, 60, tableDepth);
 
         Polygon table = new Polygon(p1, p2, p3, p4, p5, p6);
-        Material triangleMat = new Material().setKr(0.7).setKd(0.3).setKs(1).setShininess(20).setKt(0.6);
-        table.setEmission(new Color(0, 0, 0)).setMaterial(triangleMat);
+        table.setEmission(new Color(0, 0, 0))
+                .setMaterial(new Material().setKr(0.7).setKd(0.3).setKs(1).setShininess(20).setKt(0.6));
 
+        // Game balls
         Material firstMat = new Material().setKr(0.05).setKd(0.1).setKs(1).setShininess(100);
 
-        double depthSp = -793;
+        // Black balls
+        int depthSp = -793;
+        Sphere b1 = new Sphere(new Point(0, 101, depthSp), 10);
+        Sphere b2 = new Sphere(new Point(-22, 88.5, depthSp), 10);
+        Sphere b3 = new Sphere(new Point(-44, 76, depthSp), 10);
+        Sphere b4 = new Sphere(new Point(-66, 63.5, depthSp), 10);
+        Sphere b5 = new Sphere(new Point(-88, 51, depthSp), 10);
+        b1.setMaterial(firstMat);
+        b2.setMaterial(firstMat);
+        b3.setMaterial(firstMat);
+        b4.setMaterial(firstMat);
+        b5.setMaterial(firstMat);
 
-        Sphere s1 = new Sphere(new Point(0, 101, depthSp), 10);
-        Sphere s2 = new Sphere(new Point(-22, 88.5, depthSp), 10);
-        Sphere s3 = new Sphere(new Point(-44, 76, depthSp), 10);
-        Sphere s4 = new Sphere(new Point(-66, 63.5, depthSp), 10);
-        Sphere s5 = new Sphere(new Point(-88, 51, depthSp), 10);
-        s1.setMaterial(firstMat);
-        s2.setMaterial(firstMat);
-        s3.setMaterial(firstMat);
-        s4.setMaterial(firstMat);
-        s5.setMaterial(firstMat);
+        Sphere b11 = new Sphere(new Point(22, 89.5, depthSp), 10);
+        Sphere b12 = new Sphere(new Point(0, 77, depthSp), 10);
+        Sphere b13 = new Sphere(new Point(-22, 64.5, depthSp), 10);
+        Sphere b14 = new Sphere(new Point(-44, 52, depthSp), 10);
+        Sphere b15 = new Sphere(new Point(-66, 39.5, depthSp), 10);
+        Sphere b16 =  new Sphere(new Point(-88, 27, depthSp), 10);
+        b11.setMaterial(firstMat);
+        b12.setMaterial(firstMat);
+        b13.setMaterial(firstMat);
+        b14.setMaterial(firstMat);
+        b15.setMaterial(firstMat);
+        b16.setMaterial(firstMat);
 
-        Sphere s16 = new Sphere(new Point(-88, 27, depthSp), 10);
-        Sphere s15 = new Sphere(new Point(-66, 39.5, depthSp), 10);
-        Sphere s14 = new Sphere(new Point(-44, 52, depthSp), 10);
-        Sphere s13 = new Sphere(new Point(-22, 64.5, depthSp), 10);
-        Sphere s12 = new Sphere(new Point(0, 77, depthSp), 10);
-        Sphere s11 = new Sphere(new Point(22, 89.5, depthSp), 10);
-        s11.setMaterial(firstMat);
-        s12.setMaterial(firstMat);
-        s13.setMaterial(firstMat);
-        s14.setMaterial(firstMat);
-        s15.setMaterial(firstMat);
-        s16.setMaterial(firstMat);
+        Sphere b21 = new Sphere(new Point(0, 51, depthSp), 10);
+        Sphere b22 = new Sphere(new Point(-22, 39.5, depthSp), 10);
+        Sphere b23 = new Sphere(new Point(-44, 27, depthSp), 10);
+        b21.setMaterial(firstMat);
+        b22.setMaterial(firstMat);
+        b23.setMaterial(firstMat);
 
-        Sphere s21 = new Sphere(new Point(0, 51, depthSp), 10);
-        Sphere s22 = new Sphere(new Point(-22, 39.5, depthSp), 10);
-        Sphere s23 = new Sphere(new Point(-44, 27, depthSp), 10);
+        // White balls
+        Color white = new Color(180, 180, 180);
 
-        s21.setMaterial(firstMat);
-        s22.setMaterial(firstMat);
-        s23.setMaterial(firstMat);
+        Sphere b31 = new Sphere(new Point(88, -51, depthSp), 10);
+        Sphere b32 = new Sphere(new Point(66, -63.5, depthSp), 10);
+        Sphere b33 = new Sphere(new Point(44, -76, depthSp), 10);
+        Sphere b34= new Sphere(new Point(22, -88.5, depthSp), 10);
+        Sphere b35 = new Sphere(new Point(0, -101, depthSp), 10);
+        b31.setEmission(white).setMaterial(firstMat);
+        b32.setEmission(white).setMaterial(firstMat);
+        b33.setEmission(white).setMaterial(firstMat);
+        b34.setEmission(white).setMaterial(firstMat);
+        b35.setEmission(white).setMaterial(firstMat);
 
-        Sphere downSpr = new Sphere(new Point(0, -10, -870), 60);
-        downSpr.setEmission(new Color(0, 0, 0)).setMaterial(new Material().setKt(0.5).
+        Sphere b41 = new Sphere(new Point(88, -27, depthSp), 10);
+        Sphere b42 = new Sphere(new Point(66, -39.5, depthSp), 10);
+        Sphere b43 = new Sphere(new Point(44, -52, depthSp), 10);
+        Sphere b44 = new Sphere(new Point(22, -64.5, depthSp), 10);
+        Sphere b45 = new Sphere(new Point(0, -77, depthSp), 10);
+        Sphere b46 = new Sphere(new Point(-22, -89.5, depthSp), 10);
+        b41.setEmission(white).setMaterial(firstMat);
+        b42.setEmission(white).setMaterial(firstMat);
+        b43.setEmission(white).setMaterial(firstMat);
+        b44.setEmission(white).setMaterial(firstMat);
+        b45.setEmission(white).setMaterial(firstMat);
+        b46.setEmission(white).setMaterial(firstMat);
+
+        Sphere b51 = new Sphere(new Point(0, -51, depthSp), 10);
+        Sphere b52 = new Sphere(new Point(22, -39.5, depthSp), 10);
+        Sphere b53 = new Sphere(new Point(44, -27, depthSp), 10);
+        b51.setEmission(white).setMaterial(firstMat);
+        b52.setEmission(white).setMaterial(firstMat);
+        b53.setEmission(white).setMaterial(firstMat);
+
+       // Table base sphere
+        Sphere sphere = new Sphere(new Point(0, -10, -870), 60);
+        sphere.setEmission(new Color(0, 0, 0)).setMaterial(new Material().setKt(0.5).
                 setShininess(100).setKs(0.5).setKd(0.5));
 
-
-        // gray balls
-
-        Sphere s71 = new Sphere(new Point(0, -51, depthSp), 10);
-        Sphere s72 = new Sphere(new Point(22, -39.5, depthSp), 10);
-        Sphere s73 = new Sphere(new Point(44, -27, depthSp), 10);
-        Color secColor = new Color(100, 100, 100);
-        s71.setEmission(secColor).setMaterial(firstMat);
-        s72.setEmission(secColor).setMaterial(firstMat);
-        s73.setEmission(secColor).setMaterial(firstMat);
-
-        Sphere s81 = new Sphere(new Point(88, -27, depthSp), 10);
-        Sphere s82 = new Sphere(new Point(66, -39.5, depthSp), 10);
-        Sphere s83 = new Sphere(new Point(44, -52, depthSp), 10);
-        Sphere s84 = new Sphere(new Point(22, -64.5, depthSp), 10);
-        Sphere s85 = new Sphere(new Point(0, -77, depthSp), 10);
-        Sphere s86 = new Sphere(new Point(-22, -89.5, depthSp), 10);
-        s81.setEmission(secColor).setMaterial(firstMat);
-        s82.setEmission(secColor).setMaterial(firstMat);
-        s83.setEmission(secColor).setMaterial(firstMat);
-        s84.setEmission(secColor).setMaterial(firstMat);
-        s85.setEmission(secColor).setMaterial(firstMat);
-        s86.setEmission(secColor).setMaterial(firstMat);
-
-        Sphere s91 = new Sphere(new Point(88, -51, depthSp), 10);
-        Sphere s92 = new Sphere(new Point(66, -63.5, depthSp), 10);
-        Sphere s93 = new Sphere(new Point(44, -76, depthSp), 10);
-        Sphere s94 = new Sphere(new Point(22, -88.5, depthSp), 10);
-        Sphere s95 = new Sphere(new Point(0, -101, depthSp), 10);
-        s91.setEmission(secColor).setMaterial(firstMat);
-        s92.setEmission(secColor).setMaterial(firstMat);
-        s93.setEmission(secColor).setMaterial(firstMat);
-        s94.setEmission(secColor).setMaterial(firstMat);
-        s95.setEmission(secColor).setMaterial(firstMat);
-
+        scene.geometries.add(table, sphere, //
+                b1, b2, b3, b4, b5, //
+                b11, b12, b13, b14, b15, b16, //
+                b21, b22, b23, //
+                b31, b32, b33, b34, b35, //
+                b41, b42, b43, b44, b45, b46, //
+                b51, b52, b53 //
+        );
 
         scene.setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), 0.15));
-
-        scene.geometries.add(table, downSpr, //
-                s1, s2, s3, s4, s5, //
-                s11, s12, s13, s14, s15, s16, //
-                s21, s22, s23, //
-                s71, s72, s73, //
-                s81, s82, s83, s84, s85, s86,//
-                s91, s92, s93, s94, s95);
 
         cameraBuilder
                 .setImageWriter(new ImageWriter("abalone game", 1000, 1000))
                 .build().renderImage(1).writeToImage();
-
     }
 
 }

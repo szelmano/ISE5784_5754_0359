@@ -63,49 +63,52 @@ class MP1Test {
 //                .setVpSize(150, 150).setDistance(400);
 
         cameraBuilder.setLocation(new Point(0, -400, -1100)) // מיקום המצלמה מול הלוח, במרחק מתאים
-                .setDirection(new Vector(0, -0.4, 1), new Vector(-1, 0, 0).crossProduct(new Vector(0, -0.4, 1))) // מכוון את המצלמה כך שהיא תצפה על הלוח בזווית כלפי מטה
+                .setDirection(new Vector(0, -0.4, 1), new Vector(-1, 0, 0)
+                        .crossProduct(new Vector(0, -0.4, 1))) // מכוון את המצלמה כך שהיא תצפה על הלוח בזווית כלפי מטה
                 .setVpSize(150, 150) // גודל מישור התמונה
                 .setDistance(400); // המרחק בין המצלמה למישור התמונה
 
+        // Mirrors
+        Point m11 = new Point(0.5, -600, 170);
+        Point m12 = new Point(0.5, -900, 170);
+        Point m13 = new Point(250, -900, 50);
+        Point m14 = new Point(250, -600, 50);
 
-        int tableDepth = -800;
-        Point p1 = new Point(0, tableDepth, 90);
-        Point p2 = new Point(104.4, tableDepth, 30);
-        Point p3 = new Point(104.4, tableDepth, -90);
-        Point p4 = new Point(0, tableDepth, -150);
-        Point p5 = new Point(-104.4, tableDepth, -90);
-        Point p6 = new Point(-104.4, tableDepth, 30);
-
-        Polygon table = new Polygon(p1, p2, p3, p4, p5, p6);
-        Material triangleMat = new Material().setKr(0.3).setKd(0.1).setKs(1).setShininess(2).setKt(0.3);
-        table.setEmission(new Color(BLACK)).setMaterial(triangleMat);
-
-        Point p11 = new Point(0.5, -600, 170);
-        Point p12 = new Point(0.5, -900, 170);
-        Point p13 = new Point(250, -900, 50);
-        Point p14 = new Point(250, -600, 50);
-
-        Polygon mir1 = new Polygon(p11, p12, p13, p14);
+        Polygon mir1 = new Polygon(m11, m12, m13, m14);
         mir1.setEmission(new Color(20, 20, 20))
                 .setMaterial(new Material().setKr(1));
 
-        Point p21 = new Point(-0.5, -600, 170);
-        Point p22 = new Point(-0.5, -900, 170);
-        Point p23 = new Point(-250, -900, 50);
-        Point p24 = new Point(-250, -600, 50);
+        Point m21 = new Point(-0.5, -600, 170);
+        Point m22 = new Point(-0.5, -900, 170);
+        Point m23 = new Point(-250, -900, 50);
+        Point m24 = new Point(-250, -600, 50);
 
-        Polygon mir2 = new Polygon(p21, p22, p23, p24);
+        Polygon mir2 = new Polygon(m21, m22, m23, m24);
         mir2.setEmission(new Color(20, 20, 20))
                 .setMaterial(new Material().setKr(1).setKb(0.2).setDensity(4));
 
+        // Table
+        int tableDepth = -800;
+        Point t1 = new Point(0, tableDepth, 90);
+        Point t2 = new Point(104.4, tableDepth, 30);
+        Point t3 = new Point(104.4, tableDepth, -90);
+        Point t4 = new Point(0, tableDepth, -150);
+        Point t5 = new Point(-104.4, tableDepth, -90);
+        Point t6 = new Point(-104.4, tableDepth, 30);
 
+        Polygon table = new Polygon(t1, t2, t3, t4, t5, t6);
+        table.setEmission(new Color(BLACK))
+                .setMaterial(new Material().setKr(0.3).setKd(0.1).setKs(1).setShininess(2).setKt(0.3));
+
+        // Floor
         Point f1 = new Point(0, -900, 170);
         Point f2 = new Point(-400, -900, 50);
         Point f3 = new Point(400, -900, 50);
         Point f4 = new Point(0, -900, -600);
 
         Polygon floor = new Polygon(f1, f2, f4, f3);
-        floor.setEmission(new Color(40,40,47)).setMaterial(new Material().setKr(0.05));
+        floor.setEmission(new Color(40,40,47))
+                .setMaterial(new Material().setKr(0.05));
 
         int j = 169;
         for(int k = 0; k > -600; k = k - 61){
@@ -129,105 +132,106 @@ class MP1Test {
             j = j - 31;
         }
 
+        // Game balls
         Material firstMat = new Material().setKr(0.05).setKd(0.1).setKs(1).setShininess(100);
 
+        // Black balls
         double depthSp = -793;
+        Sphere b1 = new Sphere(new Point(0, depthSp, 71), 10);
+        Sphere b2 = new Sphere(new Point(-22, depthSp, 58.5), 10);
+        Sphere b3 = new Sphere(new Point(-44, depthSp, 46), 10);
+        Sphere b4 = new Sphere(new Point(-66, depthSp, 33.5), 10);
+        Sphere b5 = new Sphere(new Point(-88, depthSp, 21), 10);
+        b1.setMaterial(firstMat);
+        b2.setMaterial(firstMat);
+        b3.setMaterial(firstMat);
+        b4.setMaterial(firstMat);
+        b5.setMaterial(firstMat);
 
-        Sphere s1 = new Sphere(new Point(0, depthSp, 71), 10);
-        Sphere s2 = new Sphere(new Point(-22, depthSp, 58.5), 10);
-        Sphere s3 = new Sphere(new Point(-44, depthSp, 46), 10);
-        Sphere s4 = new Sphere(new Point(-66, depthSp, 33.5), 10);
-        Sphere s5 = new Sphere(new Point(-88, depthSp, 21), 10);
-        s1.setMaterial(firstMat);
-        s2.setMaterial(firstMat);
-        s3.setMaterial(firstMat);
-        s4.setMaterial(firstMat);
-        s5.setMaterial(firstMat);
+        Sphere b11 = new Sphere(new Point(22, depthSp, 59.5), 10);
+        Sphere b12 = new Sphere(new Point(0, depthSp, 47), 10);
+        Sphere b13 = new Sphere(new Point(-22, depthSp, 34.5), 10);
+        Sphere b14 = new Sphere(new Point(-44, depthSp, 22), 10);
+        Sphere b15 = new Sphere(new Point(-66, depthSp, 9.5), 10);
+        Sphere b16 = new Sphere(new Point(-88, depthSp, -3), 10);
+        b11.setMaterial(firstMat);
+        b12.setMaterial(firstMat);
+        b13.setMaterial(firstMat);
+        b14.setMaterial(firstMat);
+        b15.setMaterial(firstMat);
+        b16.setMaterial(firstMat);
 
-        Sphere s16 = new Sphere(new Point(-88, depthSp, -3), 10);
-        Sphere s15 = new Sphere(new Point(-66, depthSp, 9.5), 10);
-        Sphere s14 = new Sphere(new Point(-44, depthSp, 22), 10);
-        Sphere s13 = new Sphere(new Point(-22, depthSp, 34.5), 10);
-        Sphere s12 = new Sphere(new Point(0, depthSp, 47), 10);
-        Sphere s11 = new Sphere(new Point(22, depthSp, 59.5), 10);
-        s11.setMaterial(firstMat);
-        s12.setMaterial(firstMat);
-        s13.setMaterial(firstMat);
-        s14.setMaterial(firstMat);
-        s15.setMaterial(firstMat);
-        s16.setMaterial(firstMat);
+        Sphere b21 = new Sphere(new Point(0, depthSp, 21), 10);
+        Sphere b22 = new Sphere(new Point(-22, depthSp, 9.5), 10);
+        Sphere b23 = new Sphere(new Point(-44, depthSp, -3), 10);
+        b21.setMaterial(firstMat);
+        b22.setMaterial(firstMat);
+        b23.setMaterial(firstMat);
 
-        Sphere s21 = new Sphere(new Point(0, depthSp, 21), 10);
-        Sphere s22 = new Sphere(new Point(-22, depthSp, 9.5), 10);
-        Sphere s23 = new Sphere(new Point(-44, depthSp, -3), 10);
+        // White balls
+        Color white = new Color(180, 180, 180);
 
-        s21.setMaterial(firstMat);
-        s22.setMaterial(firstMat);
-        s23.setMaterial(firstMat);
+        Sphere b31 = new Sphere(new Point(88, depthSp, -81), 10);
+        Sphere b32 = new Sphere(new Point(66, depthSp, -93.5), 10);
+        Sphere b33 = new Sphere(new Point(44, depthSp, -106), 10);
+        Sphere b34= new Sphere(new Point(22, depthSp, -118.5), 10);
+        Sphere b35 = new Sphere(new Point(0, depthSp, -131), 10);
+        b31.setEmission(white).setMaterial(firstMat);
+        b32.setEmission(white).setMaterial(firstMat);
+        b33.setEmission(white).setMaterial(firstMat);
+        b34.setEmission(white).setMaterial(firstMat);
+        b35.setEmission(white).setMaterial(firstMat);
 
-        Color downColor =new Color(BLACK);
+        Sphere b41= new Sphere(new Point(88, depthSp, -57), 10);
+        Sphere b42 = new Sphere(new Point(66, depthSp, -69.5), 10);
+        Sphere b43 = new Sphere(new Point(44, depthSp, -82), 10);
+        Sphere b44 = new Sphere(new Point(22, depthSp, -94.5), 10);
+        Sphere b45 = new Sphere(new Point(0, depthSp, -107), 10);
+        Sphere b46 = new Sphere(new Point(-22, depthSp, -119.5), 10);
+        b41.setEmission(white).setMaterial(firstMat);
+        b42.setEmission(white).setMaterial(firstMat);
+        b43.setEmission(white).setMaterial(firstMat);
+        b44.setEmission(white).setMaterial(firstMat);
+        b45.setEmission(white).setMaterial(firstMat);
+        b46.setEmission(white).setMaterial(firstMat);
 
-        Sphere downSpr = new Sphere(new Point(0, -835, -30), 35);
-        downSpr.setEmission(downColor)  // Set the color emission of the sphere
+        Sphere b51 = new Sphere(new Point(0, depthSp, -81), 10);
+        Sphere b52 = new Sphere(new Point(22, depthSp, -69.5), 10);
+        Sphere b53 = new Sphere(new Point(44, depthSp, -57), 10);
+        b51.setEmission(white).setMaterial(firstMat);
+        b52.setEmission(white).setMaterial(firstMat);
+        b53.setEmission(white).setMaterial(firstMat);
+
+        // Table base spheres
+        Color black = new Color(BLACK);
+
+        Sphere sphere1 = new Sphere(new Point(0, -835, -30), 35);
+        sphere1.setEmission(black)  // Set the color emission of the sphere
                 .setMaterial(new Material().setKt(0) // Not transparent
                         .setShininess(100) // High shininess
                         .setKs(0.5) // Glossy
                         .setKd(0.5)); // Diffuse reflection
 
-        Sphere downSpr2 = new Sphere(new Point(0, -895, -30), 40);
-        downSpr2.setEmission(downColor) // Set the color emission of the sphere
+        Sphere sphere2 = new Sphere(new Point(0, -895, -30), 40);
+        sphere2.setEmission(black) // Set the color emission of the sphere
                 .setMaterial(new Material().setKt(0) // Not transparent
                         .setShininess(100) // High shininess
                         .setKs(0.5) // Glossy
                         .setKd(0.5)); // Diffuse reflection
 
-
-        Sphere s71 = new Sphere(new Point(0, depthSp, -81), 10);
-        Sphere s72 = new Sphere(new Point(22, depthSp, -69.5), 10);
-        Sphere s73 = new Sphere(new Point(44, depthSp, -57), 10);
-
-        Color secColor = new Color(180, 180, 180);
-
-        s71.setEmission(secColor).setMaterial(firstMat);
-        s72.setEmission(secColor).setMaterial(firstMat);
-        s73.setEmission(secColor).setMaterial(firstMat);
-
-        Sphere s81 = new Sphere(new Point(88, depthSp, -57), 10);
-        Sphere s82 = new Sphere(new Point(66, depthSp, -69.5), 10);
-        Sphere s83 = new Sphere(new Point(44, depthSp, -82), 10);
-        Sphere s84 = new Sphere(new Point(22, depthSp, -94.5), 10);
-        Sphere s85 = new Sphere(new Point(0, depthSp, -107), 10);
-        Sphere s86 = new Sphere(new Point(-22, depthSp, -119.5), 10);
-        s81.setEmission(secColor).setMaterial(firstMat);
-        s82.setEmission(secColor).setMaterial(firstMat);
-        s83.setEmission(secColor).setMaterial(firstMat);
-        s84.setEmission(secColor).setMaterial(firstMat);
-        s85.setEmission(secColor).setMaterial(firstMat);
-        s86.setEmission(secColor).setMaterial(firstMat);
-
-        Sphere s91 = new Sphere(new Point(88, depthSp, -81), 10);
-        Sphere s92 = new Sphere(new Point(66, depthSp, -93.5), 10);
-        Sphere s93 = new Sphere(new Point(44, depthSp, -106), 10);
-        Sphere s94 = new Sphere(new Point(22, depthSp, -118.5), 10);
-        Sphere s95 = new Sphere(new Point(0, depthSp, -131), 10);
-        s91.setEmission(secColor).setMaterial(firstMat);
-        s92.setEmission(secColor).setMaterial(firstMat);
-        s93.setEmission(secColor).setMaterial(firstMat);
-        s94.setEmission(secColor).setMaterial(firstMat);
-        s95.setEmission(secColor).setMaterial(firstMat);
+        // All scene
+        scene.geometries.add(
+                table, sphere1, sphere2,
+                mir1, mir2, floor, //
+                b1, b2, b3, b4, b5, //
+                b11, b12, b13, b14, b15, b16, //
+                b21, b22, b23, //
+                b31, b32, b33, b34, b35, //
+                b41, b42, b43, b44, b45, b46, //
+                b51, b52, b53 //
+        );
 
         scene.setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), 0.15));
-
-        scene.geometries.add(
-                table,downSpr,downSpr2,
-                mir1, mir2, floor,//
-                s1, s2, s3, s4, s5, //
-                s11, s12, s13, s14, s15, s16, //
-                s21, s22, s23, //
-                s71, s72, s73, //
-                s81, s82, s83, s84, s85, s86,//
-                s91, s92, s93, s94, s95
-        );
 
         cameraBuilder
                 .setImageWriter(new ImageWriter("MP1 test", 1000, 1000))
