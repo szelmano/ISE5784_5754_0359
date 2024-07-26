@@ -19,12 +19,12 @@ public class BlackBoard {
     private Vector vUp;
     /** The right vector of the blackboard. */
     private Vector vRight;
-    /** The width of the blackboard. Default value is 0. */
+    /** The width of the blackboard. */
     private double width;
     /** The density of rays in the beam. Default value is 9. */
     private int densityBeam = 9;
-    /** The distance between the blackboard and the beginning rays. */
-    private   double distance = 3;
+    /** The distance between the starting point of the ray beam and the blackboard */
+    private double distance = 3;
     /** Relative density used for grid construction. */
     private int relative = (int) (densityBeam * Math.sqrt(1.27324));
     /** Alignment value used for grid construction. */
@@ -76,7 +76,7 @@ public class BlackBoard {
      * @param distance The distance to set.
      * @return The updated blackboard.
      */
-    public BlackBoard setDictance(double distance) {
+    public BlackBoard setDistance(double distance) {
         this.distance = distance;
         return this;
     }

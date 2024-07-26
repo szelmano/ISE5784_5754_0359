@@ -108,9 +108,9 @@ public class Ray {
     }
 
     /**
-     * Calculates a beam of rays based on the blackboard material.
+     * Calculates a beam of rays for a blackboard.
      * @param blackBoard The blackboard used to calculate the rays.
-     * @return A list of rays calculated from the blackboard.
+     * @return A list of rays calculated for the blackboard.
      */
     public List<Ray> calculateBeam(BlackBoard blackBoard) {
         List<Ray> rays = new LinkedList<>();

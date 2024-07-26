@@ -1,17 +1,10 @@
-package MP1;
-
-import geometries.Polygon;
-import geometries.Sphere;
-import lighting.AmbientLight;
-import lighting.DirectionalLight;
-import lighting.PointLight;
-import lighting.SpotLight;
-import org.junit.jupiter.api.Test;
+package MPTests;
+import geometries.*;
 import primitives.*;
-import renderer.Camera;
-import renderer.ImageWriter;
-import renderer.SimpleRayTracer;
+import lighting.*;
+import renderer.*;
 import scene.Scene;
+import org.junit.jupiter.api.Test;
 
 import static java.awt.Color.*;
 
@@ -33,40 +26,22 @@ class MP1Test {
      */
     @Test
     public void MP1glossyTest() {
-//        scene.lights.add(new SpotLight(new Color(200, 0, 200), new Point(-200, -400, 50),//
-//                new Vector(0, -1, -50))
-//                .setKl(4E-5).setKq(2E-7));
-//        scene.lights.add(new PointLight(new Color(0, 0, 300), new Point(350, -300, -1300))//
-//                .setKl(0.00001).setKq(0.000001));
-//
-//        scene.lights.add(new DirectionalLight(new Color(150, 150, 150), new Vector(0, -1, 0)));
-
-
-//       scene.lights.add(new SpotLight(new Color(0, 0, 300), new Point(0, -600, 50),//
-//                new Vector(0, -1, -50))
-//                .setKl(4E-5).setKq(2E-7));
-//        scene.lights.add(new PointLight(new Color(200, 0, 200), new Point(250, -600, 25))//
-//                .setKl(0.00001).setKq(0.000001));
-//
-//        scene.lights.add(new DirectionalLight(new Color(150, 150, 150), new Vector(0, -1, 0)));
-
-        scene.lights.add(new SpotLight(new Color(0, 0, 300), new Point(0, -500, 150), // מיקום גבוה יותר ממרכז הסצנה
+        scene.lights.add(new SpotLight(new Color(150, 150, 150), new Point(0, -500, 150),
                 new Vector(0, -1, -50))
                 .setKl(4E-5).setKq(2E-7));
-        scene.lights.add(new PointLight(new Color(200, 0, 200), new Point(150, -700, -50)) // מיקום בצד ימין של הסצנה
+        scene.lights.add(new PointLight(new Color(200, 0, 200), new Point(150, -700, -50))
                 .setKl(0.00001).setKq(0.000001));
-        scene.lights.add(new DirectionalLight(new Color(150, 150, 150), new Vector(0, -1, -0.5))); // כיוון כלפי מטה בזווית קלה
-
+        scene.lights.add(new DirectionalLight(new Color(0, 0, 200), new Vector(400, -150, 0)));
 
         // camara above the bord
 //          cameraBuilder.setLocation(new Point(0, 0, 0)).setDirection(new Vector(0, 0, -1), new Vector(0, 1, 0))
 //                .setVpSize(150, 150).setDistance(400);
 
-        cameraBuilder.setLocation(new Point(0, -400, -1100)) // מיקום המצלמה מול הלוח, במרחק מתאים
+        cameraBuilder.setLocation(new Point(0, -400, -1100))
                 .setDirection(new Vector(0, -0.4, 1), new Vector(-1, 0, 0)
-                        .crossProduct(new Vector(0, -0.4, 1))) // מכוון את המצלמה כך שהיא תצפה על הלוח בזווית כלפי מטה
-                .setVpSize(150, 150) // גודל מישור התמונה
-                .setDistance(400); // המרחק בין המצלמה למישור התמונה
+                        .crossProduct(new Vector(0, -0.4, 1)))
+                .setVpSize(150, 150)
+                .setDistance(400);
 
         // Mirrors
         Point m11 = new Point(0.5, -600, 170);
@@ -100,37 +75,16 @@ class MP1Test {
         table.setEmission(new Color(BLACK))
                 .setMaterial(new Material().setKr(0.3).setKd(0.1).setKs(1).setShininess(2).setKt(0.3));
 
-        // Floor
+//        // Floor
         Point f1 = new Point(0, -900, 170);
-        Point f2 = new Point(-400, -900, 50);
-        Point f3 = new Point(400, -900, 50);
-        Point f4 = new Point(0, -900, -600);
+        Point f2 = new Point(-500, -900, 50);
+        Point f3 = new Point(500, -900, 50);
+        Point f4 = new Point(0, -900, -330);
 
         Polygon floor = new Polygon(f1, f2, f4, f3);
         floor.setEmission(new Color(40,40,47))
-                .setMaterial(new Material().setKr(0.05));
+                .setMaterial(new Material().setKr(0));
 
-        int j = 169;
-        for(int k = 0; k > -600; k = k - 61){
-
-            int count=0;
-            for (int i = k; i <= 300; i = i + 62){
-
-                Point l1 = new Point(i, -900, j);
-                Point l2 = new Point(i - 60, -900, j - 30);
-                Point l3 = new Point(i + 60, -900, j - 30);
-                Point l4 = new Point(i , -900, j - 60);
-                Polygon tr = new Polygon(l1, l2, l4, l3);
-                tr.setEmission(new Color(50, 50, 50))
-                     .setMaterial(new Material().setKr(0.1));
-                count++;
-                j = j - 31;
-
-                 scene.geometries.add(tr);
-            }
-            j = j + (31 * count);
-            j = j - 31;
-        }
 
         // Game balls
         Material firstMat = new Material().setKr(0.05).setKd(0.1).setKs(1).setShininess(100);
@@ -203,17 +157,16 @@ class MP1Test {
         b53.setEmission(white).setMaterial(firstMat);
 
         // Table base spheres
-        Color black = new Color(BLACK);
 
         Sphere sphere1 = new Sphere(new Point(0, -835, -30), 35);
-        sphere1.setEmission(black)  // Set the color emission of the sphere
+        sphere1.setEmission(Color.BLACK)  // Set the color emission of the sphere
                 .setMaterial(new Material().setKt(0) // Not transparent
                         .setShininess(100) // High shininess
                         .setKs(0.5) // Glossy
                         .setKd(0.5)); // Diffuse reflection
 
         Sphere sphere2 = new Sphere(new Point(0, -895, -30), 40);
-        sphere2.setEmission(black) // Set the color emission of the sphere
+        sphere2.setEmission(Color.BLACK) // Set the color emission of the sphere
                 .setMaterial(new Material().setKt(0) // Not transparent
                         .setShininess(100) // High shininess
                         .setKs(0.5) // Glossy
@@ -222,7 +175,8 @@ class MP1Test {
         // All scene
         scene.geometries.add(
                 table, sphere1, sphere2,
-                mir1, mir2, floor, //
+                mir1, mir2,
+                floor, //
                 b1, b2, b3, b4, b5, //
                 b11, b12, b13, b14, b15, b16, //
                 b21, b22, b23, //
@@ -232,10 +186,9 @@ class MP1Test {
         );
 
         scene.setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), 0.15));
-
         cameraBuilder
                 .setImageWriter(new ImageWriter("MP1 test", 1000, 1000))
-                .build().renderImage(1).writeToImage();
+                .build().renderImage(10 ).writeToImage();
 
     }
 }

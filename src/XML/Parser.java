@@ -3,10 +3,7 @@ package XML;
 import geometries.*;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-import primitives.Color;
-import primitives.Point;
-import primitives.Ray;
-import primitives.Vector;
+import primitives.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +11,7 @@ import java.util.List;
 /**
  * Utility class for parsing different geometric shapes and properties from XML elements.
  */
-public class Parse {
+public class Parser {
 
     /**
      * Parses a cylinder element to create a Cylinder object.
@@ -96,11 +93,8 @@ public class Parse {
      * @return The Point object created from the string.
      */
     public static Point parsePoint(String pointStr) {
-        String[] coords = pointStr.split(" ");
-        double x = Double.parseDouble(coords[0]);
-        double y = Double.parseDouble(coords[1]);
-        double z = Double.parseDouble(coords[2]);
-        return new Point(x, y, z);
+        String[] cords = pointStr.split(" ");
+        return new Point(parseDouble3(cords[0], cords[1], cords[2]));
     }
 
     /**
@@ -110,17 +104,9 @@ public class Parse {
      * @return The Ray object created from the string.
      */
     public static Ray parseRay(String rayStr) {
-        String[] coords = rayStr.split(" ");
-        Point startPoint = new Point(
-                Double.parseDouble(coords[0]),
-                Double.parseDouble(coords[1]),
-                Double.parseDouble(coords[2])
-        );
-        Vector direction = new Vector(
-                Double.parseDouble(coords[3]),
-                Double.parseDouble(coords[4]),
-                Double.parseDouble(coords[5])
-        );
+        String[] cords = rayStr.split(" ");
+        Point startPoint = new Point(parseDouble3(cords[0], cords[1], cords[2]));
+        Vector direction = new Vector(parseDouble3(cords[3], cords[4], cords[5]));
         return new Ray(startPoint, direction);
     }
 
@@ -130,11 +116,8 @@ public class Parse {
      * @return The Vector object created from the string.
      */
     public static Vector parseVector(String vectorStr) {
-        String[] coords = vectorStr.split(" ");
-        double x = Double.parseDouble(coords[0]);
-        double y = Double.parseDouble(coords[1]);
-        double z = Double.parseDouble(coords[2]);
-        return new Vector(x, y, z);
+        String[] cords = vectorStr.split(" ");
+        return new Vector( parseDouble3(cords[0], cords[1], cords[2]));
     }
 
     /**
@@ -148,6 +131,20 @@ public class Parse {
         int g = Integer.parseInt(rgb[1]);
         int b = Integer.parseInt(rgb[2]);
         return new Color(r, g, b);
+    }
+
+   /**
+     * Parses three string values to create a Double3 object.
+     * @param value1 The first string value.
+     * @param value2 The second string value.
+     * @param value3 The third string value.
+     * @return The Double3 object created from the values.
+     */
+    public static Double3 parseDouble3(String value1, String value2, String value3) {
+        double x = Double.parseDouble(value1);
+        double y = Double.parseDouble(value2);
+        double z = Double.parseDouble(value3);
+        return new Double3(x, y, z);
     }
 
 }

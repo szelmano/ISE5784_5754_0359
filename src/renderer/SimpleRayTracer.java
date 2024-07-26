@@ -80,7 +80,8 @@ public class SimpleRayTracer extends RayTracerBase {
         Vector v = ray.getDirection();
         Vector n = gp.geometry.getNormal(gp.point);
         return calcGlossyMattColor(constructRefractedRay(gp, v, n), n, level, k, material, material.kT)
-                .add(calcGlossyMattColor(Objects.requireNonNull(constructReflectedRay(gp, v, n)), n, level, k, material, material.kR));
+                .add(calcGlossyMattColor(Objects.requireNonNull(constructReflectedRay(gp, v, n))
+                        , n, level, k, material, material.kR));
     }
 
     /**
@@ -101,13 +102,13 @@ public class SimpleRayTracer extends RayTracerBase {
     }
 
     /**
-     * Calculates the glossy and matte color contributions for a given ray.
+     * Calculates the color contribution from glossy and matte reflections for a given ray.
      * @param ray   The ray to trace.
      * @param n     The normal vector at the intersection point.
      * @param level The recursion level.
      * @param k     The reflection/refraction factor.
      * @param material The material properties.
-     * @param kx    The reflection/refraction coefficient.
+     * @param kx    The reflection/refraction factor.
      * @return The color contribution from glossy and matte effects.
      */
     private Color calcGlossyMattColor(Ray ray, Vector n, int level, Double3 k, Material material, Double3 kx) {
@@ -121,7 +122,7 @@ public class SimpleRayTracer extends RayTracerBase {
                 ++counter;
             }
         }
-        return color.reduce(counter);
+        return isZero(counter)? Color.BLACK : color.reduce(counter);
     }
 
     /**

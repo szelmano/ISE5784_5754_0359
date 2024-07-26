@@ -9,7 +9,7 @@ import lighting.*;
 import primitives.*;
 import scene.Scene;
 
-import static XML.Parse.*;
+import static XML.Parser.*;
 
 /**
  * This class is responsible for parsing an XML file to create a Scene object.
@@ -73,7 +73,7 @@ public class SceneXML {
      * @param scene The scene to which the geometries will be added.
      * @param geometryName The name of the geometry type to be added (e.g., "cylinder", "plane").
      */
-    private static void addGeometries(Element geometriesElement, Scene scene, String geometryName) {
+    private static void addGeometries(Element geometriesElement, Scene scene, String geometryName) throws Exception {
         NodeList geometryList = geometriesElement.getElementsByTagName(geometryName);
         for (int i = 0; i < geometryList.getLength(); i++) {
             Element geometryElement = (Element) geometryList.item(i);
@@ -85,11 +85,7 @@ public class SceneXML {
                     scene.geometries.add(parsePlane(geometryElement));
                     break;
                 case "polygon":
-                    try {
-                        scene.geometries.add(parsePolygon(geometryElement));
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                    scene.geometries.add(parsePolygon(geometryElement));
                     break;
                 case "sphere":
                     scene.geometries.add(parseSphere(geometryElement));

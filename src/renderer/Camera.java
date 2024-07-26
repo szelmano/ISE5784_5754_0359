@@ -30,8 +30,25 @@ public class Camera implements Cloneable {
     private ImageWriter imageWriter;
     /** The ray tracer for tracing rays in the scene. */
     private RayTracerBase rayTracer;
-    /** The blackboard for generating multiple rays through a pixel for anti-aliasing. */
+    /** The blackboard for generating multiple rays through a pixel. */
     private BlackBoard blackBoard = new BlackBoard(0);
+    /** Flag for adaptive super sampling */
+    private Boolean adaptive = false;
+
+    /** Pixel manager for supporting:
+     * <ul>
+     * <li>multi-threading</li>
+     * <li>debug print of progress percentage in Console window/tab</li>
+     * <ul>
+     */
+    private PixelManager pixelManager;
+    /** Number of threads to use for rendering */
+    private int threadsCount = 0; // -2 auto, -1 range/stream, 0 no threads, 1+ number of threads
+    /** Number of spare threads if trying to use all the cores */
+    private final int SPARE_THREADS = 2; // Spare threads if trying to use all the cores
+    /** Printing progress percentage interval */
+    private double printInterval = 1; // printing progress percentage interval
+
 
 
     /**
@@ -128,7 +145,7 @@ public class Camera implements Cloneable {
 
 
     /**
-     * Constructs multiple rays through a specified pixel for anti-aliasing.
+     * Constructs multiple rays through a specified pixel.
      * @param nX Number of pixels in width.
      * @param nY Number of pixels in height.
      * @param j  Column index of the pixel.
@@ -137,10 +154,8 @@ public class Camera implements Cloneable {
      * @return A list of rays through the specified pixel.
      */
     public List<Ray> constructRays(int nX, int nY, int j, int i, int numRays) {
-//        Random random = new Random();
         List<Ray> rays;
-//                = new ArrayList<>();
-        blackBoard.setDictance(this.distance);
+        blackBoard.setDistance(this.distance);
         blackBoard.setWidth(width/nX);
         blackBoard.setDensityBeam(numRays);
         Ray ray = constructRay(nX, nY, j, i);
@@ -154,55 +169,103 @@ public class Camera implements Cloneable {
      * Renders the image by casting rays through each pixel.
      * @return The camera after rendering the image.
      */
-    public Camera renderImage(int size) {
+    public Camera renderImage(int numRays) {
         int nX = imageWriter.getNx();
         int nY = imageWriter.getNy();
         // Verify that nX and nY are not zero to avoid division by zero
         if (nY == 0 || nX == 0)
             throw new IllegalArgumentException("It is impossible to divide by 0");
-
-        for (int i = 0; i < nX; ++i)
-            for (int j = 0; j < nY; ++j) {
-                castRay(nX, nY, j, i,size);
-
+        pixelManager = new PixelManager(nY, nX, printInterval);
+        if (threadsCount == 0) {
+            for (int i = 0; i < nY; ++i)
+                for (int j = 0; j < nX; ++j)
+                    castRay(nX, nY, j, i, numRays);
+        }
+        else { // see further... option 2
+            var threads = new LinkedList<Thread>(); // list of threads
+            while (threadsCount-- > 0) // add appropriate number of threads
+                threads.add(new Thread(() -> { // add a thread with its code
+                    PixelManager.Pixel pixel; // current pixel(row,col)
+                    // allocate pixel(row,col) in loop until there are no more pixels
+                    while ((pixel = pixelManager.nextPixel()) != null)
+                        // cast ray through pixel (and color it – inside castRay)
+                        castRay(nX, nY, pixel.col(), pixel.row(),numRays);
+                }));
+            // start all the threads
+            for (var thread : threads) thread.start();
+            // wait until all the threads have finished
+            try {
+                for (var thread : threads) thread.join();
+            } catch (InterruptedException ignore) {
             }
+        }
         return this;
     }
 
+
     /**
-     * Casts a ray through a pixel and writes the resulting color to the image.
+     * Casts a num of rays through a pixel and writes the resulting color to the image.
      * @param nX Number of pixels in width.
      * @param nY Number of pixels in height.
      * @param column The column index of the pixel.
      * @param row The row index of the pixel.
      */
-    private void castRay(int nX, int nY, int column, int row, int size) {
-        Color color=Color.BLACK;
-        if (size == 1) {
+    private void castRay(int nX, int nY, int column, int row, int numRays) {
+        Color color = Color.BLACK;
+        if (numRays == 1) {
+            // Trace a single ray
             Ray ray = constructRay(nX, nY, column, row);
             color = rayTracer.traceRay(ray);
         } else {
-            List<Ray> rays = constructRays(nX, nY, column, row, size);
-            for (Ray ray1 : rays) {
-                    color = color.add( rayTracer.traceRay(ray1));
+            boolean colorsDifferernt = false;
+            if(adaptive){
+            // Trace multiple rays
+            List<Ray> rays = constructRays(nX, nY, column, row, 4);
+            if (!rays.isEmpty()) {
+                // Handle empty rays list, if applicable
+                Color firstColor = rayTracer.traceRay(rays.get(0));
+                // Check if all rays produce the same color
+                for (Ray ray : rays) {
+                    Color currentColor = rayTracer.traceRay(ray);
+                    if (!currentColor.equals(firstColor)) {
+                        colorsDifferernt = true;
+                        break;
+                    }
                 }
-            color=color.reduce(rays.size());
+                if (colorsDifferernt) {
+                     rays = constructRays(nX, nY, column, row, numRays);
+                    color = AvrageColor(rays, color);
+                } else {
+                    color = firstColor;
+                }
             }
+            } else{
+                List<Ray> rays = constructRays(nX, nY, column, row, numRays);
+               color= AvrageColor(rays, color);
+
+        }}
+
+        // Write the computed color to the image and mark the pixel as done
         imageWriter.writePixel(column, row, color);
+        pixelManager.pixelDone();
     }
 
-//    /**
-//     * Averages the color values of multiple rays.
-//     * @param rays List of rays.
-//     * @return The averaged color.
-//     */
-//    private Color averageColor(List<Ray> rays) {
-//        Color accumulatedColor = new Color(0, 0, 0); // Assuming Color has a constructor with RGB values
-//        for (Ray ray : rays) {
-//            accumulatedColor = accumulatedColor.add(rayTracer.traceRay(ray));
-//        }
-//        return accumulatedColor.reduce(rays.size());
-//    }
+    /**
+     * Calculates the average color from a list of rays.
+     * @param rays The list of rays to calculate the average color from.
+     * @param color The initial color to add to.
+     * @return The average color from the list of rays.
+     */
+    private Color AvrageColor(List<Ray> rays, Color color) {
+        if(rays.isEmpty())
+            return Color.BLACK;
+        for (Ray ray : rays) {
+            color = color.add(rayTracer.traceRay(ray));
+        }
+        color = color.reduce(rays.size());
+        return color;
+    }
+
 
     /**
      * Prints a grid on the image with the specified interval and color.
@@ -464,6 +527,27 @@ public class Camera implements Cloneable {
          */
         public Builder setRayTracer(RayTracerBase rayTracer) {
             this.camera.rayTracer = rayTracer;
+            return this;
+        }
+        public Builder setMultithreading(int threads) {
+            if (threads < -2)
+                throw new IllegalArgumentException("Multithreading must be -2 or higher");
+            if (threads >= -1)
+                camera.threadsCount = threads;
+            else { // == -2
+                int cores = Runtime.getRuntime().availableProcessors() - camera.SPARE_THREADS;
+                camera.threadsCount = cores <= 2 ? 1 : cores;
+            }
+            return this;
+        }
+
+        public Builder setDebugPrint(double interval) {
+            camera.printInterval = interval;
+            return this;
+        }
+
+        public Builder setAdaptive(boolean adaptive) {
+            camera.adaptive = adaptive;
             return this;
         }
 
